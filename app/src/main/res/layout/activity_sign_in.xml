@@ -1,0 +1,441 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <import type="android.text.InputType" />
+
+        <variable
+            name="isLoggingIn"
+            type="Boolean" />
+
+        <variable
+            name="isGoogleLoggingIn"
+            type="Boolean" />
+
+        <variable
+            name="isFacebookLoggingIn"
+            type="Boolean" />
+
+        <variable
+            name="isKakaoLoggingIn"
+            type="Boolean" />
+
+        <variable
+            name="isLineLoggingIn"
+            type="Boolean" />
+
+        <variable
+            name="viewModel"
+            type="com.ar7lab.cherieapp.ui.signin.SignInViewModel" />
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:fitsSystemWindows="true">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:animateLayoutChanges="true">
+
+            <!--<editor-fold desc="Top bar">-->
+            <include
+                android:id="@+id/include"
+                layout="@layout/item_top_bar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+            <!--</editor-fold>-->
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:animateLayoutChanges="true"
+                android:background="@color/white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/include">
+
+                <!--<editor-fold desc="Login with mobile">-->
+                <TextView
+                    android:id="@id/tv_with_mobile"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_24sdp"
+                    android:layout_marginEnd="@dimen/_12sdp"
+                    android:fontFamily="@font/sf_semi_bold"
+                    android:includeFontPadding="false"
+                    android:onClick="@{()-> viewModel.getSignInMobile()}"
+                    android:text="@{viewModel.isSignInWithMobile() ? @string/login_with_email: @string/login_with_mobile}"
+                    android:textColor="@color/cetacean_blue"
+                    android:textSize="@dimen/_12ssp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+                <!--</editor-fold>-->
+
+                <!--<editor-fold desc="Phone Number">-->
+                <LinearLayout
+                    android:id="@+id/ll_phone"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_12sdp"
+                    android:layout_marginTop="@dimen/_12sdp"
+                    android:background="@drawable/bg_border_transparent_sign_up"
+                    android:orientation="horizontal"
+                    android:visibility="@{viewModel.isSignInWithMobile() ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_with_mobile">
+
+                    <com.ar7lab.cherieapp.widget.ShowDropDownAutoCompleteTextView
+                        android:id="@+id/act_country_phone_code"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@null"
+                        android:drawableStart="@drawable/ic_phone"
+                        android:drawableEnd="@drawable/ic_down_arrow"
+                        android:drawablePadding="10dp"
+                        android:focusable="false"
+                        android:focusableInTouchMode="false"
+                        android:inputType="textEmailAddress"
+                        android:minHeight="55dp"
+                        android:paddingVertical="@dimen/_6sdp"
+                        android:paddingStart="@dimen/_14sdp"
+                        android:paddingEnd="@dimen/_8sdp"
+                        android:text="@{viewModel.countryPhoneCode}"
+                        android:textAppearance="?attr/textAppearanceBody1"
+                        android:textColor="@color/dark_blue"
+                        tools:ignore="RtlSymmetry"
+                        tools:text="+84" />
+
+                    <View
+                        android:layout_width="2dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="@dimen/_12sdp"
+                        android:layout_marginBottom="@dimen/_12sdp"
+                        android:background="@color/gains_boro" />
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@null"
+                        android:digits="0123456789"
+                        android:drawablePadding="10dp"
+                        android:fontFamily="@font/sf_regular"
+                        android:hint="@string/mobile_number"
+                        android:imeOptions="actionNext"
+                        android:inputType="phone"
+                        android:padding="13dp"
+                        android:text="@={viewModel.contactNo}"
+                        android:textColor="@color/dark_blue"
+                        android:textSize="@dimen/_12ssp" />
+                </LinearLayout>
+                <!--</editor-fold>-->
+
+                <!--<editor-fold desc="Account creation desc">-->
+                <TextView
+                    android:id="@+id/tv_description"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:fontFamily="@font/sf_regular"
+                    android:text="@string/we_will_create_an_account"
+                    android:textColor="@color/dove_gray"
+                    android:textSize="@dimen/_9ssp"
+                    android:visibility="@{!viewModel.isPasswordRequired() &amp;&amp; viewModel.isSignInWithMobile() ? View.GONE : View.GONE}"
+                    app:layout_constraintEnd_toEndOf="@+id/ll_phone"
+                    app:layout_constraintStart_toStartOf="@+id/ll_phone"
+                    app:layout_constraintTop_toBottomOf="@+id/ll_phone" />
+                <!--</editor-fold>-->
+
+                <!--<editor-fold desc="Email Text">-->
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/til_email"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_12sdp"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:hint="@string/enter_email"
+                    android:visibility="@{viewModel.isSignInWithMobile() ? View.GONE : View.VISIBLE}"
+                    app:boxCornerRadiusBottomEnd="@dimen/_6sdp"
+                    app:boxCornerRadiusBottomStart="@dimen/_6sdp"
+                    app:boxCornerRadiusTopEnd="@dimen/_6sdp"
+                    app:boxCornerRadiusTopStart="@dimen/_6sdp"
+                    app:boxStrokeColor="@drawable/text_input_box_stroke"
+                    app:endIconDrawable="@{viewModel.isEmailValid() ? @drawable/ic_checked : viewModel.isLoginClicked ? @drawable/ic_alert : null, default=@drawable/ic_checked}"
+                    app:endIconMode="custom"
+                    app:endIconTint="@null"
+                    app:helperText='@{viewModel.email.isEmpty() ? (viewModel.isLoginClicked ? @string/email_address_required : "") : viewModel.isEmailValid() ? "" : viewModel.isLoginClicked ? @string/email_address_invalid:""}'
+                    app:helperTextTextAppearance="?attr/textAppearanceCaption"
+                    app:helperTextTextColor="@android:color/holo_red_dark"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_description">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/et_email"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:autofillHints="emailAddress"
+                        android:drawableStart="@drawable/ic_email"
+                        android:drawablePadding="10dp"
+                        android:fontFamily="@font/sf_regular"
+                        android:inputType="textEmailAddress"
+                        android:padding="13dp"
+                        android:text="@={viewModel.email}"
+                        android:textColor="@color/dark_blue" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+                <!--</editor-fold>-->
+
+                <!--<editor-fold desc="Password field">-->
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/til_password"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_12sdp"
+                    android:layout_marginTop="@dimen/_12sdp"
+                    android:hint="@string/enter_password"
+                    app:boxCornerRadiusBottomEnd="@dimen/_6sdp"
+                    app:boxCornerRadiusBottomStart="@dimen/_6sdp"
+                    app:boxCornerRadiusTopEnd="@dimen/_6sdp"
+                    app:boxCornerRadiusTopStart="@dimen/_6sdp"
+                    app:boxStrokeColor="@drawable/text_input_box_stroke"
+                    app:helperText='@{viewModel.password.isEmpty() ? (viewModel.isLoginClicked ? @string/password_required : "") : viewModel.isLoginClicked ?viewModel.isPasswordValid() ? "" : @string/password_invalid:""}'
+                    app:helperTextTextAppearance="?attr/textAppearanceCaption"
+                    app:helperTextTextColor="@android:color/holo_red_dark"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/til_email"
+                    app:passwordToggleDrawable="@drawable/show_password_selector"
+                    app:passwordToggleEnabled="true"
+                    app:passwordToggleTint="@color/charleston_green">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/et_password"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:autofillHints="password"
+                        android:drawableStart="@drawable/ic_lock"
+                        android:drawablePadding="10dp"
+                        android:fontFamily="@font/sf_regular"
+                        android:inputType="textPassword"
+                        android:padding="13dp"
+                        android:text="@={viewModel.password}"
+                        android:textColor="@color/dark_blue" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+                <!--android:visibility="@{viewModel.isSignInWithMobile()? (!viewModel.isPasswordRequired() &amp;&amp; viewModel.isSignInWithMobile() ? View.GONE:View.VISIBLE) : View.VISIBLE}"-->
+
+                <!--</editor-fold>-->
+
+                <!--<editor-fold desc="Login with OTP">-->
+                <TextView
+                    android:id="@+id/tv_login_otp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/sf_semi_bold"
+                    android:includeFontPadding="false"
+                    android:onClick="@{()-> viewModel.getPasswordRequired()}"
+                    android:text="@string/login_with_otp"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_12ssp"
+                    android:visibility="@{viewModel.isSignInWithMobile() &amp;&amp; viewModel.isPasswordRequired() ? View.GONE : View.GONE}"
+                    app:layout_constraintStart_toStartOf="@+id/ll_phone"
+                    app:layout_constraintTop_toBottomOf="@+id/til_password"
+                    app:layout_constraintTop_toTopOf="@+id/tv_forgot_password" />
+                <!--</editor-fold>-->
+
+                <!--<editor-fold desc="Forget Password">-->
+                <TextView
+                    android:id="@+id/tv_forgot_password"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_12sdp"
+                    android:fontFamily="@font/sf_semi_bold"
+                    android:includeFontPadding="false"
+                    android:text="@string/forget_password"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_12ssp"
+                    app:layout_constraintEnd_toEndOf="@+id/tv_with_mobile"
+                    app:layout_constraintTop_toBottomOf="@+id/til_password" />
+                <!--android:text="@{viewModel.isSignInWithMobile() ? (!viewModel.isPasswordRequired() &amp;&amp; viewModel.isSignInWithMobile() ? @string/sign_password:@string/forget_password): @string/forget_password}"-->
+
+                <!--</editor-fold>-->
+
+                <!--<editor-fold desc="Sign in">-->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_sign_in"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_12sdp"
+                    android:layout_marginBottom="@dimen/_12sdp"
+                    android:fontFamily="@font/sf_pro_text_medium"
+                    android:padding="12dp"
+                    android:text="@string/sign_small_in"
+                    android:textAllCaps="false"
+                    android:textSize="@dimen/_13ssp"
+                    app:backgroundTint="@color/green_munsell"
+                    app:iconGravity="textStart"
+                    app:layout_constraintBottom_toTopOf="@+id/tv_signup"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:shapeAppearance="@style/ShapeAppearance.Cherie.Tag.SocialButton"
+                    app:showProgress="@{isLoggingIn}"
+                    app:textSource="@{@string/sign_in}" />
+                <!--</editor-fold>-->
+
+                <TextView
+                    android:id="@+id/tv_don_t"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_6sdp"
+                    android:fontFamily="@font/sf_regular"
+                    android:gravity="center"
+                    android:text="@string/or_continue_with"
+                    android:textColor="@color/black"
+                    android:visibility="gone"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/btn_sign_in" />
+
+                <!--<editor-fold desc="Google Button">-->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_google"
+                    android:layout_width="@dimen/_45sdp"
+                    android:layout_height="@dimen/_55sdp"
+                    android:layout_marginTop="@dimen/_12sdp"
+                    android:layout_marginEnd="@dimen/_6sdp"
+                    android:textAllCaps="false"
+                    android:textColor="?attr/colorSecondary"
+                    android:visibility="gone"
+                    app:backgroundTint="?attr/colorOnPrimary"
+                    app:icon="@drawable/ic_google"
+                    app:iconGravity="textStart"
+                    app:iconPadding="0dp"
+                    app:iconSource="@{@drawable/ic_google}"
+                    app:iconTint="@null"
+                    app:layout_constraintEnd_toStartOf="@+id/btn_facebook"
+                    app:layout_constraintHorizontal_chainStyle="packed"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_forgot_password"
+                    app:rippleColor="?attr/colorPrimaryVariant"
+                    app:shapeAppearance="@style/ShapeAppearance.Cherie.Tag.NewSocialButton"
+                    app:strokeColor="@color/social_button_border" />
+                <!--</editor-fold>-->
+
+                <!--<editor-fold desc="Facebook Button">-->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_facebook"
+                    android:layout_width="@dimen/_45sdp"
+                    android:layout_height="@dimen/_55sdp"
+                    android:layout_marginHorizontal="@dimen/_6sdp"
+                    android:textAllCaps="false"
+                    android:textColor="?attr/colorSecondary"
+                    android:visibility="gone"
+                    app:backgroundTint="?attr/colorOnPrimary"
+                    app:icon="@drawable/ic_fb_rounded"
+                    app:iconGravity="textStart"
+                    app:iconPadding="0dp"
+                    app:iconSource="@{@drawable/ic_fb_rounded}"
+                    app:iconTint="@null"
+                    app:layout_constraintBottom_toBottomOf="@+id/btn_google"
+                    app:layout_constraintEnd_toStartOf="@+id/btn_kakao"
+                    app:layout_constraintStart_toEndOf="@+id/btn_google"
+                    app:layout_constraintTop_toTopOf="@+id/btn_google"
+                    app:rippleColor="?attr/colorPrimaryVariant"
+                    app:shapeAppearance="@style/ShapeAppearance.Cherie.Tag.NewSocialButton"
+                    app:showProgress="@{isFacebookLoggingIn}"
+                    app:strokeColor="@color/social_button_border" />
+                <!--</editor-fold>-->
+
+                <!--<editor-fold desc="Kakao Button">-->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_kakao"
+                    android:layout_width="@dimen/_45sdp"
+                    android:layout_height="@dimen/_55sdp"
+                    android:layout_marginHorizontal="@dimen/_6sdp"
+                    android:padding="@dimen/_8sdp"
+                    android:textAllCaps="false"
+                    android:textColor="?attr/colorSecondary"
+                    android:visibility="gone"
+                    app:backgroundTint="?attr/colorOnPrimary"
+                    app:icon="@drawable/ic_kakao_talk"
+                    app:iconGravity="textStart"
+                    app:iconPadding="0dp"
+                    app:iconSource="@{@drawable/ic_kakao_talk}"
+                    app:iconTint="@null"
+                    app:layout_constraintBottom_toBottomOf="@+id/btn_google"
+                    app:layout_constraintEnd_toStartOf="@+id/btn_line"
+                    app:layout_constraintStart_toEndOf="@+id/btn_facebook"
+                    app:layout_constraintTop_toTopOf="@+id/btn_google"
+                    app:rippleColor="?attr/colorPrimaryVariant"
+                    app:shapeAppearance="@style/ShapeAppearance.Cherie.Tag.NewSocialButton"
+                    app:showProgress="@{isKakaoLoggingIn}"
+                    app:strokeColor="@color/social_button_border" />
+                <!--</editor-fold>-->
+
+                <!--<editor-fold desc="Line Button">-->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_line"
+                    android:layout_width="@dimen/_45sdp"
+                    android:layout_height="@dimen/_55sdp"
+                    android:layout_marginHorizontal="@dimen/_6sdp"
+                    android:padding="@dimen/_8sdp"
+                    android:textAllCaps="false"
+                    android:textColor="?attr/colorSecondary"
+                    android:visibility="gone"
+                    app:backgroundTint="?attr/colorOnPrimary"
+                    app:icon="@drawable/ic_line"
+                    app:iconGravity="textStart"
+                    app:iconPadding="0dp"
+                    app:iconSource="@{@drawable/ic_line}"
+                    app:iconTint="@null"
+                    app:layout_constraintBottom_toBottomOf="@+id/btn_google"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/btn_kakao"
+                    app:layout_constraintTop_toTopOf="@+id/btn_google"
+                    app:rippleColor="?attr/colorPrimaryVariant"
+                    app:shapeAppearance="@style/ShapeAppearance.Cherie.Tag.NewSocialButton"
+                    app:showProgress="@{isLineLoggingIn}"
+                    app:strokeColor="@color/social_button_border" />
+                <!--</editor-fold>-->
+
+                <!--<editor-fold desc="Sign Up">-->
+                <TextView
+                    android:id="@+id/tv_signup"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/sf_medium"
+                    android:gravity="center"
+                    android:layout_marginBottom="@dimen/_16sdp"
+                    android:includeFontPadding="false"
+                    android:text="@string/don_t_have_an_account_sign_up"
+                    android:textColor="@color/grey_button_switch"
+                    android:textSize="@dimen/_12ssp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+                <!--</editor-fold>-->
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+</layout>

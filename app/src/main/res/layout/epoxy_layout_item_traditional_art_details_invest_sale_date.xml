@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="salesInfo"
+            type="com.ar7lab.cherieapp.model.SalesInfo" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorOnPrimary"
+        android:paddingVertical="@dimen/_8sdp">
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clStartDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:paddingHorizontal="@dimen/_20sdp"
+            >
+            <!--Sales start label-->
+            <TextView
+                android:id="@+id/tv_start_date_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/official_sale_start_date"
+                android:fontFamily="@font/sf_pro_text_semi_bold"
+                android:textColor="@color/dark_blue"
+                android:textSize="@dimen/_10ssp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <!--Sales start label-->
+            <TextView
+                android:id="@+id/tv_start_date"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:textAppearance="?attr/textAppearanceBody2"
+                android:textColor="@color/dove_gray"
+                android:textSize="@dimen/_11ssp"
+                android:fontFamily="@font/sf_pro_text_regular"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/tv_start_date_title"
+                app:layout_constraintTop_toTopOf="parent"
+                app:showDate="@{salesInfo.currentSale.salesStartDate}"
+                tools:text="2021-08-01" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/clStartDate"
+            android:paddingHorizontal="@dimen/_20sdp"
+            >
+            <!--Sales end date label-->
+            <TextView
+                android:id="@+id/tv_end_date_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/official_sales_end_date"
+                android:fontFamily="@font/sf_pro_text_semi_bold"
+                android:textColor="@color/dark_blue"
+                android:textSize="@dimen/_10ssp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+            <!--Sales end date -->
+            <TextView
+                android:id="@+id/tv_end_date"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:fontFamily="@font/sf_pro_text_regular"
+                android:textColor="@color/dove_gray"
+                android:textSize="@dimen/_11ssp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/tv_end_date_title"
+                app:layout_constraintTop_toTopOf="parent"
+                app:showDate="@{salesInfo.currentSale.salesEndDate}"
+                tools:text="2021-08-01" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        <!--Divider-->
+        <View
+            android:layout_width="match_parent"
+            android:layout_marginHorizontal="@dimen/_12sdp"
+            android:layout_height="1dp"
+            android:layout_marginTop="@dimen/_7sdp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/clContainer"
+            android:background="@color/philippine_silver"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

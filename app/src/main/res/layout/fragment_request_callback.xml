@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="isSubmitting"
+            type="Boolean" />
+
+        <variable
+            name="listener"
+            type="com.ar7lab.cherieapp.ui.requestcallback.HelpSupportCallBackInterface" />
+
+        <variable
+            name="viewModel"
+            type="com.ar7lab.cherieapp.ui.requestcallback.RequestCallBackViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="?attr/colorOnPrimary"
+        android:fitsSystemWindows="true">
+
+        <!--header container-->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clToolBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/_12sdp"
+            android:elevation="@dimen/_5sdp"
+            android:background="@color/white"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+            <!--back button -->
+            <ImageView
+                android:id="@+id/iv_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/_5sdp"
+                android:src="@drawable/ic_back_v3"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+            <!--deposit title-->
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/sf_pro_text_bold"
+                android:includeFontPadding="false"
+                android:text="@string/request_query"
+                android:textColor="@color/dark_blue"
+                android:textSize="@dimen/_13ssp"
+                app:layout_constraintBottom_toBottomOf="@+id/iv_back"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/iv_back" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:id="@+id/tvv_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_16sdp"
+            android:layout_marginStart="@dimen/_16sdp"
+            android:layout_marginEnd="@dimen/_16sdp"
+            android:layout_alignParentTop="true"
+            android:fontFamily="@font/sf_pro_text_medium"
+            android:text="@string/enter_your_query_you_want_to_talk_about"
+            android:textColor="@color/color_granite"
+            android:textSize="@dimen/_11sdp"
+            android:lineSpacingExtra="5sp"
+            android:gravity="center_vertical"
+            app:layout_constraintTop_toBottomOf="@id/clToolBar"
+            />
+
+        <EditText
+            android:id="@+id/edit_query"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_marginStart="@dimen/_16sdp"
+            android:layout_marginTop="@dimen/_16sdp"
+            android:layout_marginHorizontal="@dimen/_16sdp"
+            android:layout_marginEnd="@dimen/_16sdp"
+            android:fontFamily="@font/sf_pro_text_medium"
+            android:background="@drawable/bg_border_bank_cards"
+            android:textSize="@dimen/_11ssp"
+            app:hintTextAppearance="@style/TextLabel"
+            android:hint="@string/enter_the_title_of_the_query"
+            android:imeOptions="actionDone"
+            android:inputType="textCapWords"
+            android:lines="1"
+            android:paddingStart="@dimen/_12sdp"
+            android:textColorHint="#B2B2B2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvv_title" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/dsc_ct"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_16sdp"
+            android:background="@drawable/bg_border_bank_cards"
+            android:layout_marginTop="@dimen/_12sdp"
+            android:fitsSystemWindows="true"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/edit_query">
+
+            <EditText
+                android:id="@+id/edit_desc"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_120sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginEnd="@dimen/_7sdp"
+                android:gravity="top"
+                android:fontFamily="@font/sf_pro_text_medium"
+                android:background="@android:color/transparent"
+                android:hint="@string/enter_the_description_about_the_query"
+                android:imeOptions="actionDone"
+                android:inputType="textMultiLine"
+                android:maxLines="100"
+                android:paddingStart="@dimen/_12sdp"
+                android:textColorHint="#B2B2B2"
+                android:textSize="@dimen/_11ssp"
+                app:hintTextAppearance="@style/TextLabel"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_reqCall"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_20sdp"
+            android:onClick="@{()->listener.onSubmitClick()}"
+            android:padding="@dimen/_10sdp"
+            android:text="@string/request_callback"
+            android:textAllCaps="false"
+            android:textSize="@dimen/_12ssp"
+            app:backgroundTint="@color/green_munsell"
+            app:cornerRadius="@dimen/_10sdp"
+            app:iconGravity="textStart"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.411"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/dsc_ct"
+            app:layout_constraintVertical_bias="0.749"
+            app:showProgress="@{isSubmitting}"
+            app:textSource="@{@string/request_callback}" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

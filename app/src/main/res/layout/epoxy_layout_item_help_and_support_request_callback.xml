@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="listener"
+            type="com.ar7lab.cherieapp.ui.helpandsupport.CallBackListener" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+
+        <TextView
+            android:id="@+id/headline_one"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentBottom="true"
+            android:text="@string/cant_find"
+            android:textColor="#656565"
+            android:textSize="@dimen/_12ssp"
+            android:padding="@dimen/_5sdp"
+            android:lineSpacingExtra="4sp"
+            android:gravity="center_horizontal|center_vertical"
+            tools:ignore="MissingConstraints" />
+
+
+        <TextView
+            android:id="@+id/headline_two"
+            android:padding="@dimen/_5sdp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/headline_one"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentBottom="true"
+            android:text="@string/support"
+            android:textColor="#656565"
+            android:textSize="@dimen/_12ssp"
+            android:lineSpacingExtra="4sp"
+            android:gravity="center_horizontal|center_vertical"
+            />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_sign_in"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_12ssp"
+            android:layout_marginBottom="@dimen/margin_large"
+            android:onClick="@{() -> listener.onRequestCallbackClicked()}"
+            android:padding="@dimen/_10sdp"
+            android:text="@string/request_callback"
+            android:textAllCaps="false"
+            android:textSize="@dimen/_12ssp"
+            app:backgroundTint="@color/green_munsell"
+            app:iconGravity="textStart"
+            app:cornerRadius="@dimen/_10sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/headline_two" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

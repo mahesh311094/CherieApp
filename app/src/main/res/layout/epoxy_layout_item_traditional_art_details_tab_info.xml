@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="com.ar7lab.cherieapp.enums.ArtworkDetailTabEnum" />
+
+        <variable
+            name="viewModel"
+            type="com.ar7lab.cherieapp.ui.traditionalartworkdetails.TraditionalArtworkDetailsViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:paddingTop="@dimen/_8sdp">
+
+        <!--Basic Tab Text-->
+        <TextView
+            android:id="@+id/tv_basic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_16sdp"
+            android:background="@color/white"
+            android:fontFamily="@font/sf_pro_text_bold"
+            android:includeFontPadding="false"
+            android:onClick="@{() -> viewModel.changeTab(ArtworkDetailTabEnum.DETAILS)}"
+            android:paddingVertical="@dimen/_8sdp"
+            android:text="@string/details"
+            android:textColor="@{viewModel.tabTypeSelected == ArtworkDetailTabEnum.DETAILS  ? @color/black : @color/philippine_silver}"
+            android:textSize="@dimen/_12ssp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:background="@color/white"
+            tools:textColor="@color/black" />
+
+        <!--Investment Info Tab Text-->
+        <TextView
+            android:id="@+id/tv_investment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_16sdp"
+            android:background="@color/white"
+            android:fontFamily="@font/sf_pro_text_bold"
+            android:gravity="center"
+            android:includeFontPadding="false"
+            android:onClick="@{() -> viewModel.changeTab(ArtworkDetailTabEnum.SALES_HISTORY)}"
+            android:paddingVertical="@dimen/_8sdp"
+            android:text="@string/sales_history"
+            android:textColor="@{viewModel.tabTypeSelected == ArtworkDetailTabEnum.SALES_HISTORY  ? @color/black : @color/philippine_silver}"
+            android:textSize="@dimen/_12ssp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@+id/tv_basic"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent="0.5"
+            tools:background="@color/white"
+            tools:textColor="@color/black" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

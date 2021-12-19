@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="artist"
+            type="com.ar7lab.cherieapp.model.Artist" />
+
+        <variable
+            name="price"
+            type="Double" />
+
+        <variable
+            name="currency"
+            type="String" />
+        <variable
+            name="salesinfo"
+            type="com.ar7lab.cherieapp.model.SalesInfo" />
+
+        <variable
+            name="listener"
+            type="com.ar7lab.cherieapp.ui.traditionalartworkdetails.ArtDetailsListenerCreator" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorOnPrimary"
+        android:elevation="1dp">
+        <!--
+        creators cards
+        -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cvCreators"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_normal"
+            app:cardCornerRadius="@dimen/margin_normal"
+            app:layout_constraintEnd_toStartOf="@+id/cvPrice"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp">
+                <!--Creator title text-->
+                <TextView
+                    android:id="@+id/tv_creator"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_normal"
+                    android:layout_marginTop="@dimen/margin_small"
+                    android:text="@string/creator"
+                    android:textAppearance="?attr/textAppearanceSubtitle1"
+                    android:textColor="@color/dove_gray"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+                <!--Creator icon-->
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/iv_avatar"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:layout_marginStart="@dimen/margin_normal"
+                    android:layout_marginTop="@dimen/margin_small"
+                    android:layout_marginBottom="@dimen/margin_normal"
+                    android:background="?attr/colorOnPrimary"
+                    android:padding="2dp"
+                    android:src="@drawable/ic_placeholder"
+                    app:imgUrl="@{artist.profilePicture}"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_creator"
+                    app:shapeAppearance="@style/circleImageView" />
+                <!--Creator name-->
+                <TextView
+                    android:id="@+id/tv_name"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_normal"
+                    android:onClick="@{() -> listener.artistProfileClick(artist)}"
+                    android:text="@{artist.name}"
+                    android:textAppearance="?attr/textAppearanceBody1"
+                    android:textColor="?attr/colorSecondary"
+                    app:fontFamily="@font/sf_pro_text_semi_bold"
+                    app:layout_constraintBottom_toBottomOf="@+id/iv_avatar"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/iv_avatar"
+                    app:layout_constraintTop_toTopOf="@+id/iv_avatar"
+                    tools:text="PICASSO" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <!--Sales Detail Container-->
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cvSalesEnd"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="@dimen/margin_normal"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/cvCreators"
+            app:layout_constraintStart_toStartOf="@+id/cvCreators"
+            app:layout_constraintTop_toBottomOf="@+id/cvCreators">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="16dp"
+                >
+                <!--sales end label-->
+                <TextView
+                    android:id="@+id/tvSaleLabel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/sales_end_in_label"
+                    android:textAppearance="?attr/textAppearanceSubtitle1"
+                    android:textColor="@color/dove_gray"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+                <!--sales end date-->
+                <TextView
+                    android:id="@+id/tvSaleEndHours"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:showDateTime="@{salesinfo.salesEndDate}"
+                    android:textAppearance="?attr/textAppearanceBody1"
+                    android:textColor="?attr/colorSecondary"
+                    app:fontFamily="@font/sf_pro_text_semi_bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvSaleLabel" />
+
+                <!--sales start label-->
+                <TextView
+                    android:id="@+id/tvSaleStartLabel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/sales_started_label"
+                    android:textAppearance="?attr/textAppearanceSubtitle1"
+                    android:textColor="@color/dove_gray"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvSaleEndHours" />
+
+                <!--sales started date time-->
+                <TextView
+                    android:id="@+id/tvSaleStartAt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:showDateTime="@{salesinfo.salesStartDate}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvSaleStartLabel"
+                    android:textAppearance="?attr/textAppearanceSubtitle1"
+                    android:textColor="@color/dove_gray"
+                    app:fontFamily="@font/sf_pro_text_regular"
+                    />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+
+
+
+        <!--Price cardview-->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cvPrice"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:cardCornerRadius="@dimen/margin_normal"
+            android:layout_marginRight="16dp"
+            app:layout_constraintBottom_toBottomOf="@+id/cvCreators"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/cvCreators"
+            app:layout_constraintTop_toTopOf="@+id/cvCreators">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingRight="@dimen/margin_normal"
+                >
+                <!--Price Title Label-->
+                <TextView
+                    android:id="@+id/tv_price_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_normal"
+                    android:layout_marginTop="@dimen/margin_small"
+                    android:text="@string/price"
+                    android:textAppearance="?attr/textAppearanceSubtitle1"
+                    android:textColor="@color/dove_gray"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+                <!--Price Icon-->
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/iv_price_avtar"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:layout_marginStart="@dimen/margin_normal"
+                    android:layout_marginTop="@dimen/margin_small"
+                    android:layout_marginBottom="@dimen/margin_normal"
+                    android:background="?attr/colorOnPrimary"
+                    android:padding="2dp"
+                    android:src="@drawable/ic_price_icon"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_price_text"
+                    app:shapeAppearance="@style/circleImageView" />
+                <!--Price Text-->
+                <TextView
+                    android:id="@+id/tv_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:text="@{@string/art_price_new(price, currency)}"
+                    android:textAppearance="?attr/textAppearanceHeadline6"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    app:fontFamily="@font/sf_pro_text_semi_bold"
+                    app:layout_constraintBottom_toBottomOf="@+id/iv_price_avtar"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/iv_price_avtar"
+                    app:layout_constraintTop_toTopOf="@+id/iv_price_avtar"
+                    tools:text="900 Yen" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

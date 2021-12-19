@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <!-- <import type="com.ar7lab.cherieapp.enums.DepositeTypeEnum" />
+
+         <import type="android.view.View" />
+
+         <variable
+             name="depositListener"
+             type="com.ar7lab.cherieapp.ui.wallet.deposit.DepositListener" />
+
+         <variable
+             name="viewModel"
+             type="com.ar7lab.cherieapp.ui.wallet.deposit.DepositViewModel" />-->
+    </data>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clBankContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_16sdp"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clBankHeader"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <!--faq text -->
+
+            <TextView
+                android:layout_width="40dp"
+                android:layout_height="21dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:text="@string/faq"
+                android:textSize="@dimen/_11ssp"
+                android:textColor="@color/black"
+                android:layout_marginTop="@dimen/_18sdp"
+                android:lineSpacingExtra="4sp"
+                android:fontFamily="@font/sf_pro_text_semi_bold"
+                android:id="@+id/title"
+                android:translationY="-2.15sp"
+                android:gravity="top"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+       </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

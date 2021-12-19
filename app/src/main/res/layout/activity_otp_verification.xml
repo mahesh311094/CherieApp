@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="isLoading"
+            type="Boolean" />
+
+        <variable
+            name="viewModel"
+            type="com.ar7lab.cherieapp.ui.verifyotp.VerifyOtpViewModel" />
+
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:fitsSystemWindows="true">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:animateLayoutChanges="true">
+
+            <!--<editor-fold desc="Top bar">-->
+            <include
+                android:id="@+id/include"
+                layout="@layout/item_top_bar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+            <!--</editor-fold>-->
+
+            <TextView
+                android:id="@+id/textView8"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_12sdp"
+                android:layout_marginTop="@dimen/_16sdp"
+                android:fontFamily="@font/sf_pro_text_regular"
+                android:text="@{@string/please_enter_6_digit_verification_code(viewModel.signupEmailMobile)}"
+                android:textColor="@color/black"
+                android:textSize="@dimen/size_10"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/include" />
+
+            <TextView
+                android:id="@id/tv_update_number"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:fontFamily="@font/sf_pro_text_medium"
+                android:includeFontPadding="false"
+                android:text="@string/email_verification_code"
+                android:textColor="@color/cetacean_blue"
+                android:textSize="@dimen/size_11"
+                app:layout_constraintEnd_toStartOf="@+id/tv_change"
+                app:layout_constraintStart_toStartOf="@+id/textView8"
+                app:layout_constraintTop_toBottomOf="@+id/textView8" />
+
+            <TextView
+                android:id="@id/tv_change"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/_16sdp"
+                android:fontFamily="@font/sf_semi_bold"
+                android:text="@string/change"
+                android:textColor="@color/green_munsell"
+                android:textSize="@dimen/_12ssp"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_update_number"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/tv_update_number" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/til_code"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_12sdp"
+                android:layout_marginEnd="@dimen/_12sdp"
+                android:hint="@string/verification_code"
+                android:visibility="gone"
+                app:boxCornerRadiusBottomEnd="@dimen/_6sdp"
+                app:boxCornerRadiusBottomStart="@dimen/_6sdp"
+                app:boxCornerRadiusTopEnd="@dimen/_6sdp"
+                app:boxCornerRadiusTopStart="@dimen/_6sdp"
+                app:boxStrokeColor="@drawable/text_input_box_stroke"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/tv_update_number"
+                app:layout_constraintTop_toBottomOf="@+id/tv_change">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_code"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/sf_regular"
+                    android:inputType="number"
+                    android:maxLength="6"
+                    android:padding="13dp"
+                    android:text="@={viewModel.otpView}" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.mukesh.OtpView
+                android:id="@+id/ov_otp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:imeOptions="actionDone"
+                android:inputType="number"
+                android:itemBackground="@drawable/ic_otp_bg"
+                android:text="@={viewModel.otpView}"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/_14ssp"
+                app:OtpItemCount="6"
+                app:OtpItemHeight="@dimen/_40sdp"
+                app:OtpItemSpacing="@dimen/_8sdp"
+                app:OtpItemWidth="@dimen/_40sdp"
+                app:OtpViewType="none"
+                app:layout_constraintStart_toStartOf="@+id/tv_update_number"
+                app:layout_constraintTop_toBottomOf="@+id/tv_change"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+            <TextView
+                android:id="@+id/tv_can_not"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_14sdp"
+                android:fontFamily="@font/sf_medium"
+                android:includeFontPadding="false"
+                android:lineSpacingExtra="@dimen/_2sdp"
+                android:text="@string/can_t_receive"
+                android:textColor="@color/color_granite"
+                android:textSize="@dimen/_11ssp"
+                android:visibility="gone"
+                app:layout_constraintStart_toStartOf="@+id/tv_update_number"
+                app:layout_constraintTop_toBottomOf="@+id/til_code" />
+
+            <TextView
+                android:id="@+id/tv_resend"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_16sdp"
+                android:fontFamily="@font/sf_medium"
+                android:includeFontPadding="false"
+                android:text="@string/resend_code"
+                android:textColor="@color/philippine_silver"
+                android:textSize="@dimen/_12ssp"
+                app:layout_constraintStart_toStartOf="@+id/tv_update_number"
+                app:layout_constraintTop_toBottomOf="@+id/ov_otp" />
+
+            <TextView
+                android:id="@+id/tv_pass"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/sf_semi_bold"
+                android:gravity="end"
+                android:includeFontPadding="false"
+                android:lineSpacingExtra="@dimen/_2sdp"
+                android:text="@string/sign_in_using_password"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_11ssp"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="@+id/til_code"
+                app:layout_constraintTop_toTopOf="@+id/tv_can_not" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_next"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/_12sdp"
+                android:layout_marginBottom="@dimen/_42sdp"
+                android:fontFamily="@font/sf_pro_text_medium"
+                android:padding="15dp"
+                android:text="@string/submit"
+                android:textAllCaps="false"
+                android:textSize="@dimen/_11ssp"
+                app:backgroundTint="@color/green_munsell"
+                app:cornerRadius="10dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/textView8" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+</layout>

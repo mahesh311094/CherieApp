@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="DotView">
+        <attr name="selectedResource" format="reference"/>
+        <attr name="unSelectedResource" format="reference"/>
+        <attr name="dotSize" format="dimension"/>
+        <attr name="dotCount" format="integer"/>
+    </declare-styleable>
+</resources>

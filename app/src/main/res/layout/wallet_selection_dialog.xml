@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.ar7lab.cherieapp.ui.wallet.WalletViewModel" />
+
+        <import type="com.ar7lab.cherieapp.enums.WalletTypeEnum" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clSelectedTabTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_wallet_selection_dialog"
+        >
+        <!--selected tab title-->
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_margin="@dimen/margin_large"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/select_deposit"
+            android:textAppearance="?attr/textAppearanceCaption"
+            android:textSize="16sp"
+            app:fontFamily="@font/sf_pro_text_regular"
+            android:textColor="@color/dove_gray"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            />
+
+        <!--close image-->
+        <ImageView
+            android:id="@+id/ivClose"
+            android:padding="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_close_dialog"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_margin="14dp"
+            />
+        <!--crypto currency label-->
+        <TextView
+            android:id="@+id/tvCryptoCurrency"
+            android:layout_marginHorizontal="@dimen/margin_large"
+            android:layout_marginTop="@dimen/margin_large"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/crypto_currency"
+            android:textAppearance="?attr/textAppearanceCaption"
+            android:textSize="16sp"
+            app:fontFamily="@font/sf_pro_text_regular"
+            android:textColor="@color/dark_blue"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvTitle"
+
+            />
+        <!--crypto currency Radio Button-->
+        <com.google.android.material.radiobutton.MaterialRadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:buttonTint="@color/green_munsell"
+            app:layout_constraintTop_toTopOf="@+id/tvCryptoCurrency"
+            app:layout_constraintBottom_toBottomOf="@id/tvCryptoCurrency"
+            />
+        <!-- cash label-->
+        <TextView
+            android:id="@+id/tvCash"
+            android:layout_marginHorizontal="@dimen/margin_large"
+            android:layout_marginTop="@dimen/margin_large"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/cash"
+            android:textAppearance="?attr/textAppearanceCaption"
+            android:textSize="16sp"
+            app:fontFamily="@font/sf_pro_text_regular"
+            android:textColor="@color/dark_blue"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvCryptoCurrency"
+
+            />
+        <!--Cash Radio Button-->
+        <com.google.android.material.radiobutton.MaterialRadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tvCash"
+            android:buttonTint="@color/green_munsell"
+            app:layout_constraintBottom_toBottomOf="@id/tvCash"
+            />
+        <!--NFT label-->
+        <TextView
+            android:id="@+id/tvNFT"
+            android:layout_marginHorizontal="@dimen/margin_large"
+            android:layout_marginTop="@dimen/margin_large"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/nft"
+            android:textAppearance="?attr/textAppearanceCaption"
+            android:textSize="16sp"
+            app:fontFamily="@font/sf_pro_text_regular"
+            android:textColor="@color/dark_blue"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvCash"
+
+            />
+        <!--NFT Radio Button-->
+        <com.google.android.material.radiobutton.MaterialRadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:buttonTint="@color/green_munsell"
+            app:layout_constraintTop_toTopOf="@+id/tvNFT"
+            app:layout_constraintBottom_toBottomOf="@id/tvNFT"
+            />
+
+        <!--Art Shares Label-->
+        <TextView
+            android:id="@+id/tvArtShares"
+            android:layout_marginHorizontal="@dimen/margin_large"
+            android:layout_marginTop="@dimen/margin_large"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/art_shares"
+            android:textAppearance="?attr/textAppearanceCaption"
+            android:textSize="16sp"
+            app:fontFamily="@font/sf_pro_text_regular"
+            android:textColor="@color/dark_blue"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvNFT"
+
+            />
+        <!--bottom empty view-->
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="1dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvArtShares"
+            android:layout_marginTop="@dimen/margin_large"
+            />
+        <!--Art Shares radio buttons-->
+        <com.google.android.material.radiobutton.MaterialRadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:buttonTint="@color/green_munsell"
+            app:layout_constraintTop_toTopOf="@+id/tvArtShares"
+            app:layout_constraintBottom_toBottomOf="@id/tvArtShares"
+            />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

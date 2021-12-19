@@ -1,0 +1,27 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/store"
+        android:enabled="true"
+        android:icon="@drawable/ic_gallery"
+        android:title="@string/buy" />
+    <item
+        android:id="@+id/market"
+        android:enabled="true"
+        android:icon="@drawable/ic_market"
+        android:title="@string/trade" />
+    <item
+        android:id="@+id/wallet"
+        android:enabled="true"
+        android:icon="@drawable/ic_wallet"
+        android:title="@string/wallet" />
+    <item
+        android:id="@+id/profile"
+        android:enabled="true"
+        android:icon="@drawable/ic_profile"
+        android:title="@string/my" />
+    <item
+        android:id="@+id/preferences"
+        android:enabled="true"
+        android:icon="@drawable/ic_more"
+        android:title="@string/more" />
+</menu>

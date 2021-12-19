@@ -1,0 +1,335 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="payment_transaction_details"
+            type="com.ar7lab.cherieapp.model.PaymentTransactionDetails" />
+
+        <variable
+            name="viewModel"
+            type="com.ar7lab.cherieapp.ui.wallet.payment_success.DepositSuccessPaymentViewModel" />
+        <variable
+            name="bankDetails"
+            type="com.ar7lab.cherieapp.model.BankDetails" />
+
+        <variable
+            name="cardDetails"
+            type="com.ar7lab.cherieapp.model.CardDetails" />
+
+        <variable
+            name="piece"
+            type="String" />
+
+        <variable
+            name="price"
+            type="String" />
+        <variable
+            name="isBankTrasfer"
+            type="Boolean" />
+        <import type="android.view.View" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true">
+        <!--header container-->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clToolBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/_12sdp"
+            android:elevation="@dimen/_5sdp"
+            android:background="@color/white"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+            <!--back button -->
+            <ImageView
+                android:id="@+id/iv_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/_5sdp"
+                android:src="@drawable/ic_back_v3"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+            <!--deposit title-->
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/sf_pro_text_bold"
+                android:includeFontPadding="false"
+                android:text="@string/static_type_deposite"
+                android:textColor="@color/dark_blue"
+                android:textSize="@dimen/_13ssp"
+                app:layout_constraintBottom_toBottomOf="@+id/iv_back"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/iv_back" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <!--Scrollview for inner detail scroll-->
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/_12sdp"
+            android:fillViewport="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/clToolBar">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <!--Success Layout-->
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/clHeaderContainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <!--success right sign-->
+                    <ImageView
+                        android:id="@+id/ivPaymentSucess"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginTop="@dimen/_4sdp"
+                        android:background="@drawable/ic_payment_sucess"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+
+                    <!--Successfully Label-->
+                    <TextView
+                        android:id="@+id/tv_buy_now"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:fontFamily="@font/sf_pro_text_bold"
+                        android:includeFontPadding="false"
+                        android:text="@string/payment_successful"
+                        android:textColor="@color/green_munsell"
+                        android:textSize="@dimen/_15ssp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/ivPaymentSucess" />
+
+                    <TextView
+                        android:id="@+id/tv_item_desc"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginEnd="20dp"
+                        android:layout_marginBottom="@dimen/_12sdp"
+                        android:fontFamily="@font/sf_pro_text_regular"
+                        android:gravity="center"
+                        android:text="@string/your_money_has_been_added"
+                        android:textColor="@color/dove_gray"
+                        android:textSize="@dimen/_9ssp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_buy_now"
+
+                        />
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+                <!--trasaction successful label-->
+                <TextView
+                    android:id="@+id/tv_transaction_successfully"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/sf_pro_text_bold"
+                    android:gravity="center"
+                    android:includeFontPadding="false"
+                    android:text="@string/transaction_successfull"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_12ssp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/clHeaderContainer" />
+
+                <!--trasaction successful date-->
+                <TextView
+                    android:id="@+id/tv_transaction_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/sf_pro_text_regular"
+                    android:gravity="center"
+                    android:text="@string/transaction_date"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_10ssp"
+                    app:showCurrentDateWithDayName="@{null}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_transaction_successfully" />
+
+                <!--Transaction more detail container-->
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/layout_balance"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_16sdp"
+                    android:layout_marginTop="@dimen/_12sdp"
+                    android:background="@drawable/bg_border_bank_cards"
+                    android:orientation="vertical"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_transaction_date">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/clPaymentMethodContainer"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingVertical="@dimen/_12sdp"
+                        android:paddingHorizontal="@dimen/_16sdp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+                        <!--Transation id label-->
+                        <TextView
+                            android:id="@+id/tvTransactionIdLabel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="?attr/selectableItemBackgroundBorderless"
+                            android:fontFamily="@font/sf_pro_text_regular"
+                            android:text="@string/transaction_id_label"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_12ssp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+                        <!--Transation id-->
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="?attr/selectableItemBackgroundBorderless"
+                            android:fontFamily="@font/sf_pro_text_regular"
+                            android:text="@string/transaction_id"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_12ssp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+                        <!--Payment method label-->
+                        <TextView
+                            android:id="@+id/tvPaymentMethodLabel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_6sdp"
+                            android:background="?attr/selectableItemBackgroundBorderless"
+                            android:fontFamily="@font/sf_pro_text_bold"
+                            android:text="@string/payment_method"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_12ssp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/tvTransactionIdLabel" />
+                        <!--Bank Name-->
+                        <TextView
+                            android:id="@+id/tvBankName"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_6sdp"
+                            android:background="?attr/selectableItemBackgroundBorderless"
+                            android:fontFamily="@font/sf_pro_text_regular"
+                            android:text="@{isBankTrasfer?@string/static_bank_name(bankDetails.bankName):@string/card_end_with(cardDetails.card.last4)}"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_10ssp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/tvPaymentMethodLabel" />
+                        <!--Account Number-->
+                        <TextView
+                            android:id="@+id/tvAccountNo"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:visibility="@{isBankTrasfer?View.VISIBLE:View.GONE}"
+                            android:background="?attr/selectableItemBackgroundBorderless"
+                            android:fontFamily="@font/sf_pro_text_regular"
+                            android:text="@{@string/account_no(bankDetails.accountNumber)}"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_10ssp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/tvBankName" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <!--grand total divider-->
+                    <View
+                        android:id="@+id/viewGrandTotalDivider"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/gains_boro"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/clPaymentMethodContainer" />
+                    <!--grand total Label-->
+                    <TextView
+                        android:id="@+id/tvGrandTotalLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:fontFamily="@font/sf_pro_text_bold"
+                        android:paddingHorizontal="@dimen/_16sdp"
+                        android:paddingVertical="@dimen/_8sdp"
+                        android:text="@string/grand_total"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_12ssp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/viewGrandTotalDivider" />
+                    <!--grand total-->
+                    <TextView
+                        android:id="@+id/tvGrandTotal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:fontFamily="@font/sf_pro_text_bold"
+                        android:paddingHorizontal="@dimen/_16sdp"
+                        android:paddingVertical="@dimen/_8sdp"
+                        android:text="@{price}"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_12ssp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/viewGrandTotalDivider"
+                        app:layout_constraintVertical_bias="0.0" />
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <!--Done Button-->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_done"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_16sdp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="@dimen/_16sdp"
+                    android:layout_marginBottom="20dp"
+                    android:padding="15dp"
+                    android:text="@string/done"
+                    android:textAllCaps="false"
+                    app:backgroundTint="@color/green_munsell"
+                    app:cornerRadius="10dp"
+                    app:iconGravity="textStart"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/layout_balance"
+                    app:layout_constraintVertical_bias="0.664" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

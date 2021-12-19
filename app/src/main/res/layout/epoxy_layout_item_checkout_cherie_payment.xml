@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="com.ar7lab.cherieapp.enums.CheckoutTypeEnum" />
+
+        <import type="android.view.View" />
+
+        <variable
+            name="totalBalance"
+            type="String"/>
+
+        <variable
+            name="paymentListener"
+            type="com.ar7lab.cherieapp.ui.payment.selectpayment.SelectPaymentListener" />
+
+        <variable
+            name="viewModel"
+            type="com.ar7lab.cherieapp.ui.payment.selectpayment.SelectPaymentViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clCheireHeader"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_border_bank_cards"
+        android:padding="@dimen/_10sdp"
+        android:onClick="@{()->paymentListener.onClicked()}"
+        android:layout_marginHorizontal="@dimen/_12sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <ImageView
+            android:id="@+id/ivCheireIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_cherie_wallet"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvCheireTransferLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:fontFamily="@font/sf_pro_text_semi_bold"
+            android:includeFontPadding="false"
+            android:text="@string/cherie_wallet"
+            android:textSize="@dimen/_11ssp"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toEndOf="@id/ivCheireIcon"
+            app:layout_constraintTop_toTopOf="parent"
+            />
+
+        <TextView
+            android:id="@+id/tvTotalBalance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/sf_pro_text_semi_bold"
+            android:includeFontPadding="false"
+            android:text="@{@string/total_balance(totalBalance)}"
+            android:textSize="@dimen/_9ssp"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toEndOf="@+id/ivCheireIcon"
+            app:layout_constraintTop_toBottomOf="@+id/tvCheireTransferLabel" />
+
+        <com.google.android.material.radiobutton.MaterialRadioButton
+            android:id="@+id/rbCheire"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:buttonTint="@color/green_munsell"
+            android:checked="@{viewModel.typeSelected == CheckoutTypeEnum.CHERIE}"
+            android:minWidth="0dp"
+            android:minHeight="0dp"
+            android:onClick="@{()->viewModel.onSelectType(CheckoutTypeEnum.CHERIE)}"
+            app:layout_constraintBottom_toBottomOf="@id/ivCheireIcon"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="@+id/tvCheireTransferLabel"
+            app:layout_constraintTop_toTopOf="@id/ivCheireIcon"
+            app:layout_constraintVertical_bias="0.714" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

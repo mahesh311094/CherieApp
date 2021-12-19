@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="art"
+            type="com.ar7lab.cherieapp.model.Art" />
+
+        <variable
+            name="listener"
+            type="com.ar7lab.cherieapp.ui.storelikelist.StoreLikesArtListener" />
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="0dp"
+        app:rippleColor="?attr/colorPrimaryVariant">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:elevation="1dp"
+            android:paddingBottom="@dimen/_4sdp">
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/iv_art"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_140sdp"
+                android:layout_marginHorizontal="@dimen/_8sdp"
+                android:layout_marginVertical="@dimen/_12sdp"
+                android:contentDescription="@string/art"
+                android:scaleType="centerCrop"
+                android:src="@drawable/traditional_item"
+                app:artImgUrl="@{art.thumbImageUrl}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize50Percent" />
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_140sdp"
+                android:layout_marginHorizontal="@dimen/_8sdp"
+                android:layout_marginVertical="@dimen/_12sdp"
+                android:contentDescription="@string/art"
+                android:scaleType="centerCrop"
+                android:src="@{art.notified ? @drawable/upcoming_following : @drawable/ic_bottom_shadow,default = @drawable/ic_bottom_shadow}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize50Percent" />
+
+            <TextView
+                android:id="@+id/tv_top_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_4sdp"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:fontFamily="@font/sf_regular"
+                android:gravity="center"
+                android:includeFontPadding="false"
+                android:singleLine="true"
+                android:text="@{art.notified ? @string/we_will_notify_you : @string/notify_me}"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_10ssp"
+                android:visibility="@{art.notified ? View.VISIBLE : View.GONE}"
+                app:layout_constraintBottom_toBottomOf="@+id/iv_art"
+                app:layout_constraintEnd_toEndOf="@+id/iv_art"
+                app:layout_constraintStart_toStartOf="@+id/iv_art"
+                app:layout_constraintTop_toTopOf="@+id/iv_art"
+                tools:text="John doe" />
+
+            <TextView
+                android:id="@+id/tv_art_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_small"
+                android:ellipsize="end"
+                android:fontFamily="@font/sf_semi_bold"
+                android:includeFontPadding="false"
+                android:maxLines="1"
+                android:text="@{art.name}"
+                android:textColor="@color/cetacean_blue"
+                android:textSize="@dimen/_11ssp"
+                app:layout_constraintEnd_toEndOf="@+id/iv_art"
+                app:layout_constraintStart_toStartOf="@+id/iv_art"
+                app:layout_constraintTop_toBottomOf="@+id/iv_art" />
+
+            <TextView
+                android:id="@+id/tvCreator"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_4sdp"
+                android:ellipsize="end"
+                android:fontFamily="@font/sf_medium"
+                android:includeFontPadding="false"
+                android:maxLines="1"
+                android:textColor="@color/cetacean_blue"
+                android:textSize="@dimen/_9ssp"
+                app:artistName="@{art.artist.name}"
+                app:birthDate="@{art.artist.birthDate}"
+                app:deathDate="@{art.artist.deathDate}"
+                app:layout_constraintEnd_toEndOf="@+id/tv_art_name"
+                app:layout_constraintStart_toStartOf="@+id/tv_art_name"
+                app:layout_constraintTop_toBottomOf="@+id/tv_art_name" />
+
+            <ImageView
+                android:id="@+id/imageView5"
+                android:layout_width="@dimen/_13sdp"
+                android:layout_height="@dimen/_13sdp"
+                android:layout_marginStart="@dimen/_8sdp"
+                android:layout_marginBottom="@dimen/_8sdp"
+                android:onClick="@{() -> listener.likeClick(art)}"
+                android:src="@{art.liked ? @drawable/ic_market_like : @drawable/ic_market_dis_like}"
+                app:layout_constraintBottom_toBottomOf="@+id/iv_art"
+                app:layout_constraintStart_toStartOf="@+id/iv_art" />
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_4sdp"
+                android:fontFamily="@font/sf_medium"
+                android:includeFontPadding="false"
+                android:text="@{String.valueOf(art.likeCount)}"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_9ssp"
+                android:visibility="@{art.likeCount==0 ? View.GONE : View.VISIBLE}"
+                app:layout_constraintBottom_toBottomOf="@+id/imageView5"
+                app:layout_constraintStart_toEndOf="@+id/imageView5"
+                app:layout_constraintTop_toTopOf="@+id/imageView5"
+                tools:text="456" />
+
+            <TextView
+                android:id="@+id/tv_trade"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:fontFamily="@font/sf_regular"
+                android:includeFontPadding="false"
+                android:text="2 Days Left"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_9ssp"
+                app:layout_constraintBottom_toBottomOf="@+id/imageView5"
+                app:layout_constraintEnd_toEndOf="@+id/iv_art"
+                app:layout_constraintTop_toTopOf="@+id/imageView5" />
+
+            <TextView
+                android:id="@+id/tv_follow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_4sdp"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:fontFamily="@font/sf_regular"
+                android:gravity="center"
+                android:includeFontPadding="false"
+                android:onClick="@{() -> listener.notifyClick(art)}"
+                android:singleLine="true"
+                android:text="@{art.notified ? @string/removed_notification : @string/notify_me}"
+                android:textColor="@color/dove_gray"
+                android:textSize="@dimen/_10sdp"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/imgFollow"
+                app:layout_constraintTop_toBottomOf="@+id/tvCreator"
+                tools:text="Notify Me" />
+
+            <ImageView
+                android:id="@+id/imgFollow"
+                android:layout_width="@dimen/_15sdp"
+                android:layout_height="@dimen/_15sdp"
+                android:layout_marginTop="@dimen/_1sdp"
+                android:onClick="@{() -> listener.notifyClick(art)}"
+                android:src="@{art.notified ? @drawable/ic_unfollow : @drawable/ic_follow,default = @drawable/ic_follow}"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_follow"
+                app:layout_constraintEnd_toStartOf="@+id/tv_follow"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toStartOf="@+id/tv_art_name"
+                app:layout_constraintTop_toTopOf="@+id/tv_follow" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+</layout>

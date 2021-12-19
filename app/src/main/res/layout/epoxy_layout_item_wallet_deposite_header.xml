@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="selectedValue"
+            type="Integer" />
+        <variable
+            name="viewModel"
+            type="com.ar7lab.cherieapp.ui.wallet.deposit.DepositViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clTotalValueContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        android:background="@color/white"
+        app:layout_constraintTop_toBottomOf="@+id/tvUserName">
+        <!--top up amount label-->
+        <TextView
+            android:id="@+id/tvTopUpAmountLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:fontFamily="@font/sf_pro_text_regular"
+            android:includeFontPadding="false"
+            android:text="@string/topup_amount"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_12ssp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+        <!--top up amount-->
+        <TextView
+            android:id="@+id/tvTopUpAmount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_12sdp"
+            android:fontFamily="@font/sf_pro_text_bold"
+            android:includeFontPadding="false"
+            android:text="@{@string/currency_int(selectedValue)}"
+            android:textColor="@color/green_munsell"
+            android:textSize="@dimen/_24ssp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvTopUpAmountLabel" />
+        <!--top up amount button container-->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clButtonContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_16sdp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvTopUpAmount">
+            <!--$50 button-->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn50"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/_6sdp"
+                android:text="@string/_50"
+                android:onClick="@{()->viewModel.on50ButtonClicked()}"
+                android:textSize="@dimen/_12ssp"
+                android:textColor="@color/dove_gray"
+                android:fontFamily="@font/sf_pro_text_regular"
+                app:backgroundTint="@color/gains_boro"
+                app:cornerRadius="10dp"
+                app:layout_constraintEnd_toStartOf="@+id/btn100"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+            <!--$100 button-->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn100"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_6sdp"
+                android:layout_marginEnd="@dimen/_6sdp"
+                android:text="@string/_100"
+                android:onClick="@{()->viewModel.on100ButtonClicked()}"
+                android:textAppearance="?attr/textAppearanceBody2"
+                android:textSize="@dimen/_12ssp"
+                android:textColor="@color/dove_gray"
+                android:fontFamily="@font/sf_pro_text_regular"
+                app:backgroundTint="@color/gains_boro"
+                app:cornerRadius="10dp"
+                app:layout_constraintEnd_toStartOf="@+id/btn300"
+                app:layout_constraintStart_toEndOf="@+id/btn50"
+                app:layout_constraintTop_toTopOf="parent" />
+            <!--$300 button-->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn300"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_6sdp"
+                android:text="@string/_300"
+                android:onClick="@{()->viewModel.on300ButtonClicked()}"
+                android:textSize="@dimen/_12ssp"
+                android:textColor="@color/dove_gray"
+                android:fontFamily="@font/sf_pro_text_regular"
+                app:backgroundTint="@color/gains_boro"
+                app:cornerRadius="10dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/btn100"
+                app:layout_constraintTop_toTopOf="parent" />
+            <!--$500 button-->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn500"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_3sdp"
+                android:layout_marginEnd="@dimen/_6sdp"
+                android:text="@string/_500"
+                android:onClick="@{()->viewModel.on500ButtonClicked()}"
+                android:textSize="@dimen/_12ssp"
+                android:textColor="@color/dove_gray"
+                android:fontFamily="@font/sf_pro_text_regular"
+                app:backgroundTint="@color/gains_boro"
+                app:cornerRadius="10dp"
+                app:layout_constraintEnd_toStartOf="@+id/btn1000"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/btn50" />
+            <!--$1000 button-->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn1000"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_6sdp"
+                android:layout_marginEnd="@dimen/_6sdp"
+                android:text="@string/_1000"
+                android:onClick="@{()->viewModel.on1000ButtonClicked()}"
+                android:textSize="@dimen/_12ssp"
+                android:textColor="@color/dove_gray"
+                android:fontFamily="@font/sf_pro_text_regular"
+                app:backgroundTint="@color/gains_boro"
+                app:cornerRadius="10dp"
+                app:layout_constraintBottom_toBottomOf="@id/btn500"
+                app:layout_constraintEnd_toStartOf="@+id/btn3000"
+                app:layout_constraintStart_toEndOf="@+id/btn500"
+                app:layout_constraintTop_toTopOf="@+id/btn500" />
+            <!--$3000 button-->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn3000"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_6sdp"
+                android:text="@string/_3000"
+                android:onClick="@{()->viewModel.on3000ButtonClicked()}"
+                android:textSize="@dimen/_12ssp"
+                android:textColor="@color/dove_gray"
+                android:fontFamily="@font/sf_pro_text_regular"
+                app:backgroundTint="@color/gains_boro"
+                app:cornerRadius="10dp"
+                app:layout_constraintBottom_toBottomOf="@id/btn500"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/btn1000"
+                app:layout_constraintTop_toTopOf="@+id/btn500" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        <!--reset button-->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnReSet"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_16sdp"
+            android:layout_marginTop="@dimen/_3sdp"
+            android:paddingVertical="@dimen/_8sdp"
+            android:textAllCaps="false"
+            android:text="Reset"
+            android:onClick="@{()->viewModel.onResetButtonClicked()}"
+            android:textSize="@dimen/_11ssp"
+            android:textColor="@color/white"
+            android:fontFamily="@font/sf_pro_text_regular"
+            app:backgroundTint="@color/philippine_silver"
+            app:cornerRadius="10dp"
+            app:layout_constraintTop_toBottomOf="@id/clButtonContainer" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

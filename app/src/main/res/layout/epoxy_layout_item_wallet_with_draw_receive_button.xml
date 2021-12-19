@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="walletListener"
+            type="com.ar7lab.cherieapp.ui.wallet.WalletListener" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clWithDraw"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_16sdp"
+        android:layout_marginVertical="@dimen/_6sdp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvUserName">
+
+        <!--Deposit button-->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnDeposit"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_7sdp"
+            android:onClick="@{()->walletListener.depositButtonClicked()}"
+            android:paddingVertical="@dimen/_10sdp"
+            android:text="@string/static_type_deposite"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_11ssp"
+            app:backgroundTint="@color/green_munsell"
+            app:fontFamily="@font/sf_pro_text_semi_bold"
+            app:iconGravity="textStart"
+            app:layout_constraintEnd_toStartOf="@+id/btnWithDraw"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:shapeAppearance="@style/ShapeAppearance.Cherie.Tag.SocialButton"
+            app:strokeColor="@color/green_munsell"
+            app:strokeWidth="1dp"
+            app:textSource="@{@string/static_type_deposite}" />
+        <!--withdraw button-->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnWithDraw"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_7sdp"
+            android:onClick="@{()->walletListener.withdrawButtonClicked()}"
+            android:paddingVertical="@dimen/_10sdp"
+            android:text="@string/withdraw"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_11ssp"
+            app:backgroundTint="@color/philippine_silver"
+            app:fontFamily="@font/sf_pro_text_semi_bold"
+            app:iconGravity="textStart"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/btnDeposit"
+            app:layout_constraintTop_toTopOf="parent"
+            app:shapeAppearance="@style/ShapeAppearance.Cherie.Tag.SocialButton"
+            app:strokeColor="@color/philippine_silver"
+            app:strokeWidth="1dp"
+            app:textSource="@{@string/withdraw}" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

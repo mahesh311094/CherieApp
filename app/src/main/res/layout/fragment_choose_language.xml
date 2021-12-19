@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <import type="com.ar7lab.cherieapp.enums.ChooseLanguageEnum" />
+
+        <variable
+            name="language"
+            type="String" />
+
+        <variable
+            name="viewModel"
+            type="com.ar7lab.cherieapp.ui.chooselanguage.ChooseLanguageViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:fitsSystemWindows="true">
+
+        <!--header container-->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clToolBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/_12sdp"
+            android:elevation="@dimen/_5sdp"
+            android:background="@color/white"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+            <!--back button -->
+            <ImageView
+                android:id="@+id/iv_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/_5sdp"
+                android:src="@drawable/ic_back_v3"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+            <!--deposit title-->
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/sf_pro_text_bold"
+                android:includeFontPadding="false"
+                android:text="@string/choose_display_language"
+                android:textColor="@color/dark_blue"
+                android:textSize="@dimen/_13ssp"
+                app:layout_constraintBottom_toBottomOf="@+id/iv_back"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/iv_back" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+        <ScrollView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/_12sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:fillViewport="true"
+            app:layout_constraintTop_toBottomOf="@+id/clToolBar">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <!--description-->
+                <TextView
+                    android:id="@+id/tv_description"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_12sdp"
+                    android:layout_marginVertical="@dimen/_12sdp"
+                    android:text="@string/please_select_language"
+                    android:textColor="@color/dove_gray"
+                    android:textSize="@dimen/_11ssp"
+                    android:paddingRight="@dimen/_20sdp"
+                    android:paddingStart="@dimen/_5sdp"
+                    android:fontFamily="@font/sf_pro_text_regular"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    />
+
+                <!--description japanis-->
+                <TextView
+                    android:id="@+id/tv_description_jpn"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_12sdp"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:paddingStart="@dimen/_5sdp"
+                    android:text="@string/please_select_language_jpn"
+                    android:textColor="@color/dove_gray"
+                    android:textSize="@dimen/_11ssp"
+                    android:fontFamily="@font/sf_pro_text_regular"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_description"
+                    />
+                <!--English Item-->
+                <TextView
+                    android:id="@+id/tv_english"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:layout_marginHorizontal="@dimen/_12sdp"
+                    android:background="@drawable/bg_border_bank_cards"
+                    android:drawableEnd="@{viewModel.languageChose == ChooseLanguageEnum.ENGLISH.locale ? @drawable/ic_selected_step : @drawable/ic_unselected_step}"
+                    android:onClick="@{() -> viewModel.changeLanguage(ChooseLanguageEnum.ENGLISH)}"
+                    android:padding="@dimen/_12sdp"
+                    android:text="@string/english"
+                    android:textSize="@dimen/_11ssp"
+                    android:fontFamily="@font/sf_pro_text_regular"
+                    android:textColor="@color/dark_blue"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_description_jpn"
+                    tools:drawableEnd="@drawable/ic_checked"
+                    tools:ignore="UseCompatTextViewDrawableXml" />
+
+                <!--Japanese Item-->
+
+                <TextView
+                    android:id="@+id/tv_japanese"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_12sdp"
+                    android:layout_marginHorizontal="@dimen/_12sdp"
+                    android:background="@drawable/bg_border_bank_cards"
+                    android:drawableEnd="@{viewModel.languageChose == ChooseLanguageEnum.JAPANESE.locale ? @drawable/ic_selected_step : @drawable/ic_unselected_step}"
+                    android:onClick="@{() -> viewModel.changeLanguage(ChooseLanguageEnum.JAPANESE)}"
+                    android:padding="@dimen/_12sdp"
+                    android:text="@string/japanese"
+                    android:textSize="@dimen/_11ssp"
+                    android:fontFamily="@font/sf_pro_text_regular"
+                    android:textColor="@color/dark_blue"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_english"
+                    tools:ignore="UseCompatTextViewDrawableXml" />
+
+                <!--save button-->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnSave"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_20sdp"
+                    android:layout_marginBottom="@dimen/_32sdp"
+                    android:fontFamily="@font/sf_pro_text_medium"
+                    android:padding="@dimen/_10sdp"
+                    android:text="@string/save"
+                    android:textAllCaps="false"
+                    android:textSize="@dimen/_12ssp"
+                    app:backgroundTint="@color/green_munsell"
+                    app:cornerRadius="10dp"
+                    app:iconGravity="textStart"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintVertical_bias="0.70"
+                    app:textSource="@{@string/save}" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </ScrollView>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

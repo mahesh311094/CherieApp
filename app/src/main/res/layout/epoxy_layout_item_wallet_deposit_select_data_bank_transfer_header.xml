@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="com.ar7lab.cherieapp.enums.DepositeTypeEnum" />
+
+        <import type="android.view.View" />
+
+        <variable
+            name="depositListener"
+            type="com.ar7lab.cherieapp.ui.wallet.deposit.DepositListener" />
+
+        <variable
+            name="viewModel"
+            type="com.ar7lab.cherieapp.ui.wallet.deposit.DepositViewModel" />
+    </data>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clBankContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_16sdp"
+        android:layout_marginTop="@dimen/_16sdp"
+        android:background="@drawable/bg_registered_card_title"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvSelectPaymentMethodLabel">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clBankHeader"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="@dimen/_12sdp"
+            android:paddingVertical="@dimen/_10sdp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+            <!--bank icon-->
+            <ImageView
+                android:id="@+id/ivBankIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_bank"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+            <!--bank trafer header label-->
+            <TextView
+                android:id="@+id/tvBankTransferLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:fontFamily="@font/sf_pro_text_semi_bold"
+                android:includeFontPadding="false"
+                android:text="@string/static_type_bank_tranfer"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_12ssp"
+                app:layout_constraintBottom_toBottomOf="@+id/ivBankIcon"
+                app:layout_constraintStart_toEndOf="@id/ivBankIcon"
+                app:layout_constraintTop_toTopOf="@id/ivBankIcon" />
+
+            <!--Add bank button-->
+            <TextView
+                android:id="@+id/tvAddBank"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:fontFamily="@font/sf_pro_text_regular"
+                android:onClick="@{()->depositListener.onClicked()}"
+                android:text="@string/add"
+                android:textColor="@color/green_munsell"
+                android:textSize="@dimen/_10ssp"
+                android:visibility="@{viewModel.typeSelected==DepositeTypeEnum.BANK?View.VISIBLE:View.GONE}"
+                app:layout_constraintBottom_toBottomOf="@+id/ivBankIcon"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/ivBankIcon" />
+            <!--select bank radio button-->
+            <com.google.android.material.radiobutton.MaterialRadioButton
+                android:id="@+id/rbBank"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:buttonTint="@color/green_munsell"
+                android:checked="@{viewModel.typeSelected == DepositeTypeEnum.BANK}"
+                android:minWidth="0dp"
+                android:minHeight="0dp"
+                android:onClick="@{()->viewModel.onSelectType(DepositeTypeEnum.BANK)}"
+                android:visibility="@{viewModel.typeSelected==DepositeTypeEnum.BANK?View.GONE:View.VISIBLE}"
+                app:layout_constraintBottom_toBottomOf="@id/ivBankIcon"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/ivBankIcon" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</layout>

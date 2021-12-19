@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="investmentInfo"
+            type="com.ar7lab.cherieapp.model.InvestmentInfo" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_12sdp"
+        android:layout_marginVertical="@dimen/_4sdp"
+        android:paddingHorizontal="@dimen/_8sdp">
+        <!--Holders Label-->
+        <TextView
+            android:id="@+id/tv_title_holders"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_small"
+            android:fontFamily="@font/sf_pro_text_medium"
+            android:text="@string/title_holders"
+            android:textColor="@color/dark_blue"
+            android:textSize="@dimen/_10ssp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent="0.6" />
+        <!--Holders values-->
+        <TextView
+            android:id="@+id/tv_holders"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/sf_pro_text_regular"
+            android:text="@{investmentInfo.titleHolders}"
+            android:textColor="@color/dove_gray"
+            android:textSize="@dimen/_10ssp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tv_title_holders"
+            tools:text="3117 people" />
+        <!--Ownership sales rates-->
+        <TextView
+            android:id="@+id/tv_ownership_sales_rate"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_small"
+            android:fontFamily="@font/sf_pro_text_medium"
+            android:text="@string/ownership_sales_rate"
+            android:textColor="@color/dark_blue"
+            android:textSize="@dimen/_10ssp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_title_holders"
+            app:layout_constraintWidth_percent="0.6" />
+        <!--Ownership values-->
+        <TextView
+            android:id="@+id/tv_ownership"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/margin_normal"
+            android:fontFamily="@font/sf_pro_text_regular"
+            android:text="@{String.valueOf(investmentInfo.ownershipSales) + `%`}"
+            android:textColor="@color/dove_gray"
+            android:textSize="@dimen/_10ssp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tv_ownership_sales_rate"
+            tools:text="30%" />
+
+        <!--Percentage of share label-->
+        <TextView
+            android:id="@+id/tv_percent_of_shares"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_small"
+            android:fontFamily="@font/sf_pro_text_medium"
+            android:text="@string/percentage_of_shares_left_to_be_sold"
+            android:textColor="@color/dark_blue"
+            android:textSize="@dimen/_10ssp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_ownership_sales_rate"
+            app:layout_constraintWidth_percent="0.6" />
+        <!--Percentage of share value-->
+        <TextView
+            android:id="@+id/tv_shares"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/margin_normal"
+            android:fontFamily="@font/sf_pro_text_regular"
+            android:text="@{String.valueOf(investmentInfo.ownershipSales) + `%`}"
+            android:textColor="@color/dove_gray"
+            android:textSize="@dimen/_10ssp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tv_percent_of_shares"
+            tools:text="30%" />
+        <!--Residual ownership -->
+        <TextView
+            android:id="@+id/tv_residual_ownership"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_small"
+            android:layout_marginBottom="@dimen/margin_normal"
+            android:fontFamily="@font/sf_pro_text_medium"
+            android:text="@string/residual_ownership_total_ownership"
+            android:textColor="@color/dark_blue"
+            android:textSize="@dimen/_10ssp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_percent_of_shares"
+            app:layout_constraintWidth_percent="0.6" />
+        <!--Total Owner ship value -->
+        <TextView
+            android:id="@+id/tv_total_ownership"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/margin_normal"
+            android:fontFamily="@font/sf_pro_text_regular"
+            android:text="@{String.valueOf(investmentInfo.residualOrTotalOwnership) + `%`}"
+            android:textColor="@color/dove_gray"
+            android:textSize="@dimen/_10ssp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tv_residual_ownership"
+            tools:text="864/3433%" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

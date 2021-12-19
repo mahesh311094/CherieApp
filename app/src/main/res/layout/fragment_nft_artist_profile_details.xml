@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="isRefreshing"
+            type="Boolean" />
+
+        <variable
+            name="isHaveData"
+            type="Boolean" />
+
+        <variable
+            name="artist"
+            type="com.ar7lab.cherieapp.model.Artist" />
+
+        <variable
+            name="viewModel"
+            type="com.ar7lab.cherieapp.ui.nftartistprofile.NFTArtistProfileViewModel" />
+
+        <variable
+            name="topArtistType"
+            type="com.ar7lab.cherieapp.enums.TopArtistsTypeEnum" />
+
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:fitsSystemWindows="true">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white">
+
+            <!--<editor-fold desc="Top bar">-->
+            <include
+                android:id="@+id/include"
+                layout="@layout/item_top_bar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+            <!--</editor-fold>-->
+
+            <!--android:text="@{viewModel._topArtistTypeEnum == topArtistType.TRADITIONAL ? @string/t_profile : @string/n_profile }"-->
+
+            <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/include"
+                app:onRefreshListener="@{() -> viewModel.onRefresh()}"
+                app:refreshing="@{isRefreshing}">
+
+                <com.airbnb.epoxy.EpoxyRecyclerView
+                    android:id="@+id/rv_items_nft_artist_profile"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:clipToPadding="false"
+                    android:orientation="vertical"
+                    android:overScrollMode="never"
+                    android:scrollbarStyle="insideOverlay"
+                    android:scrollbars="none"
+                    app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_back"
+                    app:spanCount="2"
+                    tools:listitem="@layout/epoxy_layout_item_on_sale" />
+
+            </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+</layout>

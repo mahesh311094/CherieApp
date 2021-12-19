@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:overScrollMode="never"
+    android:paddingBottom="@dimen/_12sdp"
+    android:scrollbars="none"
+    tools:context=".ui.welcome.WelcomeActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fitsSystemWindows="true">
+
+        <ImageView
+            android:id="@+id/iv_welcome"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_32sdp"
+            android:layout_marginTop="@dimen/_16sdp"
+            android:adjustViewBounds="true"
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/ic_wc"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="@dimen/_110sdp"
+            android:layout_height="@dimen/_110sdp"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_welcome"
+            app:layout_constraintEnd_toEndOf="@+id/iv_welcome"
+            app:layout_constraintStart_toStartOf="@+id/iv_welcome"
+            app:layout_constraintTop_toBottomOf="@+id/iv_welcome"
+            app:srcCompat="@drawable/ic_ch_logo" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/sf_pro_text_semi_bold"
+            android:includeFontPadding="false"
+            android:letterSpacing="0.05"
+            android:text="@string/app_name"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_32ssp"
+            app:layout_constraintEnd_toEndOf="@+id/iv_welcome"
+            app:layout_constraintStart_toStartOf="@+id/iv_welcome"
+            app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_sign_up"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_24sdp"
+            android:layout_marginTop="@dimen/_12sdp"
+            android:backgroundTint="@null"
+            android:fontFamily="@font/sf_pro_text_regular"
+            android:paddingVertical="@dimen/_10sdp"
+            android:text="@string/sign_up_with_email"
+            android:textAllCaps="false"
+            android:textSize="@dimen/_11ssp"
+            app:background="@color/blue"
+            app:icon="@drawable/ic_signup"
+            app:iconGravity="textStart"
+            app:iconPadding="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView"
+            app:shapeAppearance="@style/ShapeAppearance.Cherie.Button.Primary" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_sign_google"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_24sdp"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:background="@drawable/bg_google_border"
+            android:fontFamily="@font/sf_pro_text_medium"
+            android:paddingStart="@dimen/_20sdp"
+            android:text="@string/sign_up_with_google"
+            android:textAllCaps="false"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_11ssp"
+            app:backgroundTint="@null"
+            app:icon="@drawable/ic_google"
+            app:iconGravity="textStart"
+            app:iconTint="@null"
+            app:iconPadding="6dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_sign_up"
+            app:shapeAppearance="@style/ShapeAppearance.Cherie.Button.Primary"
+            tools:ignore="RtlSymmetry" />
+
+        <TextView
+            android:id="@+id/tv_sign_in"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_16sdp"
+            android:background="?attr/selectableItemBackground"
+            android:fontFamily="@font/sf_pro_text_medium"
+            android:gravity="center"
+            android:text="@string/already_have_an_account_sign_in"
+            android:textAppearance="?attr/textAppearanceBody2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_sign_google" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</ScrollView>

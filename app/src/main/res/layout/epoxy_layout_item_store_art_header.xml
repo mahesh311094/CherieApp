@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <import type="com.ar7lab.cherieapp.enums.StoreTypeEnum" />
+
+        <variable
+            name="viewModel"
+            type="com.ar7lab.cherieapp.ui.store.StoreViewModel" />
+    </data>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cv"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:layout_gravity="center"
+            android:layout_marginHorizontal="@dimen/_2sdp"
+            app:cardBackgroundColor="@color/white"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="6dp"
+            app:cardUseCompatPadding="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.viewpager.widget.ViewPager
+                android:id="@+id/viewPager"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:adjustViewBounds="true"
+                android:background="?attr/colorOnPrimary"
+                android:contentDescription="@string/art"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_banner_place_holder"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:notify="@{viewModel.isNotify}"
+                app:scrollViewPager="@{viewModel.bannerCurrentPosition}"
+                app:setAdapter="@{viewModel.adapter}"
+                tools:src="@drawable/ic_banner_place_holder" />
+
+            <com.ar7lab.cherieapp.widget.DotView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_marginBottom="@dimen/_8sdp"
+                android:orientation="horizontal"
+                app:dotCounts="@{viewModel.bannerCount}"
+                app:selectDot="@{viewModel.bannerCurrentPosition}" />
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_8sdp"
+            android:layout_marginTop="@dimen/_4sdp"
+            android:background="@drawable/bg_line_border"
+            android:paddingVertical="@dimen/_6sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cv">
+
+            <TextView
+                android:id="@+id/tv_for_you"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_4sdp"
+                android:alpha="@{viewModel.storeTypeSelected == StoreTypeEnum.FOR_YOU ? 1.0f : 0.3f}"
+                android:background="?attr/selectableItemBackground"
+                android:onClick="@{()->viewModel.changeStoreType(StoreTypeEnum.FOR_YOU)}"
+                android:padding="@dimen/margin_small"
+                android:text="@string/for_you"
+                android:textAppearance="?attr/textAppearanceBody1"
+                android:textColor="@color/selected_color"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/tv_traditional_art"
+                app:layout_constraintHorizontal_chainStyle="spread_inside"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                android:id="@+id/v_line_left"
+                android:layout_width="1dp"
+                android:layout_height="0dp"
+                android:layout_marginTop="@dimen/margin_small"
+                android:layout_marginBottom="@dimen/margin_small"
+                android:alpha="0.3"
+                android:background="@color/selected_color"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_for_you"
+                app:layout_constraintEnd_toStartOf="@+id/tv_traditional_art"
+                app:layout_constraintStart_toEndOf="@+id/tv_for_you"
+                app:layout_constraintTop_toTopOf="@+id/tv_for_you" />
+
+            <TextView
+                android:id="@+id/tv_traditional_art"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:alpha="@{viewModel.storeTypeSelected == StoreTypeEnum.TRADITIONAL_ART ? 1.0f : 0.3f, default=0.3}"
+                android:background="?attr/selectableItemBackground"
+                android:onClick="@{()->viewModel.changeStoreType(StoreTypeEnum.TRADITIONAL_ART)}"
+                android:padding="@dimen/margin_small"
+                android:text="@string/traditional_art"
+                android:textAppearance="?attr/textAppearanceBody1"
+                android:textColor="@color/selected_color"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_for_you"
+                app:layout_constraintEnd_toStartOf="@+id/tv_ntf_art"
+                app:layout_constraintHorizontal_chainStyle="spread_inside"
+                app:layout_constraintStart_toEndOf="@+id/tv_for_you"
+                app:layout_constraintTop_toTopOf="@+id/tv_for_you" />
+
+            <View
+                android:id="@+id/v_line_right"
+                android:layout_width="1dp"
+                android:layout_height="0dp"
+                android:layout_marginTop="@dimen/margin_small"
+                android:layout_marginBottom="@dimen/margin_small"
+                android:alpha="0.3"
+                android:background="@color/selected_color"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_traditional_art"
+                app:layout_constraintEnd_toStartOf="@+id/tv_ntf_art"
+                app:layout_constraintStart_toEndOf="@+id/tv_traditional_art"
+                app:layout_constraintTop_toTopOf="@+id/tv_traditional_art" />
+
+            <TextView
+                android:id="@+id/tv_ntf_art"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/_4sdp"
+                android:alpha="@{viewModel.storeTypeSelected == StoreTypeEnum.NFT_ART ? 1.0f : 0.3f, default=0.3}"
+                android:background="?attr/selectableItemBackground"
+                android:onClick="@{()->viewModel.changeStoreType(StoreTypeEnum.NFT_ART)}"
+                android:padding="@dimen/margin_small"
+                android:text="@string/ntf_art"
+                android:textAppearance="?attr/textAppearanceBody1"
+                android:textColor="@color/selected_color"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_for_you"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_chainStyle="spread_inside"
+                app:layout_constraintStart_toEndOf="@+id/tv_traditional_art"
+                app:layout_constraintTop_toTopOf="@+id/tv_for_you" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

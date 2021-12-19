@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="artist"
+            type="com.ar7lab.cherieapp.model.Artist" />
+
+        <variable
+            name="listener"
+            type="com.ar7lab.cherieapp.ui.store.ArtistListener" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/_12sdp"
+        android:paddingEnd="@dimen/_4sdp"
+        tools:ignore="RtlSymmetry">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/iv_avatar"
+            android:layout_width="@dimen/_80sdp"
+            android:layout_height="@dimen/_80sdp"
+            android:background="?attr/colorOnPrimary"
+            android:onClick="@{() -> listener.onClick(artist)}"
+            android:src="@drawable/ic_placeholder"
+            app:imgUrl="@{artist.profilePicture}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:shapeAppearance="@style/circleImageView" />
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/iv_top"
+            android:layout_width="@dimen/_80sdp"
+            android:layout_height="@dimen/_80sdp"
+            android:src="@{artist.followed ? @drawable/top_following : @drawable/top_follow,default = @drawable/top_follow}"
+            app:layout_constraintEnd_toEndOf="@+id/iv_avatar"
+            app:layout_constraintStart_toStartOf="@+id/iv_avatar"
+            app:layout_constraintTop_toTopOf="@+id/iv_avatar"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_avatar"
+            app:shapeAppearance="@style/circleImageView" />
+
+        <TextView
+            android:id="@+id/tv_top_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_4sdp"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:fontFamily="@font/sf_regular"
+            android:gravity="center"
+            android:includeFontPadding="false"
+            android:singleLine="true"
+            android:text="@{artist.followed ? @string/following : @string/follow}"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_12ssp"
+            android:visibility="@{artist.followed ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_avatar"
+            app:layout_constraintEnd_toEndOf="@+id/iv_avatar"
+            app:layout_constraintStart_toStartOf="@+id/iv_avatar"
+            app:layout_constraintTop_toTopOf="@+id/iv_avatar"
+            tools:text="John doe" />
+
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_8sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:fontFamily="@font/sf_pro_text_semi_bold"
+            android:gravity="center"
+            android:includeFontPadding="false"
+            android:maxLines="1"
+            android:onClick="@{() -> listener.onClick(artist)}"
+            android:text="@{artist.name}"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_12ssp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/iv_avatar"
+            tools:targetApi="p"
+            tools:text="Sven Lukin" />
+
+        <TextView
+            android:id="@+id/tv_location"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_4sdp"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:includeFontPadding="false"
+            android:lines="2"
+            android:text="@{artist.overview}"
+            android:textAppearance="?attr/textAppearanceCaption"
+            android:textColor="?attr/colorSecondary"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="@+id/tv_name"
+            app:layout_constraintStart_toStartOf="@+id/tv_name"
+            app:layout_constraintTop_toBottomOf="@+id/tv_name"
+            tools:targetApi="p"
+            tools:text="America, Latvian Born, B, 1934" />
+
+        <!--<com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_follow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_4sdp"
+            android:backgroundTint="@{artist.followed ? @color/white : @color/blue}"
+            android:fontFamily="@font/sf_pro_text_medium"
+            android:onClick="@{() -> listener.onFollowClick(artist)}"
+            android:text="@{artist.followed ? @string/following : @string/follow}"
+            android:textAllCaps="false"
+            android:textColor="@{artist.followed ? @color/artist_color : @color/white}"
+            android:textSize="@dimen/_10ssp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/tv_location"
+            app:layout_constraintStart_toStartOf="@+id/tv_location"
+            app:layout_constraintTop_toBottomOf="@+id/tv_location"
+            app:shapeAppearance="@style/ShapeAppearance.Cherie.Button.Primary"
+            tools:text="@string/follow" />-->
+        <TextView
+            android:id="@+id/tv_follow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_4sdp"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:fontFamily="@font/sf_regular"
+            android:gravity="center"
+            android:includeFontPadding="false"
+            android:onClick="@{() -> listener.onFollowClick(artist)}"
+            android:singleLine="true"
+            android:text="@{artist.followed ? @string/un_follow : @string/follow}"
+            android:textColor="@color/dove_gray"
+            android:textSize="@dimen/_12ssp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/imageView3"
+            app:layout_constraintTop_toBottomOf="@+id/tv_name"
+            tools:text="Follow" />
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="@dimen/_15sdp"
+            android:layout_height="@dimen/_15sdp"
+            android:layout_marginTop="@dimen/_1sdp"
+            android:onClick="@{() -> listener.onFollowClick(artist)}"
+            android:src="@{artist.followed ? @drawable/ic_unfollow : @drawable/ic_follow,default = @drawable/ic_follow}"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_follow"
+            app:layout_constraintEnd_toStartOf="@+id/tv_follow"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tv_follow" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

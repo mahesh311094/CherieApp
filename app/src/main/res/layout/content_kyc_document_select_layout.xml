@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="com.ar7lab.cherieapp.enums.KYCStep" />
+        <variable
+            name="viewModel"
+            type="com.ar7lab.cherieapp.ui.kycinfo.KYVInfoViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingLeft="@dimen/_16sdp"
+        android:paddingRight="@dimen/_16sdp"
+        android:paddingTop="@dimen/_8sdp">
+
+        <TextView
+            android:id="@+id/textView9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/sf_pro_text_medium"
+            android:text="@string/identity_verification"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_11ssp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView11"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:fontFamily="@font/sf_pro_text_medium"
+            android:text="@string/use_valid_government_issued_document"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_11ssp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView9" />
+
+
+        <TextView
+            android:id="@+id/textView12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/sf_pro_text_medium"
+            android:text="@string/doc_desc"
+            android:layout_marginTop="@dimen/_3sdp"
+            android:textColor="@color/dove_gray"
+            android:textSize="@dimen/_9ssp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView11" />
+
+        <TextView
+            android:id="@+id/tv_government_id"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_border_bank_cards"
+            android:layout_marginTop="@dimen/_16sdp"
+            android:drawableStart="@drawable/ic_kyc_identity"
+            android:drawablePadding="@dimen/_8sdp"
+            android:fontFamily="@font/sf_pro_text_regular"
+            android:padding="@dimen/_12sdp"
+            android:text="@string/government_issued_id_card"
+            android:drawableEnd="@{viewModel.currentSelectedDoc == 0 ? @drawable/ic_check_filled : @drawable/ic_check_unfilled}"
+            android:textColor="@color/cetacean_blue"
+            android:textSize="@dimen/_11ssp"
+            android:onClick="@{() -> viewModel.onSelectDocuments(0)}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView12"
+            tools:drawableEnd="@drawable/ic_check_unfilled"
+            tools:ignore="UseCompatTextViewDrawableXml" />
+
+        <TextView
+            android:id="@+id/tv_passport"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:background="@drawable/bg_border_bank_cards"
+            android:drawableStart="@drawable/ic_kyc_passport"
+            android:drawablePadding="@dimen/_8sdp"
+            android:fontFamily="@font/sf_pro_text_regular"
+            android:padding="@dimen/_12sdp"
+            android:text="@string/passport"
+            android:textColor="@color/cetacean_blue"
+            android:textSize="@dimen/_11ssp"
+            android:onClick="@{() -> viewModel.onSelectDocuments(1)}"
+            android:drawableEnd="@{viewModel.currentSelectedDoc == 1 ? @drawable/ic_check_filled : @drawable/ic_check_unfilled}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_government_id"
+            tools:drawableEnd="@drawable/ic_checked"
+            tools:ignore="UseCompatTextViewDrawableXml" />
+
+        <TextView
+            android:id="@+id/tv_driver_license"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:background="@drawable/bg_border_bank_cards"
+            android:drawableStart="@drawable/ic_driver_licenese"
+            android:drawablePadding="@dimen/_8sdp"
+            android:fontFamily="@font/sf_pro_text_regular"
+            android:padding="@dimen/_12sdp"
+            android:text="@string/driver_s_license"
+            android:textColor="@color/cetacean_blue"
+            android:textSize="@dimen/_11ssp"
+            android:drawableEnd="@{viewModel.currentSelectedDoc == 2 ? @drawable/ic_check_filled : @drawable/ic_check_unfilled}"
+            android:onClick="@{() -> viewModel.onSelectDocuments(2)}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_passport"
+            tools:drawableEnd="@drawable/ic_checked"
+            tools:ignore="UseCompatTextViewDrawableXml" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_continue"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/sf_pro_text_semi_bold"
+            android:paddingVertical="@dimen/_10sdp"
+            android:layout_marginBottom="@dimen/_16sdp"
+            android:text="@string/continue_label"
+            android:textAllCaps="false"
+            android:onClick="@{() -> viewModel.onContinue(KYCStep.STEP_3)}"
+            android:textAppearance="?attr/textAppearanceBody1"
+            android:textColor="@color/white"
+            app:backgroundTint="@color/green_munsell"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:shapeAppearance="@style/ShapeAppearance.Cherie.Button.New" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <import type="com.ar7lab.cherieapp.enums.TopArtistsTypeEnum" />
+
+        <variable
+            name="arttransactiondetails"
+            type="com.ar7lab.cherieapp.model.ArtTransactionDetails" />
+
+        <variable
+            name="art"
+            type="com.ar7lab.cherieapp.model.Art" />
+
+        <variable
+            name="listener"
+            type="com.ar7lab.cherieapp.ui.market.ArtTransactionListener" />
+
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardBackgroundColor="@android:color/transparent"
+        app:cardElevation="0dp"
+        app:rippleColor="?attr/colorPrimaryVariant">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_small"
+            android:background="@drawable/bg_border_transparent_market_detail">
+
+            <LinearLayout
+                android:id="@+id/layout_marketplace_item"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingVertical="@dimen/_6sdp"
+                android:weightSum="1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="@dimen/_4sdp"
+                    android:layout_weight=".7"
+                    android:orientation="vertical"
+                    android:padding="10dp">
+
+                    <TextView
+                        android:id="@+id/tv_number_of_quantity"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/sf_pro_text_bold"
+                        android:text="@{arttransactiondetails.transactionHistory.id}"
+                        android:textColor="@color/dark_blue"
+                        android:textSize="@dimen/_12ssp"
+                        android:textStyle="bold"
+                        app:amount="@{arttransactiondetails.transactionHistory.amount}"
+                        app:currency="@{arttransactiondetails.transactionHistory.currency}"
+                        app:totalShare="@{arttransactiondetails.transactionHistory.noOfShares}"
+                        tools:text="1 Piece: 1020000 inr" />
+
+                    <TextView
+                        android:id="@+id/tv_sale_quantity"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_4sdp"
+                        android:fontFamily="@font/sf_pro_text_medium"
+                        android:text="@{@string/sale_qty(arttransactiondetails.transactionHistory.noOfShares.toString)}"
+                        android:textColor="@color/dark_blue"
+                        android:textSize="@dimen/_10ssp"
+                        tools:text="Sale Quantity: 5" />
+
+                    <TextView
+                        android:id="@+id/tv_total_amount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_4sdp"
+                        android:fontFamily="@font/sf_pro_text_medium"
+                        android:gravity="center_vertical"
+                        android:text="@{@string/only_price(arttransactiondetails.transactionHistory.amount,arttransactiondetails.transactionHistory.currency)}"
+                        android:textColor="@color/dark_blue"
+                        android:textSize="@dimen/_10ssp"
+                        tools:text="Total Amount: $5592" />
+
+                    <TextView
+                        android:id="@+id/tv_registration"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_4sdp"
+                        android:fontFamily="@font/sf_pro_text_medium"
+                        android:text="@string/registration"
+                        android:textColor="@color/dark_blue"
+                        android:textSize="@dimen/_10ssp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight=".30"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btn_"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_extra_small"
+                        android:onClick="@{() -> listener.onClick(art,arttransactiondetails)}"
+                        android:text="@string/buying"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_9ssp"
+                        android:visibility="@{art.isNFT ? View.GONE : View.VISIBLE }"
+                        app:backgroundTint="@color/dark_blue"
+                        app:shapeAppearance="@style/ShapeAppearance.Cherie.Tag.SocialButton" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+</layout>

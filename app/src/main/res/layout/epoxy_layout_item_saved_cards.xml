@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="cardDetails"
+            type="com.ar7lab.cherieapp.model.CardDetails" />
+        <variable
+            name="listenerCreatePayment"
+            type="com.ar7lab.cherieapp.ui.payment.selectpaymentmethod.CreatePaymentListener" />
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardElevation="0dp"
+        android:onClick="@{() -> listenerCreatePayment.onClick(cardDetails)}"
+        app:cardBackgroundColor="@android:color/transparent"
+        app:rippleColor="?attr/colorPrimaryVariant">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:id="@+id/layout_marketplace_item"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:background="@{cardDetails.isSelected ? @drawable/bg_border_transparent_selected_card_border : @drawable/bg_border_transparent_market_detail}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:orientation="horizontal"
+                android:paddingTop="20dp"
+                android:paddingBottom="20dp"
+                android:weightSum="1">
+                <ImageView
+                    android:id="@+id/img_check_uncheck"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:padding="4dp"
+                    android:layout_marginStart="20dp"
+                    android:src="@{cardDetails.isSelected ? @drawable/ic_radio_button_checked : @drawable/ic_radio_button_unchecked}"
+                    android:layout_weight=".10"/>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:layout_marginStart="@dimen/margin_normal"
+                    android:layout_weight=".70">
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/margin_extra_small"
+                            android:text="@string/ending_in"
+                            textSize="16sp"
+                            android:textAppearance="?attr/textAppearanceSubtitle2"
+                            android:textColor="@color/dove_gray"/>
+                        <TextView
+                            android:id="@+id/tv_number_of_quantity"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/margin_extra_small"
+                            android:text="@{@string/three_dots(cardDetails.card.last4)}"
+                            android:textAppearance="?attr/textAppearanceBody2"
+                            android:textStyle="bold"
+                            textSize="16sp"
+                            android:textColor="@color/dark_blue"/>
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <TextView
+                        android:visibility="gone"
+                        android:id="@+id/tv_sale_quantity"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_extra_small"
+                        android:text="Last time used: Wed, 23 April 2021"
+                        android:textAppearance="?attr/textAppearanceSubtitle2"
+                        android:textColor="@color/dove_gray"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight=".20"
+                    android:layout_marginEnd="10dp"
+                    android:gravity="center"
+                    android:orientation="vertical">
+                    <ImageView
+                        android:layout_width="60dp"
+                        android:layout_height="25dp"
+                        android:src="@drawable/mastro_card"/>
+                </LinearLayout>
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:background="#D8D8D8">
+            </View>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+</layout>

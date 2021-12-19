@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="artist"
+            type="com.ar7lab.cherieapp.model.Artist" />
+
+        <variable
+            name="price"
+            type="Double" />
+
+        <variable
+            name="salesRate"
+            type="Double" />
+
+        <variable
+            name="currency"
+            type="String" />
+
+        <variable
+            name="viewmodel"
+            type="com.ar7lab.cherieapp.ui.traditionalartworkdetails.TraditionalArtworkDetailsViewModel" />
+
+        <variable
+            name="art"
+            type="com.ar7lab.cherieapp.model.Art" />
+
+        <variable
+            name="listener"
+            type="com.ar7lab.cherieapp.ui.traditionalartworkdetails.ArtDetailsListenerCreator" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white">
+
+        <!--Main header layout-->
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+            <!--inner container-->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/clHeaderContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/_16sdp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+                <!--on Sale Button -->
+                <TextView
+                    android:id="@+id/btn_sale"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/_12sdp"
+                    android:clickable="false"
+                    android:fontFamily="@font/sf_pro_text_medium"
+                    android:paddingHorizontal="@dimen/_8sdp"
+                    android:paddingVertical="@dimen/_3sdp"
+                    android:text="@{art.status.substring(0,1).toUpperCase() + art.status.substring(1).toLowerCase()}"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_name"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/tv_name"
+                    app:setStatusBG="@{art.status}"
+                    app:setStatusTextColor="@{art.status}"
+                    tools:text="On Sell" />
+
+                <!--Title Text -->
+                <TextView
+                    android:id="@+id/tv_name"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:includeFontPadding="false"
+                    android:maxLines="3"
+                    android:text="@{art.name}"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_14sdp"
+                    app:fontFamily="@font/sf_pro_text_bold"
+                    app:layout_constraintEnd_toStartOf="@+id/btn_sale"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="Endless Life of People" />
+
+                <!--Title Description -->
+                <TextView
+                    android:id="@+id/tv_description"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/sf_pro_text_regular"
+                    android:includeFontPadding="false"
+                    android:maxLines="1"
+                    android:textAppearance="?attr/textAppearanceBody1"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_12ssp"
+                    app:artistNameNoLabel="@{art.artist.name}"
+                    app:birthDateNoLabel="@{art.artist.birthDate}"
+                    app:deathDateNoLabel="@{art.artist.deathDate}"
+                    app:layout_constraintEnd_toStartOf="@+id/tvMore"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_name"
+                    tools:text="Yayoi Kusama - 1958~2020" />
+                <!--more label-->
+                <TextView
+                    android:id="@+id/tvMore"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_6sdp"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/sf_pro_text_regular"
+                    android:includeFontPadding="false"
+                    android:maxLines="1"
+                    android:text="@string/more_"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_11ssp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/tv_description"
+                    app:layout_constraintTop_toTopOf="@+id/tv_description" />
+                <!-- from label for price-->
+                <TextView
+                    android:id="@+id/tv_price_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:includeFontPadding="false"
+                    android:maxLines="1"
+                    android:text="@string/price_colon"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_12ssp"
+                    app:fontFamily="@font/sf_pro_text_regular"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_description" />
+                <!--price view-->
+                <TextView
+                    android:id="@+id/tv_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_2sdp"
+                    android:ellipsize="end"
+                    android:includeFontPadding="false"
+                    android:maxLines="1"
+                    android:text="@{@string/art_price_first_currency(currency,price)}"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_12ssp"
+                    app:fontFamily="@font/sf_pro_text_bold"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_price_label"
+                    app:layout_constraintStart_toEndOf="@+id/tv_price_label"
+                    app:layout_constraintTop_toTopOf="@+id/tv_price_label"
+                    app:layout_constraintVertical_bias="0.25"
+                    tools:text="900 Yen" />
+                <!--price per piece label-->
+                <TextView
+                    android:id="@+id/tv_price_per_piece"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="2dp"
+                    android:ellipsize="end"
+                    android:includeFontPadding="false"
+                    android:maxLines="1"
+                    android:text="@{@string/total_number_of_piece(String.valueOf(art.totalPieces))}"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_12ssp"
+                    app:fontFamily="@font/sf_pro_text_bold"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_price_label"
+                    app:layout_constraintStart_toEndOf="@+id/tv_price"
+                    app:layout_constraintTop_toTopOf="@+id/tv_price_label" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        <!--divider-->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/gains_boro"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/clContainer" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

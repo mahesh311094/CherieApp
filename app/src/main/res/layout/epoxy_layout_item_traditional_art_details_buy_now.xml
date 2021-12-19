@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorOnPrimary"
+        android:elevation="1dp">
+
+
+        <com.google.android.material.button.MaterialButton
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_normal"
+            android:backgroundTint="?attr/colorOnSecondary"
+            android:padding="@dimen/padding_normal"
+            android:text="@string/buy_now"
+            android:textAllCaps="false"
+            app:icon="@drawable/ic_payment"
+            app:iconGravity="textStart"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:rippleColor="?attr/colorPrimaryVariant"
+            app:shapeAppearance="@style/ShapeAppearance.Cherie.Button.Primary" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="isPlus"
+            type="Boolean" />
+
+        <variable
+            name="image"
+            type="Integer" />
+
+        <variable
+            name="listener"
+            type="com.ar7lab.cherieapp.ui.profile.ProfileCardListener" />
+
+    </data>
+
+    <ImageView
+        android:id="@+id/iv_avatar"
+        android:layout_width="@dimen/_55sdp"
+        android:layout_height="@dimen/_35sdp"
+        android:layout_marginTop="@dimen/_4sdp"
+        android:layout_marginEnd="@dimen/_4sdp"
+        android:background="@{isPlus ? @drawable/layout_rounded_bg : @drawable/layout_rounded_bg_corner}"
+        android:onClick="@{() -> listener.addPaymentMethod()}"
+        app:imgFromDrawable="@{image}"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</layout>

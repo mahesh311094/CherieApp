@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="balance"
+            type="com.ar7lab.cherieapp.network.response.GetWalletBalanceResponse.Assets" />
+        <variable
+            name="viewmodel"
+            type="com.ar7lab.cherieapp.ui.wallet.WalletViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/clTotalValueContainer">
+        <!--break down label-->
+        <TextView
+            android:id="@+id/tvBreakDown"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/break_down"
+            app:fontFamily="@font/sf_pro_text_bold"
+            android:layout_marginTop="24dp"
+            android:layout_marginStart="@dimen/margin_large"
+            android:textColor="@color/dove_gray"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+
+            />
+
+
+        <!--Cash Value-->
+        <TextView
+            android:id="@+id/tvCash"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_large"
+            android:layout_marginTop="16dp"
+            android:gravity="right"
+            android:text="@{@string/cash_usd(balance.CASH)}"
+            android:includeFontPadding="false"
+            app:fontFamily="@font/sf_pro_text_bold"
+            android:textColor="@color/dark_blue"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvBreakDown"
+
+            />
+
+        <!--Cash Label-->
+        <TextView
+            android:id="@+id/tvCashLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_large"
+            android:layout_marginTop="4dp"
+            android:text="@string/cash"
+            app:fontFamily="@font/sf_pro_text_regular"
+            android:textColor="@color/dove_gray"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvCash"
+
+            />
+        <!--Top Up Button-->
+        <TextView
+            android:id="@+id/btnTopUp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/margin_large"
+            android:text="@string/top_up"
+            android:textColor="@color/green_munsell"
+            android:textSize="16sp"
+            app:fontFamily="@font/sf_pro_text_semi_bold"
+            app:layout_constraintBottom_toTopOf="@+id/dividerTopUP"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvBreakDown" />
+        <!--Divider-->
+        <View
+            android:id="@+id/dividerTopUP"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginTop="8dp"
+            android:background="@color/color_grey"
+            android:alpha="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvCashLabel" />
+
+
+        <!--Crypto Currency Value 1-->
+        <TextView
+            android:id="@+id/tvCryptoCurrency"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:gravity="right"
+            android:text="@{balance.CRYPTOCURRENCY}"
+            app:fontFamily="@font/sf_pro_text_bold"
+            android:textColor="@color/dark_blue"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:layout_marginStart="@dimen/margin_large"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/dividerTopUP" />
+        <!--Crypto Currency Value 1 Currency-->
+        <TextView
+            android:id="@+id/tvFirstCurrency"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="4dp"
+            android:gravity="right"
+            android:text="@string/eth"
+            app:fontFamily="@font/sf_pro_text_regular"
+            android:textColor="@color/dove_gray"
+            android:textSize="14sp"
+            app:layout_constraintStart_toEndOf="@+id/tvCryptoCurrency"
+            app:layout_constraintTop_toTopOf="@+id/dividerTopUP" />
+        <!--Crypto Currency Value 2-->
+        <TextView
+            android:id="@+id/tvCryptoCurrencySecond"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:text="@{balance.CRYPTOCURRENCY}"
+            app:fontFamily="@font/sf_pro_text_bold"
+            android:textColor="@color/dark_blue"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvCryptoCurrency"
+            android:layout_marginStart="@dimen/margin_large"
+            />
+        <!--Crypto Currency Value 2 Currency-->
+        <TextView
+            android:id="@+id/tvSecondCurrency"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="2dp"
+            android:text="@string/btc"
+            app:fontFamily="@font/sf_pro_text_regular"
+            android:textColor="@color/dove_gray"
+            android:textSize="14sp"
+            app:layout_constraintStart_toEndOf="@+id/tvCryptoCurrencySecond"
+            app:layout_constraintTop_toBottomOf="@+id/tvCryptoCurrency" />
+
+        <!--Button Send-->
+
+        <TextView
+            android:id="@+id/btnSend"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/margin_large"
+            android:text="@string/send"
+            android:textAllCaps="false"
+            android:textSize="16sp"
+            app:fontFamily="@font/sf_pro_text_semi_bold"
+            android:textColor="@color/green_munsell"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/dividerTopUP"
+            app:layout_constraintBottom_toBottomOf="@+id/dividerCrypto"
+             />
+
+        <!--Divider-->
+
+        <View
+            android:id="@+id/dividerCrypto"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginTop="8dp"
+            android:background="@color/color_grey"
+            android:alpha="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvCryptoCurrencySecond" />
+
+        <!--Art Shares Value-->
+        <TextView
+            android:id="@+id/tvArtShares"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_large"
+            android:layout_marginTop="8dp"
+            android:gravity="right"
+            android:text="@{@string/cash_usd(balance.TA)}"
+            app:fontFamily="@font/sf_pro_text_bold"
+            android:textColor="@color/dark_blue"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/dividerCrypto" />
+
+        <!--Art Shares Label-->
+        <TextView
+            android:id="@+id/tvArtSharesLabel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_large"
+            android:layout_marginTop="4dp"
+            android:text="@string/art_shares"
+            app:fontFamily="@font/sf_pro_text_regular"
+            android:textColor="@color/dove_gray"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@id/btnSell"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvArtShares"
+
+            />
+
+        <!--Art Shares Sell Button-->
+        <TextView
+            android:id="@+id/btnSell"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/margin_large"
+            android:text="@string/sell"
+            android:textSize="16sp"
+            app:fontFamily="@font/sf_pro_text_semi_bold"
+            android:textColor="@color/green_munsell"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/dividerCrypto"
+            app:layout_constraintBottom_toBottomOf="@+id/dividerSellNFT"
+             />
+        <!--Divider-->
+        <View
+            android:id="@+id/dividerSellNFT"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginTop="8dp"
+            android:background="@color/color_grey"
+            android:alpha="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvArtSharesLabel" />
+
+        <!--NFT Value-->
+        <TextView
+            android:id="@+id/tvNft"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_large"
+            android:layout_marginTop="8dp"
+            android:text="@{balance.NFT}"
+            app:fontFamily="@font/sf_pro_text_bold"
+            android:textColor="@color/dark_blue"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/dividerSellNFT" />
+
+        <!--NFT Label-->
+        <TextView
+            android:id="@+id/tvArtNFTLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_large"
+            android:text="@string/eth"
+            app:fontFamily="@font/sf_pro_text_regular"
+            android:textColor="@color/dove_gray"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvNft"
+
+            />
+
+        <!--NFT Sell Button-->
+
+        <TextView
+            android:id="@+id/btnSellNFT"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/margin_large"
+            android:text="@string/sell"
+            android:textSize="16sp"
+            android:textColor="@color/green_munsell"
+            app:fontFamily="@font/sf_pro_text_semi_bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/dividerSellNFT"
+             />
+
+        <!--Divider-->
+        <View
+            android:id="@+id/dividerLast"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginTop="8dp"
+            android:background="@color/color_grey"
+            android:alpha="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvArtNFTLabel" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

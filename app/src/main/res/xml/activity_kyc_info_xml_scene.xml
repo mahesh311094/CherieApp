@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScene xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:motion="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/tools">
+
+    <Transition
+        motion:constraintSetEnd="@+id/end"
+        motion:constraintSetStart="@id/start"
+        motion:duration="1000">
+        <KeyFrameSet >
+            <KeyAttribute
+                motion:motionTarget="@+id/iv_check_one"
+                motion:framePosition="30" >
+                <CustomAttribute
+                    motion:customFloatValue="1"
+                    motion:attributeName="crossfade" />
+            </KeyAttribute>
+            <KeyAttribute
+                motion:motionTarget="@+id/iv_check_one"
+                motion:framePosition="25" >
+                <CustomAttribute
+                    motion:customFloatValue="0"
+                    motion:attributeName="crossfade" />
+            </KeyAttribute>
+            <KeyAttribute
+                motion:motionTarget="@+id/iv_check_two"
+                motion:framePosition="60" >
+                <CustomAttribute
+                    motion:customFloatValue="1"
+                    motion:attributeName="crossfade" />
+            </KeyAttribute>
+            <KeyAttribute
+                motion:motionTarget="@+id/iv_check_two"
+                motion:framePosition="55" >
+                <CustomAttribute
+                    motion:customFloatValue="0"
+                    motion:attributeName="crossfade" />
+            </KeyAttribute>
+            <KeyAttribute
+                motion:motionTarget="@+id/iv_check_three"
+                motion:framePosition="90" >
+                <CustomAttribute
+                    motion:customFloatValue="0"
+                    motion:attributeName="crossfade" />
+            </KeyAttribute>
+            <KeyAttribute
+                motion:motionTarget="@+id/iv_check_three"
+                motion:framePosition="95" >
+                <CustomAttribute
+                    motion:customFloatValue="1"
+                    motion:attributeName="crossfade" />
+            </KeyAttribute>
+            <KeyAttribute
+                motion:motionTarget="@+id/iv_check_four"
+                motion:framePosition="95" >
+                <CustomAttribute
+                    motion:customFloatValue="0"
+                    motion:attributeName="crossfade" />
+            </KeyAttribute>
+            <KeyAttribute
+                motion:motionTarget="@+id/iv_check_four"
+                motion:framePosition="100" >
+                <CustomAttribute
+                    motion:customFloatValue="1"
+                    motion:attributeName="crossfade" />
+            </KeyAttribute>
+        </KeyFrameSet>
+    </Transition>
+
+    <ConstraintSet android:id="@+id/start">
+        <Constraint
+            android:id="@+id/view2"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_3sdp"
+            motion:layout_constraintBottom_toBottomOf="@+id/iv_check_one"
+            motion:layout_constraintEnd_toEndOf="@+id/iv_check_one"
+            motion:layout_constraintStart_toStartOf="@+id/iv_check_one"
+            motion:layout_constraintTop_toTopOf="@+id/iv_check_one" />
+        <Constraint
+            android:id="@+id/iv_check_one"
+            motion:layout_constraintEnd_toStartOf="@+id/iv_check_two"
+            android:layout_width="@dimen/_32sdp"
+            android:layout_height="@dimen/_32sdp"
+            motion:layout_constraintHorizontal_chainStyle="spread_inside"
+            motion:layout_constraintTop_toBottomOf="@+id/textView10"
+            android:layout_marginStart="@dimen/_6sdp"
+            motion:layout_constraintHorizontal_bias="0.5"
+            motion:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="@dimen/_6sdp" >
+            <CustomAttribute
+                motion:attributeName="crossfade"
+                motion:customFloatValue="0" />
+        </Constraint>
+        <Constraint
+            android:id="@+id/iv_check_two"
+            motion:layout_constraintEnd_toStartOf="@+id/iv_check_three"
+            motion:layout_constraintStart_toEndOf="@+id/iv_check_one"
+            android:layout_width="@dimen/_32sdp"
+            android:layout_height="@dimen/_32sdp"
+            motion:layout_constraintBottom_toBottomOf="@+id/iv_check_one"
+            motion:layout_constraintHorizontal_bias="0.5"
+            motion:layout_constraintTop_toTopOf="@+id/iv_check_one" >
+            <CustomAttribute
+                motion:attributeName="crossfade"
+                motion:customFloatValue="0" />
+        </Constraint>
+        <Constraint
+            android:id="@+id/iv_check_three"
+            motion:layout_constraintEnd_toStartOf="@+id/iv_check_four"
+            motion:layout_constraintStart_toEndOf="@+id/iv_check_two"
+            android:layout_width="@dimen/_32sdp"
+            android:layout_height="@dimen/_32sdp"
+            motion:layout_constraintBottom_toBottomOf="@+id/iv_check_two"
+            motion:layout_constraintHorizontal_bias="0.5"
+            motion:layout_constraintTop_toTopOf="@+id/iv_check_two" >
+            <CustomAttribute
+                motion:attributeName="crossfade"
+                motion:customFloatValue="0" />
+        </Constraint>
+        <Constraint
+            android:id="@+id/iv_check_four"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintStart_toEndOf="@+id/iv_check_three"
+            android:layout_width="@dimen/_32sdp"
+            android:layout_height="@dimen/_32sdp"
+            motion:layout_constraintBottom_toBottomOf="@+id/iv_check_three"
+            android:layout_marginEnd="@dimen/_6sdp"
+            motion:layout_constraintHorizontal_bias="0.5"
+            motion:layout_constraintTop_toTopOf="@+id/iv_check_three" >
+            <CustomAttribute
+                motion:attributeName="crossfade"
+                motion:customFloatValue="0" />
+        </Constraint>
+    </ConstraintSet>
+
+    <ConstraintSet android:id="@+id/end">
+        <Constraint
+            android:id="@+id/view2"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_3sdp"
+            motion:layout_constraintBottom_toBottomOf="@+id/iv_check_one"
+            motion:layout_constraintEnd_toEndOf="@+id/iv_check_four"
+            motion:layout_constraintStart_toStartOf="@+id/iv_check_one"
+            motion:layout_constraintTop_toTopOf="@+id/iv_check_one" />
+        <Constraint
+            android:id="@+id/iv_check_one"
+            motion:layout_constraintEnd_toStartOf="@+id/iv_check_two"
+            android:layout_width="@dimen/_32sdp"
+            android:layout_height="@dimen/_32sdp"
+            motion:layout_constraintHorizontal_chainStyle="spread_inside"
+            motion:layout_constraintTop_toBottomOf="@+id/textView10"
+            android:layout_marginStart="@dimen/_6sdp"
+            motion:layout_constraintHorizontal_bias="0.5"
+            motion:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="@dimen/_6sdp" >
+            <CustomAttribute
+                motion:attributeName="crossfade"
+                motion:customFloatValue="1" />
+        </Constraint>
+        <Constraint
+            android:id="@+id/iv_check_two"
+            motion:layout_constraintEnd_toStartOf="@+id/iv_check_three"
+            motion:layout_constraintStart_toEndOf="@+id/iv_check_one"
+            android:layout_width="@dimen/_32sdp"
+            android:layout_height="@dimen/_32sdp"
+            motion:layout_constraintBottom_toBottomOf="@+id/iv_check_one"
+            motion:layout_constraintHorizontal_bias="0.5"
+            motion:layout_constraintTop_toTopOf="@+id/iv_check_one" >
+            <CustomAttribute
+                motion:attributeName="crossfade"
+                motion:customFloatValue="1" />
+        </Constraint>
+        <Constraint
+            android:id="@+id/iv_check_three"
+            motion:layout_constraintEnd_toStartOf="@+id/iv_check_four"
+            motion:layout_constraintStart_toEndOf="@+id/iv_check_two"
+            android:layout_width="@dimen/_32sdp"
+            android:layout_height="@dimen/_32sdp"
+            motion:layout_constraintBottom_toBottomOf="@+id/iv_check_two"
+            motion:layout_constraintHorizontal_bias="0.5"
+            motion:layout_constraintTop_toTopOf="@+id/iv_check_two" >
+            <CustomAttribute
+                motion:attributeName="crossfade"
+                motion:customFloatValue="1" />
+        </Constraint>
+        <Constraint
+            android:id="@+id/iv_check_four"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintStart_toEndOf="@+id/iv_check_three"
+            android:layout_width="@dimen/_32sdp"
+            android:layout_height="@dimen/_32sdp"
+            motion:layout_constraintBottom_toBottomOf="@+id/iv_check_three"
+            android:layout_marginEnd="@dimen/_6sdp"
+            motion:layout_constraintHorizontal_bias="0.5"
+            motion:layout_constraintTop_toTopOf="@+id/iv_check_three" >
+            <CustomAttribute
+                motion:attributeName="crossfade"
+                motion:customFloatValue="1" />
+        </Constraint>
+    </ConstraintSet>
+</MotionScene>

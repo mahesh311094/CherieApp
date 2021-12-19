@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <import type="android.text.InputType" />
+
+        <import type="com.ar7lab.cherieapp.enums.KYCStep" />
+
+        <variable
+            name="paymentListener"
+            type="com.ar7lab.cherieapp.ui.profile.ProfilePaymentListener" />
+
+    </data>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout6"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:animateLayoutChanges="true"
+        android:background="@color/white">
+
+        <ImageView
+            android:id="@+id/iv_verified"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_verified"
+            android:layout_marginTop="@dimen/_16sdp"
+            android:layout_marginStart="@dimen/_16sdp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cv_steps"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_24sdp"
+            android:layout_marginEnd="@dimen/_16sdp"
+            app:cardCornerRadius="@dimen/_7sdp"
+            app:cardElevation="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/iv_verified"
+            app:layout_constraintTop_toBottomOf="@+id/iv_verified"
+            app:strokeColor="@color/philippine_silver"
+            app:strokeWidth="1dp">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/tv_verified"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/margin_normal"
+                    android:fontFamily="@font/sf_bold"
+                    android:text="@string/requirements"
+                    android:textAppearance="?attr/textAppearanceBody1"
+                    android:textColor="@color/black"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_complete"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/margin_normal"
+                    android:drawablePadding="@dimen/_10sdp"
+                    android:fontFamily="@font/sf_pro_text_regular"
+                    android:text="@string/completed"
+                    android:textAppearance="?attr/textAppearanceBody2"
+                    android:textColor="@color/green"
+                    app:drawableStartCompat="@drawable/ic_verified_fill_tick"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <View
+                    android:id="@+id/v_verified"
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="@dimen/margin_11"
+                    android:background="@color/philippine_silver"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_verified" />
+
+                <TextView
+                    android:id="@+id/tv_step1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_normal"
+                    android:layout_marginTop="@dimen/margin_small"
+                    android:drawablePadding="@dimen/margin_small"
+                    android:fontFamily="@font/sf_pro_text_regular"
+                    android:text="@string/step_1"
+                    android:textAppearance="?attr/textAppearanceSubtitle2"
+                    android:textColor="@color/dark_blue"
+                    app:drawableEndCompat="@drawable/ic_kyc_personal"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/v_verified" />
+
+                <TextView
+                    android:id="@+id/tv_personal_info"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_normal"
+                    android:layout_marginTop="@dimen/margin_small"
+                    android:fontFamily="@font/sf_pro_text_regular"
+                    android:text="@string/personal_information"
+                    android:textAppearance="?attr/textAppearanceSubtitle2"
+                    android:textColor="@color/dark_blue"
+                    app:layout_constraintStart_toEndOf="@+id/tv_step1"
+                    app:layout_constraintTop_toBottomOf="@+id/v_verified" />
+
+                <View
+                    android:id="@+id/v_step1"
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="@dimen/margin_small"
+                    android:background="@color/philippine_silver"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_step1" />
+
+                <TextView
+                    android:id="@+id/tv_step2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_normal"
+                    android:layout_marginTop="@dimen/margin_small"
+                    android:drawablePadding="@dimen/margin_small"
+                    android:fontFamily="@font/sf_pro_text_regular"
+                    android:text="@string/step_2"
+                    android:textAppearance="?attr/textAppearanceSubtitle2"
+                    android:textColor="@color/dark_blue"
+                    app:drawableEndCompat="@drawable/ic_kyc_identity"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/v_step1" />
+
+                <TextView
+                    android:id="@+id/tv_identity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_normal"
+                    android:layout_marginTop="@dimen/margin_small"
+                    android:fontFamily="@font/sf_pro_text_regular"
+                    android:text="@string/identity_verification"
+                    android:textAppearance="?attr/textAppearanceSubtitle2"
+                    android:textColor="@color/dark_blue"
+                    app:layout_constraintStart_toEndOf="@+id/tv_step2"
+                    app:layout_constraintTop_toBottomOf="@+id/v_step1" />
+
+                <View
+                    android:id="@+id/v_step2"
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="@dimen/margin_small"
+                    android:background="@color/philippine_silver"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_step2" />
+
+                <TextView
+                    android:id="@+id/tv_step3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_normal"
+                    android:layout_marginTop="@dimen/margin_small"
+                    android:drawablePadding="@dimen/margin_small"
+                    android:fontFamily="@font/sf_pro_text_regular"
+                    android:text="@string/step_3"
+                    android:textAppearance="?attr/textAppearanceSubtitle2"
+                    android:textColor="@color/dark_blue"
+                    app:drawableEndCompat="@drawable/ic_kyc_facial"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/v_step2" />
+
+                <TextView
+                    android:id="@+id/tv_face"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_normal"
+                    android:layout_marginTop="@dimen/margin_small"
+                    android:fontFamily="@font/sf_pro_text_regular"
+                    android:text="@string/facial_recognition"
+                    android:textAppearance="?attr/textAppearanceSubtitle2"
+                    android:textColor="@color/dark_blue"
+                    app:layout_constraintStart_toEndOf="@+id/tv_step1"
+                    app:layout_constraintTop_toBottomOf="@+id/v_step2" />
+
+                <View
+                    android:id="@+id/v_step3"
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="@dimen/margin_small"
+                    android:background="@color/philippine_silver"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_step3" />
+
+                <TextView
+                    android:id="@+id/tv_step4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_normal"
+                    android:layout_marginTop="@dimen/margin_small"
+                    android:drawablePadding="@dimen/margin_small"
+                    android:fontFamily="@font/sf_pro_text_regular"
+                    android:text="@string/step_4"
+                    android:textAppearance="?attr/textAppearanceSubtitle2"
+                    android:textColor="@color/dark_blue"
+                    app:drawableEndCompat="@drawable/ic_kyc_clock"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/v_step3" />
+
+                <TextView
+                    android:id="@+id/tv_review"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_normal"
+                    android:layout_marginTop="@dimen/margin_small"
+                    android:fontFamily="@font/sf_pro_text_regular"
+                    android:text="@string/review_time_maximum_10_days"
+                    android:textAppearance="?attr/textAppearanceSubtitle2"
+                    android:textColor="@color/dark_blue"
+                    app:layout_constraintStart_toEndOf="@+id/tv_step1"
+                    app:layout_constraintTop_toBottomOf="@+id/v_step3" />
+
+                <View
+                    android:id="@+id/v_step4"
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="@dimen/margin_small"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_step4" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

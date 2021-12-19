@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="com.ar7lab.cherieapp.R" />
+
+        <variable
+            name="art"
+            type="com.ar7lab.cherieapp.model.Art" />
+
+        <import type="com.ar7lab.cherieapp.enums.MarketMyTradesTypeEnum" />
+
+        <variable
+            name="isHaveData"
+            type="Boolean" />
+
+        <variable
+            name="viewModel"
+            type="com.ar7lab.cherieapp.ui.tradingart.TradingArtViewModel" />
+
+        <import type="android.view.View" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/tab_marketplace"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_16sdp"
+        android:background="@color/white"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@+id/clHeaderContainer">
+        <!--Open Order text-->
+        <TextView
+            android:id="@+id/tvOpenOrder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="?attr/selectableItemBackground"
+            android:fontFamily="@font/sf_pro_text_regular"
+            android:gravity="center"
+            android:onClick="@{()->viewModel.changeMarketMyTradesType(MarketMyTradesTypeEnum.OPEN_ORDERS)}"
+            android:paddingVertical="@dimen/_2sdp"
+            android:text="@string/open_orders"
+            android:textColor="@{viewModel.marketMyTradesTypeSelected == MarketMyTradesTypeEnum.OPEN_ORDERS?@color/green_munsell:@color/philippine_silver}"
+            android:textSize="@dimen/_12ssp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+        <!--Divider open oder-->
+        <View
+            android:layout_width="0dp"
+            android:layout_height="2dp"
+            android:background="@color/green_munsell"
+            android:visibility="@{viewModel.marketMyTradesTypeSelected == MarketMyTradesTypeEnum.OPEN_ORDERS?View.VISIBLE:View.GONE}"
+            app:layout_constraintEnd_toEndOf="@+id/tvOpenOrder"
+            app:layout_constraintStart_toStartOf="@+id/tvOpenOrder"
+            app:layout_constraintTop_toBottomOf="@+id/tvOpenOrder" />
+
+        <!--Trade History-->
+        <TextView
+            android:id="@+id/tvTradeHistory"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_12sdp"
+            android:layout_weight=".50"
+            android:background="?attr/selectableItemBackground"
+            android:fontFamily="@font/sf_pro_text_regular"
+            android:gravity="center"
+            android:onClick="@{()->viewModel.changeMarketMyTradesType(MarketMyTradesTypeEnum.TRADE_HISTORY)}"
+            android:paddingVertical="@dimen/_2sdp"
+            android:text="@string/trade_history"
+            android:textColor="@{viewModel.marketMyTradesTypeSelected == MarketMyTradesTypeEnum.TRADE_HISTORY?@color/green_munsell:@color/philippine_silver}"
+            android:textSize="@dimen/_12ssp"
+            app:layout_constraintStart_toEndOf="@+id/tvOpenOrder"
+            app:layout_constraintTop_toTopOf="parent" />
+        <!--Trade History Divider-->
+        <View
+            android:layout_width="0dp"
+            android:layout_height="2dp"
+            android:background="@color/green_munsell"
+            android:visibility="@{viewModel.marketMyTradesTypeSelected == MarketMyTradesTypeEnum.TRADE_HISTORY?View.VISIBLE:View.GONE}"
+            app:layout_constraintEnd_toEndOf="@+id/tvTradeHistory"
+            app:layout_constraintStart_toStartOf="@+id/tvTradeHistory"
+            app:layout_constraintTop_toBottomOf="@+id/tvTradeHistory" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</layout>

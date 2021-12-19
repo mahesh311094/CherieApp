@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clWithDraw"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_12sdp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvUserName">
+
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clContainer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingVertical="@dimen/_4sdp"
+            android:layout_marginVertical="@dimen/_12sdp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+            <!--left arrow-->
+            <ImageView
+                android:id="@+id/ivLeft"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/_5sdp"
+                android:src="@drawable/ic_wallet_page_indicators_left"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+            <!--First Value-->
+            <TextView
+                android:id="@+id/tvFirst"
+                android:layout_width="@dimen/_22sdp"
+                android:layout_height="@dimen/_22sdp"
+                android:text="@string/one"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:background="@drawable/bg_wallet_page_selected"
+                android:textSize="@dimen/_10ssp"
+                android:fontFamily="@font/sf_pro_text_bold"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/ivLeft"
+                />
+            <!--second text 2-->
+            <TextView
+                android:id="@+id/tvSecond"
+                android:layout_width="@dimen/_22sdp"
+                android:layout_height="@dimen/_22sdp"
+                android:text="@string/two"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:gravity="center"
+                android:textColor="@color/philippine_silver"
+                android:textSize="@dimen/_10ssp"
+                android:fontFamily="@font/sf_pro_text_bold"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/tvFirst"
+                />
+            <!--Third Text-->
+            <TextView
+                android:id="@+id/tvThird"
+                android:layout_width="@dimen/_22sdp"
+                android:layout_height="@dimen/_22sdp"
+                android:text="@string/third"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:gravity="center"
+                android:textColor="@color/philippine_silver"
+                android:textSize="@dimen/_10ssp"
+                android:fontFamily="@font/sf_pro_text_bold"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/tvSecond"
+                />
+            <!--Three dots-->
+            <TextView
+                android:id="@+id/tvFour"
+                android:layout_width="@dimen/_22sdp"
+                android:layout_height="@dimen/_22sdp"
+                android:text="@string/three_dot"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:gravity="center"
+                android:textColor="@color/philippine_silver"
+                android:textSize="@dimen/_10ssp"
+                android:fontFamily="@font/sf_pro_text_bold"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/tvThird"
+                />
+            <!--32 text view-->
+            <TextView
+                android:id="@+id/tvFive"
+                android:layout_width="@dimen/_22sdp"
+                android:layout_height="@dimen/_22sdp"
+                android:text="@string/thirtytwo"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:gravity="center"
+                android:textColor="@color/philippine_silver"
+                android:textSize="@dimen/_10ssp"
+                android:fontFamily="@font/sf_pro_text_bold"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/tvFour"
+                />
+            <!--right imageview-->
+            <ImageView
+                android:id="@+id/ivRight"
+                android:padding="@dimen/_5sdp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_wallet_page_right_indicators"
+                app:layout_constraintStart_toEndOf="@+id/tvFive"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginStart="@dimen/_10sdp"
+                />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="art"
+            type="com.ar7lab.cherieapp.model.Art" />
+
+        <variable
+            name="artist"
+            type="com.ar7lab.cherieapp.model.Artist" />
+
+        <variable
+            name="listener"
+            type="com.ar7lab.cherieapp.ui.store.ArtListener" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="@dimen/_125sdp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_7sdp">
+
+        <androidx.cardview.widget.CardView
+            android:id="@id/cv_art"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:paddingHorizontal="@dimen/_4sdp"
+            app:cardCornerRadius="@dimen/_8sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/iv_art"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_140sdp"
+                    android:contentDescription="@string/art"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/ic_item_temp"
+                    app:artImgUrl='@{art.thumbImageUrl}'
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize50Percent" />
+                <!--app:artImgUrl='@{art.fileUrls.size() > 0 ? art.fileUrls.get(0).url : ""}'-->
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_140sdp"
+                    android:contentDescription="@string/art"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/ic_bottom_shadow"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize50Percent" />
+
+                <ImageView
+                    android:id="@+id/iv_like"
+                    android:layout_width="@dimen/_23sdp"
+                    android:layout_height="@dimen/_23sdp"
+                    android:layout_marginEnd="@dimen/_6sdp"
+                    android:layout_marginBottom="@dimen/_4sdp"
+                    android:onClick="@{() -> listener.likeClick(art)}"
+                    android:paddingStart="@dimen/_10sdp"
+                    android:src="@{art.liked ? @drawable/ic_market_like : @drawable/ic_market_dis_like, default=@drawable/ic_market_dis_like}"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    tools:ignore="RtlSymmetry" />
+
+                <TextView
+                    android:id="@+id/tv_like"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_4sdp"
+                    android:fontFamily="@font/sf_regular"
+                    android:onClick="@{() -> listener.viewLikeClick(art)}"
+                    android:paddingTop="@dimen/margin_extra_small"
+                    android:paddingBottom="@dimen/_8sdp"
+                    android:text="@{String.valueOf(art.likeCount)}"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_9ssp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintHorizontal_chainStyle="spread"
+                    app:layout_constraintStart_toEndOf="@+id/iv_like"
+                    tools:text="234" />
+
+                <TextView
+                    android:id="@+id/tv_sales_amount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/sf_regular"
+                    android:maxLines="1"
+                    android:paddingBottom="@dimen/_8sdp"
+                    android:singleLine="true"
+                    android:text="@{@string/full_sales(art.shareSalesRate)}"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_9ssp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/tv_pr"
+                    tools:text="90" />
+
+                <TextView
+                    android:id="@+id/tv_pr"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/_4sdp"
+                    android:fontFamily="@font/sf_regular"
+                    android:paddingBottom="@dimen/_8sdp"
+                    android:text="@string/_pr"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_9ssp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/tv_sold" />
+
+                <TextView
+                    android:id="@+id/tv_sold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/sf_regular"
+                    android:maxLines="1"
+                    android:paddingEnd="@dimen/_10sdp"
+                    android:paddingBottom="@dimen/_8sdp"
+                    android:singleLine="true"
+                    android:text="@string/sold"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_9ssp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    tools:ignore="RtlSymmetry" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/_8sdp"
+            app:layout_constraintEnd_toEndOf="@+id/cv_art"
+            app:layout_constraintTop_toBottomOf="@+id/cv_art">
+
+            <TextView
+                android:id="@+id/tv_art_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:ellipsize="end"
+                android:fontFamily="@font/sf_pro_text_semi_bold"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:text="@{art.name}"
+                android:textColor="@color/dark_blue"
+                android:textSize="@dimen/_12ssp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Untitled Greens, 2014,Untitled Greens, 2014" />
+
+            <TextView
+                android:id="@+id/tv_artist_full_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:fontFamily="@font/sf_pro_text_regular"
+                android:includeFontPadding="false"
+                android:maxLines="1"
+                android:onClick="@{() -> listener.artistProfileClick(artist)}"
+                android:singleLine="true"
+                android:textColor="@color/dark_blue"
+                android:textSize="@dimen/_9ssp"
+                app:artistName="@{art.artist.name}"
+                app:birthDate="@{art.artist.birthDate}"
+                app:deathDate="@{art.artist.deathDate}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/tv_art_name"
+                app:layout_constraintTop_toBottomOf="@+id/tv_art_name"
+                tools:text="Yayoi Kusama, 1958 ~ 2020" />
+
+            <TextView
+                android:id="@+id/tv_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_12sdp"
+                android:ellipsize="end"
+                android:fontFamily="@font/sf_regular"
+                android:includeFontPadding="false"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:text="@string/_from"
+                android:textColor="@color/dark_blue"
+                android:textSize="@dimen/_9ssp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_artist_full_name"
+                tools:text="From " />
+
+            <TextView
+                android:id="@+id/tv_price_amount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:fontFamily="@font/sf_semi_bold"
+                android:includeFontPadding="false"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:text="@{@string/full_price_from(art.currency,art.price)}"
+                android:textColor="@color/dark_blue"
+                android:textSize="@dimen/_10ssp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toEndOf="@+id/tv_price"
+                app:layout_constraintTop_toTopOf="@+id/tv_price"
+                tools:text="$15,845" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_sign_in"
+                android:layout_width="@dimen/_50sdp"
+                android:layout_height="@dimen/_32sdp"
+                android:fontFamily="@font/sf_semi_bold"
+                android:onClick="@{() -> listener.onClick(art)}"
+                android:text="@string/buy"
+                android:textAllCaps="false"
+                android:textSize="@dimen/_9ssp"
+                app:backgroundTint="#02B875"
+                app:cornerRadius="@dimen/_6sdp"
+                app:iconGravity="textStart"
+                app:layout_constraintBaseline_toBaselineOf="@+id/tv_price_amount"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:textSource="@{@string/buy}" />
+
+            <!--<TextView
+                android:id="@+id/tv_comment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawablePadding="@dimen/margin_small"
+                android:gravity="center"
+                android:onClick="@{() -> listener.viewCommentClick(art)}"
+                android:paddingTop="@dimen/margin_extra_small"
+                android:paddingBottom="@dimen/margin_extra_small"
+                android:text="@{String.valueOf(art.commentCount)}"
+                android:textAppearance="?attr/textAppearanceBody2"
+                android:textColor="@color/light_blue"
+                android:textSize="@dimen/_12ssp"
+                app:drawableStartCompat="@drawable/ic_comment"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_like"
+                app:layout_constraintEnd_toEndOf="@+id/view2"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/view3"
+                app:layout_constraintTop_toTopOf="@+id/tv_like"
+                tools:text="24" />-->
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

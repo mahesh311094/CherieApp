@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="preferences"
+            type="com.ar7lab.cherieapp.model.Preferences" />
+
+        <variable
+            name="listener"
+            type="com.ar7lab.cherieapp.ui.more.PreferencesItemListener" />
+    </data>
+    <!--main card layout-->
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_12sdp"
+        android:layout_marginTop="@dimen/_12sdp"
+        android:layout_marginEnd="@dimen/_12sdp"
+        android:onClick="@{() -> listener.preferenceItemClick()}"
+        app:cardBackgroundColor="?attr/colorOnPrimary"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="0dp"
+        app:rippleColor="@color/green_munsell">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_border_bank_cards"
+            android:elevation="1dp"
+            android:padding="@dimen/_12sdp">
+            <!--Item Icon-->
+            <ImageView
+                android:id="@+id/iv_avatar"
+                android:layout_width="@dimen/_24sdp"
+                android:layout_height="@dimen/_24sdp"
+                android:src="@drawable/ic_more_lock"
+                app:imgFromDrawable="@{preferences.icon}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+            <!--Item Title-->
+            <TextView
+                android:id="@+id/tv_notification_description"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_normal"
+                android:text="@{preferences.title}"
+                android:fontFamily="@font/sf_pro_text_medium"
+                android:textColor="@color/dark_blue"
+                android:textSize="@dimen/_12ssp"
+                android:includeFontPadding="false"
+                app:layout_constraintStart_toEndOf="@+id/iv_avatar"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/tv_description"
+                tools:text="@string/change_password" />
+            <!--Item Description-->
+            <TextView
+                android:id="@+id/tv_description"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_normal"
+                android:layout_marginEnd="20dp"
+                android:text="@{preferences.description}"
+                android:fontFamily="@font/sf_pro_text_regular"
+                android:textColor="@color/dark_blue"
+                android:textSize="@dimen/_9ssp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/iv_avatar"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_notification_description"
+                tools:text="Change the login password for your account." />
+            <!--End Image-->
+            <ImageView
+                android:id="@+id/img_right_arrow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="?attr/colorOnPrimary"
+                android:padding="2dp"
+                android:src="@drawable/ic_more_right_arrow"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintRight_toRightOf="@+id/tv_description"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+</layout>

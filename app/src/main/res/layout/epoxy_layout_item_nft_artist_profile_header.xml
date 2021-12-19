@@ -1,0 +1,516 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="artist"
+            type="com.ar7lab.cherieapp.model.Artist" />
+
+        <import type="com.ar7lab.cherieapp.enums.NftArtistArtsTypeEnum" />
+
+        <import type="android.view.View" />
+
+        <import type="com.ar7lab.cherieapp.R" />
+
+        <variable
+            name="viewModel"
+            type="com.ar7lab.cherieapp.ui.nftartistprofile.NFTArtistProfileViewModel" />
+
+        <variable
+            name="listener"
+            type="com.ar7lab.cherieapp.ui.nftartistprofile.NFTArtistProfileListener" />
+
+        <variable
+            name="topArtistType"
+            type="com.ar7lab.cherieapp.enums.TopArtistsTypeEnum" />
+
+        <import type="com.ar7lab.cherieapp.enums.TopArtistsTypeEnum" />
+
+    </data>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/_16sdp">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/iv_avatar"
+            android:layout_width="@dimen/_80sdp"
+            android:layout_height="@dimen/_80sdp"
+            android:layout_marginTop="@dimen/_16sdp"
+            android:background="?attr/colorOnPrimary"
+            android:padding="2dp"
+            android:src="@drawable/ic_placeholder"
+            app:artImgUrl="@{artist.profilePicture}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:shapeAppearance="@style/circleImageView"
+            app:strokeColor="@color/white"
+            app:strokeWidth="@dimen/_2sdp" />
+
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_12sdp"
+            android:fontFamily="@font/sf_bold"
+            android:includeFontPadding="false"
+            android:text="@{artist.name}"
+            android:textColor="@color/cetacean_blue"
+            android:textSize="@dimen/_20ssp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/iv_avatar"
+            tools:text="Rajesh Savaliya" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layout_followers_liked"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_32sdp"
+            android:layout_marginTop="@dimen/_8sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_name">
+
+            <LinearLayout
+                android:id="@+id/linearLayout2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/linearLayout"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/sf_regular"
+                    android:gravity="center_horizontal"
+                    android:text="@string/followers"
+                    android:textColor="@color/dove_gray"
+                    android:textSize="@dimen/_13ssp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_4sdp"
+                    android:fontFamily="@font/sf_bold"
+                    android:gravity="center"
+                    android:text="@{Integer.toString(artist.followersCount)}"
+                    android:textColor="@color/dove_gray"
+                    android:textSize="@dimen/_13ssp"
+                    tools:text="1.4K" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toBottomOf="@+id/linearLayout2"
+                app:layout_constraintEnd_toStartOf="@+id/ll_3"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/linearLayout2"
+                app:layout_constraintTop_toTopOf="@+id/linearLayout2">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/sf_regular"
+                    android:gravity="center_horizontal"
+                    android:text="@string/likes"
+                    android:textColor="@color/dove_gray"
+                    android:textSize="@dimen/_13ssp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_4sdp"
+                    android:fontFamily="@font/sf_bold"
+                    android:gravity="center"
+                    android:text="@{Integer.toString(artist.likeCount)}"
+                    android:textColor="@color/dove_gray"
+                    android:textSize="@dimen/_13ssp"
+                    tools:text="456" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="@+id/linearLayout2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/linearLayout"
+                app:layout_constraintTop_toTopOf="@+id/linearLayout2">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:text="@string/work_for_sale"
+                    android:textAppearance="?attr/textAppearanceBody2"
+                    android:textColor="@color/normal_text_color"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/sf_pro_text_semi_bold"
+                    android:gravity="center"
+                    android:text="@string/_0"
+                    android:textAppearance="?attr/textAppearanceBody1"
+                    android:textColor="?attr/colorSecondary"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/tab_follow_share"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_12sdp"
+            android:layout_marginVertical="@dimen/_4sdp"
+            android:orientation="horizontal"
+            android:visibility="gone"
+            android:weightSum="1"
+            app:layout_constraintTop_toBottomOf="@+id/layout_followers_liked">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_follow"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/_20sdp"
+                android:layout_weight=".6"
+                android:backgroundTint="@{artist.followed ? @color/white : @color/blue}"
+                android:onClick="@{() -> listener.onFollowClick(artist)}"
+                android:paddingStart="@dimen/padding_large"
+                android:paddingTop="12dp"
+                android:paddingEnd="@dimen/padding_large"
+                android:paddingBottom="12dp"
+                android:text="@{artist.followed ? @string/following : @string/follow}"
+                android:textAppearance="?attr/textAppearanceSubtitle1"
+                android:textColor="@{artist.followed ? @color/dove_gray : @color/white}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/linearLayouthart"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:shapeAppearance="@style/ShapeAppearance.Cherie.Button.Primary"
+                tools:text="@string/follow" />
+
+            <LinearLayout
+                android:id="@+id/linearLayouthart"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginEnd="@dimen/_12sdp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/linearLayout3"
+                app:layout_constraintTop_toTopOf="@+id/linearLayout3">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:onClick="@{() -> listener.onLikeClicked(artist)}"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:src="@{artist.liked ? @drawable/ic_hart_rounded_border_fill : @drawable/ic_hart_rounded_border}"
+
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLayout3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginEnd="@dimen/_12sdp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/linearLayout4"
+                app:layout_constraintTop_toTopOf="@+id/linearLayout4">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:src="@drawable/ic_share" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLayout4"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:src="@drawable/ic_more" />
+
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <!--android:visibility="@{topArtistType == TopArtistsTypeEnum.NFT ? View.GONE : View.VISIBLE}"-->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layout_blue_chip"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:visibility="gone"
+            app:layout_constraintTop_toBottomOf="@+id/tab_follow_share">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/iv_blue_chip"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="@dimen/margin_normal"
+                android:padding="2dp"
+                android:src="@drawable/ic_blue_chip"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_blue_chip_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_small"
+                android:text="@string/blue_chip_representation"
+                android:textAppearance="?attr/textAppearanceBody2"
+                android:textColor="@color/tab_divider_grey"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/iv_blue_chip"
+                app:layout_constraintTop_toTopOf="@+id/iv_blue_chip"
+                tools:text="Blue-chip representation" />
+
+            <TextView
+                android:id="@+id/tv_blue_chip_desc"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_small"
+                android:text="@string/represented_by"
+                android:textAppearance="?attr/textAppearanceBody2"
+                android:textColor="@color/spanish_grey"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/iv_blue_chip"
+                app:layout_constraintTop_toBottomOf="@+id/tv_blue_chip_name"
+                tools:text="Represented by internationally reputable galleries" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layout_high_auction"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:visibility="gone"
+            app:layout_constraintTop_toBottomOf="@+id/layout_blue_chip">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/iv_high_auction"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="@dimen/margin_normal"
+                android:padding="2dp"
+                android:src="@drawable/ic_high_auction"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_high_auction_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_small"
+                android:text="@string/high_auction_record"
+                android:textAppearance="?attr/textAppearanceBody2"
+                android:textColor="@color/tab_divider_grey"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/iv_high_auction"
+                app:layout_constraintTop_toTopOf="@+id/iv_high_auction"
+                tools:text="High auction record" />
+
+            <TextView
+                android:id="@+id/tv_high_auction_desc"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_small"
+                android:text="@string/hk_62"
+                android:textAppearance="?attr/textAppearanceBody2"
+                android:textColor="@color/spanish_grey"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/iv_high_auction"
+                app:layout_constraintTop_toBottomOf="@+id/tv_high_auction_name"
+                tools:text="HK $62.4m, Sotheby’s, 2019" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <!--android:visibility="@{topArtistType == TopArtistsTypeEnum.TRADITIONAL ? View.GONE : View.VISIBLE}"-->
+        <TextView
+            android:id="@+id/tv_art_work"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_12sdp"
+            android:layout_marginTop="@dimen/_12sdp"
+            android:fontFamily="@font/sf_bold"
+            android:gravity="center"
+            android:onClick="@{() -> listener.onClickOnSale()}"
+            android:text="@string/artwork"
+            android:textColor="@{viewModel.nftArtistArtsTypeSelected == NftArtistArtsTypeEnum.ON_SALE ? @color/black : @color/philippine_silver}"
+            android:textSize="@dimen/_13ssp"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/layout_followers_liked" />
+
+        <TextView
+            android:id="@+id/tv_bio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_16sdp"
+            android:fontFamily="@font/sf_bold"
+            android:gravity="center"
+            android:onClick="@{() -> listener.onClickOwned()}"
+            android:text="@string/biography"
+            android:textColor="@{viewModel.nftArtistArtsTypeSelected == NftArtistArtsTypeEnum.OWNED ? @color/black : @color/philippine_silver}"
+            android:textSize="@dimen/_13ssp"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_art_work"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/tv_art_work"
+            app:layout_constraintTop_toTopOf="@+id/tv_art_work" />
+
+        <TextView
+            android:id="@+id/tv_desc"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:layout_marginEnd="@dimen/_12sdp"
+            android:fontFamily="@font/sf_pro_text_regular"
+            android:lineSpacingExtra="3dp"
+            android:text="@{artist.overview}"
+            android:textColor="@color/dove_gray"
+            android:textSize="@dimen/_11ssp"
+            android:visibility="@{viewModel.nftArtistArtsTypeSelected == NftArtistArtsTypeEnum.OWNED ? View.VISIBLE : View.GONE}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/tv_art_work"
+            app:layout_constraintTop_toBottomOf="@+id/tv_art_work"
+            tools:text="Yayoi Kusama was born in Matsumoto, Japan, in 1929. As of 1977, she has regularly resided in a Japanese psychiatric facility where she has a workshop. After an education in traditional and modern painting, Kusuma moved to New York in 1958 and mixed with some of the major artists of the city’s avant-garde, including Yves Klein, Andy Warhol and Donal Judd. A fervent activist for sexual freedom and women’s rights, she made her mark on 1960s New York with naked happenings in iconic locations." />
+
+        <ImageView
+            android:id="@+id/imageView6"
+            android:layout_width="@dimen/_150sdp"
+            android:layout_height="@dimen/_150sdp"
+            android:layout_marginTop="@dimen/_40sdp"
+            android:src="@drawable/img_data_not_found"
+            android:visibility="@{viewModel.nftArtistArtsTypeSelected == NftArtistArtsTypeEnum.OWNED ? View.GONE : (viewModel.totalArtwork!=0 ? View.GONE : View.VISIBLE)}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_art_work" />
+
+        <TextView
+            android:id="@+id/tv_not_found"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_16sdp"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:fontFamily="@font/sf_bold"
+            android:gravity="center"
+            android:text="@string/no_artwork_found"
+            android:textColor="@color/dove_gray"
+            android:textSize="@dimen/_13ssp"
+            android:visibility="@{viewModel.nftArtistArtsTypeSelected == NftArtistArtsTypeEnum.OWNED ? View.GONE : (viewModel.totalArtwork!=0 ? View.GONE : View.VISIBLE)}"
+            app:layout_constraintEnd_toEndOf="@+id/imageView6"
+            app:layout_constraintStart_toStartOf="@+id/imageView6"
+            app:layout_constraintTop_toBottomOf="@+id/imageView6" />
+
+        <!--<View
+            android:id="@+id/vv_1"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_2sdp"
+            android:background="@color/list_divider_grey"
+            android:visibility="@{topArtistType == TopArtistsTypeEnum.NFT ? View.VISIBLE : View.GONE}"
+            app:layout_constraintTop_toBottomOf="@+id/tv_art_work"
+            app:layout_goneMarginTop="@dimen/_8sdp" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_2sdp"
+            android:background="@color/blue"
+            android:visibility="@{viewModel.nftArtistArtsTypeSelected == NftArtistArtsTypeEnum.OWNED ? View.VISIBLE : View.GONE}"
+            app:layout_constraintEnd_toEndOf="@+id/tv_bio"
+            app:layout_constraintStart_toStartOf="@+id/tv_bio"
+            app:layout_constraintTop_toTopOf="@+id/vv_1" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_2sdp"
+            android:background="@color/blue"
+            android:visibility="@{viewModel.nftArtistArtsTypeSelected == NftArtistArtsTypeEnum.OWNED ? View.GONE : View.VISIBLE}"
+            app:layout_constraintBottom_toBottomOf="@+id/vv_1"
+            app:layout_constraintEnd_toEndOf="@+id/tv_art_work"
+            app:layout_constraintStart_toStartOf="@+id/tv_art_work"
+            app:layout_constraintTop_toTopOf="@+id/vv_1" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_24sdp"
+            android:fontFamily="@font/sf_pro_text_bold"
+            android:gravity="center"
+            android:text="@string/no_items_found"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_16ssp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/vv_1"
+            app:onOwned="@{viewModel.ownedCount}"
+            app:onSale="@{viewModel.salesCount}"
+            app:tabSelected="@{viewModel.nftArtistArtsTypeSelected.name()}"
+            app:typeSelected="@{topArtistType.name()}" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_4sdp"
+            android:fontFamily="@font/mons_medium"
+            android:gravity="center"
+            android:text="@string/go_to_the_marketplace_to_buy_or_bid_on_arts"
+            android:textColor="@color/tab_divider_grey"
+            android:textSize="@dimen/_12ssp"
+            android:visibility="@{topArtistType == TopArtistsTypeEnum.NFT ? View.VISIBLE : View.GONE}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView4"
+            app:onOwned="@{viewModel.ownedCount}"
+            app:onSale="@{viewModel.salesCount}"
+            app:tabSelected="@{viewModel.nftArtistArtsTypeSelected.name()}"
+            app:typeSelected="@{topArtistType.name()}" />-->
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

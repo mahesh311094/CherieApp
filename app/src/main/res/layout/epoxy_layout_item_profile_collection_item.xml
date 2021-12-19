@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="collection"
+            type="com.ar7lab.cherieapp.model.MyCollectionDetails" />
+
+        <variable
+            name="listener"
+            type="com.ar7lab.cherieapp.ui.profile.ProfileListener" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/iv_art"
+            android:layout_width="@dimen/_90sdp"
+            android:layout_height="@dimen/_90sdp"
+            android:layout_margin="@dimen/padding_12dp"
+            android:contentDescription="@string/art"
+            android:scaleType="centerCrop"
+            imgUrl="@{collection.fileUrls.get(0).url}"
+            android:src="@{collection.fileUrls.get(0).url}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:shapeAppearanceOverlay="@style/ShapeAppearance.Cherie.ArtImage" />
+
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_small"
+            android:layout_marginTop="@dimen/_2sdp"
+            android:fontFamily="@font/sf_pro_text_semi_bold"
+            android:includeFontPadding="false"
+            android:text="@{collection.name}"
+            android:textColor="@color/dark_blue"
+            android:textSize="@dimen/_12ssp"
+            app:layout_constraintStart_toEndOf="@+id/iv_art"
+            app:layout_constraintTop_toTopOf="@+id/iv_art" />
+
+        <TextView
+            android:id="@+id/tv_year"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_4sdp"
+            android:fontFamily="@font/sf_pro_text_semi_bold"
+            android:includeFontPadding="false"
+            android:text="@{``+collection.yearOfArtRelease}"
+            android:textColor="@color/dove_gray"
+            android:textSize="@dimen/_11ssp"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_name"
+            app:layout_constraintStart_toEndOf="@+id/tv_name"
+            app:layout_constraintTop_toTopOf="@+id/tv_name" />
+
+        <TextView
+            android:id="@+id/tv_artist"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:fontFamily="@font/sf_pro_text_regular"
+            android:includeFontPadding="false"
+            android:text="@{collection.artistName + @string/_comma +collection.artistBirthDate}"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_10ssp"
+            app:layout_constraintStart_toStartOf="@+id/tv_name"
+            app:layout_constraintTop_toBottomOf="@+id/tv_name" />
+
+        <TextView
+            android:id="@+id/tv_hold"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_small"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:layout_marginEnd="@dimen/margin_small"
+            android:fontFamily="@font/sf_pro_text_regular"
+            android:includeFontPadding="false"
+            android:text="@{ @string/_hold +collection.totalHold +@string/_tot_price +collection.totalPrice}"
+            android:textColor="@color/dark_blue"
+            android:textSize="@dimen/_10ssp"
+            app:layout_constraintStart_toEndOf="@+id/iv_art"
+            app:layout_constraintTop_toBottomOf="@+id/tv_artist" />
+
+
+        <TextView
+            android:id="@+id/tv_trade"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_trade_green"
+            android:drawablePadding="@dimen/_4sdp"
+            android:fontFamily="@font/sf_medium"
+            android:paddingHorizontal="@dimen/_8sdp"
+            android:paddingVertical="@dimen/_3sdp"
+            android:text="@string/trade"
+            android:textColor="@color/white"
+            android:onClick="@{() -> listener.onSaleClicked()}"
+            android:textSize="@dimen/_10ssp"
+            app:drawableStartCompat="@drawable/ic_trade"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_art"
+            app:layout_constraintStart_toStartOf="@+id/tv_name" />
+
+        <TextView
+            android:id="@+id/tv_nft"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_12sdp"
+            android:background="@drawable/bg_nft_blue_green"
+            android:fontFamily="@font/sf_medium"
+            android:paddingHorizontal="@dimen/_20sdp"
+            android:paddingVertical="@dimen/_3sdp"
+            android:text="@string/nft"
+            android:onClick="@{() -> listener.onOwnedClicked()}"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_10ssp"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_art"
+            app:layout_constraintStart_toEndOf="@+id/tv_trade" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_margin="@dimen/margin_normal"
+            android:background="@color/gray_light"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/iv_art" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

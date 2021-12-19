@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="cardDetails"
+            type="com.ar7lab.cherieapp.model.CardDetails" />
+
+        <variable
+            name="listener"
+            type="com.ar7lab.cherieapp.ui.profile.ProfileCardListener" />
+    </data>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_normal"
+        android:layout_marginEnd="@dimen/margin_normal"
+        android:background="@drawable/bg_registered_card_item"
+        android:paddingStart="@dimen/padding_normal"
+        android:paddingTop="@dimen/padding_small"
+        android:paddingEnd="@dimen/padding_small"
+        android:paddingBottom="@dimen/padding_small"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <TextView
+            android:id="@+id/tv_card_dot"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/sf_semi_bold"
+            android:gravity="center"
+            android:text="@string/dot_card_number"
+            android:textAppearance="?attr/textAppearanceBody1"
+            android:textColor="@color/dove_gray"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_card_ending"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_5sdp"
+            android:fontFamily="@font/sf_semi_bold"
+            android:gravity="center"
+            android:text="@{cardDetails.card.last4}"
+            android:textAppearance="?attr/textAppearanceBody2"
+            android:textColor="@color/dove_gray"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_card_dot"
+            app:layout_constraintStart_toEndOf="@+id/tv_card_dot"
+            app:layout_constraintTop_toTopOf="@+id/tv_card_dot"
+            tools:text="3232" />
+
+        <TextView
+            android:id="@+id/tv_card_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/sf_semi_bold"
+            android:gravity="center"
+            android:text="@string/debit_card"
+            android:textAppearance="?attr/textAppearanceBody2"
+            android:textColor="@color/dove_gray"
+            app:layout_constraintStart_toStartOf="@+id/tv_card_dot"
+            app:layout_constraintTop_toBottomOf="@+id/tv_card_dot" />
+
+        <ImageView
+            android:id="@+id/tv_add"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/app_name"
+            android:onClick="@{() -> listener.addPaymentMethod()}"
+            android:padding="@dimen/_5sdp"
+            android:src="@drawable/ic_cross"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/dove_gray" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

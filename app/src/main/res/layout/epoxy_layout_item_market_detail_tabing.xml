@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="com.ar7lab.cherieapp.R" />
+
+        <variable
+            name="art"
+            type="com.ar7lab.cherieapp.model.Art" />
+
+        <import type="com.ar7lab.cherieapp.enums.MarketTradingTypeEnum" />
+
+        <variable
+            name="isHaveData"
+            type="Boolean" />
+
+        <variable
+            name="viewModel"
+            type="com.ar7lab.cherieapp.ui.tradingart.TradingArtViewModel" />
+
+        <import type="android.view.View" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/tab_marketplace"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_16sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:background="@color/white"
+        android:orientation="horizontal"
+        android:weightSum="1"
+        app:layout_constraintTop_toBottomOf="@+id/clHeaderContainer">
+        <!--Chart Text-->
+        <TextView
+            android:id="@+id/tvChart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight=".50"
+            android:background="?attr/selectableItemBackground"
+            android:fontFamily="@font/sf_bold"
+            android:gravity="center"
+            android:onClick="@{()->viewModel.changeMarketTradingType(MarketTradingTypeEnum.CHART)}"
+            android:paddingVertical="@dimen/_8sdp"
+            android:text="@string/chart"
+            android:textColor="@{viewModel.marketTradingTypeSelected == MarketTradingTypeEnum.CHART?@color/black:@color/philippine_silver}"
+            android:textSize="@dimen/_12ssp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+             />
+
+        <!--market Trades text-->
+        <TextView
+            android:id="@+id/tvMarketTrades"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight=".50"
+            android:background="?attr/selectableItemBackground"
+            android:fontFamily="@font/sf_bold"
+            android:gravity="center"
+            android:layout_marginStart="@dimen/_16sdp"
+            android:onClick="@{()->viewModel.changeMarketTradingType(MarketTradingTypeEnum.MARKET_TRADES)}"
+            android:paddingVertical="@dimen/_8sdp"
+            android:text="@string/market_trades"
+            android:textColor="@{viewModel.marketTradingTypeSelected == MarketTradingTypeEnum.MARKET_TRADES?@color/black:@color/philippine_silver}"
+            android:textSize="@dimen/_12ssp"
+            app:layout_constraintStart_toEndOf="@+id/tvChart"
+            app:layout_constraintTop_toTopOf="parent"
+             />
+        <!--MyTrades Text-->
+        <TextView
+            android:id="@+id/tvMyTrades"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight=".50"
+            android:background="?attr/selectableItemBackground"
+            android:fontFamily="@font/sf_bold"
+            android:gravity="center"
+            android:layout_marginStart="@dimen/_16sdp"
+            android:onClick="@{()->viewModel.changeMarketTradingType(MarketTradingTypeEnum.MY_TRADES)}"
+            android:paddingVertical="@dimen/_8sdp"
+            android:text="@string/my_trading"
+            android:textColor="@{viewModel.marketTradingTypeSelected == MarketTradingTypeEnum.MY_TRADES?@color/black:@color/philippine_silver}"
+            android:textSize="@dimen/_12ssp"
+            app:layout_constraintStart_toEndOf="@+id/tvMarketTrades"
+            app:layout_constraintTop_toTopOf="parent"
+             />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</layout>

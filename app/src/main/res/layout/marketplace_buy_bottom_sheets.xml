@@ -1,0 +1,466 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.ar7lab.cherieapp.ui.tradingart.paymentflow.BuyBottomSheetViewModel" />
+
+        <import type="com.ar7lab.cherieapp.enums.OrderTypeEnum" />
+
+        <import type="android.view.View" />
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <!--Sale Title-->
+            <TextView
+                android:id="@+id/tvTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_16sdp"
+                android:gravity="center"
+                android:text="@string/buy"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_14ssp"
+                app:fontFamily="@font/sf_pro_text_bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <!--close image-->
+            <ImageView
+                android:id="@+id/ivClose"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_16sdp"
+                android:padding="10dp"
+                android:src="@drawable/ic_cross"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:tint="@color/dove_gray" />
+            <!--Tab Container-->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/clTabContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_12sdp"
+                app:layout_constraintTop_toBottomOf="@+id/tvTitle">
+                <!--Tab Fix Price Order-->
+                <TextView
+                    android:id="@+id/tvFixPriceOrder"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:onClick="@{()->viewModel.onSelectType(OrderTypeEnum.FIX_PRICE)}"
+                    android:text="@string/fixed_price_order"
+                    android:textColor="@{viewModel.typeSelected==OrderTypeEnum.FIX_PRICE?@color/green_munsell:@color/philippine_silver}"
+                    android:textSize="@dimen/_12ssp"
+                    app:fontFamily="@font/sf_pro_text_semi_bold"
+                    app:layout_constraintEnd_toStartOf="@+id/tvMarketPriceOrder"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+                <!--Tab Fix Price Order Divider-->
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="2dp"
+                    android:background="@color/green_munsell"
+                    android:visibility="@{viewModel.typeSelected==OrderTypeEnum.FIX_PRICE?View.VISIBLE:View.GONE}"
+                    app:layout_constraintEnd_toEndOf="@+id/tvFixPriceOrder"
+                    app:layout_constraintStart_toStartOf="@+id/tvFixPriceOrder"
+                    app:layout_constraintTop_toBottomOf="@+id/tvFixPriceOrder" />
+                <!--Tab Market Price Order-->
+                <TextView
+                    android:id="@+id/tvMarketPriceOrder"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:onClick="@{()->viewModel.onSelectType(OrderTypeEnum.MARKET_PRICE)}"
+                    android:text="@string/market_price_order"
+                    android:textColor="@{viewModel.typeSelected==OrderTypeEnum.MARKET_PRICE?@color/green_munsell:@color/philippine_silver}"
+                    android:textSize="@dimen/_12ssp"
+                    app:fontFamily="@font/sf_pro_text_semi_bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/tvFixPriceOrder"
+                    app:layout_constraintTop_toTopOf="parent" />
+                <!--Tab Market Price Order Divider-->
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="2dp"
+                    android:background="@color/green_munsell"
+                    android:visibility="@{viewModel.typeSelected==OrderTypeEnum.MARKET_PRICE?View.VISIBLE:View.GONE}"
+                    app:layout_constraintEnd_toEndOf="@+id/tvMarketPriceOrder"
+                    app:layout_constraintStart_toStartOf="@+id/tvMarketPriceOrder"
+                    app:layout_constraintTop_toBottomOf="@+id/tvMarketPriceOrder" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/clPriceContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_20sdp"
+                app:layout_constraintTop_toBottomOf="@+id/clTabContainer">
+                <!--Wallet balance-->
+                <TextView
+                    android:id="@+id/tvWalletBalance"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_16sdp"
+                    android:gravity="center"
+                    android:text="@string/wallet_balance"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_12ssp"
+                    app:fontFamily="@font/sf_pro_text_regular"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+                <!--Wallet TopUp Label-->
+                <TextView
+                    android:id="@+id/tvWalletTopUpLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_16sdp"
+                    android:gravity="center"
+                    android:text="@string/top_up_"
+                    android:textColor="@color/philippine_silver"
+                    android:textSize="@dimen/_12ssp"
+                    app:fontFamily="@font/sf_pro_text_regular"
+                    app:layout_constraintStart_toEndOf="@+id/tvWalletBalance"
+                    app:layout_constraintTop_toTopOf="parent" />
+                <!--Order Price Label-->
+                <TextView
+                    android:id="@+id/tvOrderPriceLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_16sdp"
+                    android:gravity="center"
+                    android:text="@string/order_price"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_12ssp"
+                    android:visibility="@{viewModel.typeSelected==OrderTypeEnum.FIX_PRICE?View.VISIBLE:View.GONE}"
+                    app:fontFamily="@font/sf_pro_text_regular"
+                    app:layout_constraintBottom_toBottomOf="@+id/clOrderContainer"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/clOrderContainer" />
+                <!--Order Price Box Container-->
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/clOrderContainer"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/_16sdp"
+                    android:background="@drawable/bg_border_bank_cards"
+                    android:visibility="@{viewModel.typeSelected==OrderTypeEnum.FIX_PRICE?View.VISIBLE:View.GONE}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/tvOrderAmountLabel"
+                    app:layout_constraintTop_toBottomOf="@+id/tvWalletBalance">
+
+                    <EditText
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/_5sdp"
+                        android:background="@color/white"
+                        android:fontFamily="@font/sf_pro_text_semi_bold"
+                        android:gravity="right"
+                        android:paddingHorizontal="@dimen/_12sdp"
+                        android:text="@={viewModel.price}"
+                        android:inputType="number"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_11ssp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/viewDividerVerticle"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <View
+                        android:id="@+id/viewDividerVerticle"
+                        android:layout_width="1dp"
+                        android:layout_height="0dp"
+                        android:background="@color/gains_boro"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/ivUpArrow"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <ImageView
+                        android:id="@+id/ivUpArrow"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingHorizontal="@dimen/_10sdp"
+                        android:paddingVertical="@dimen/_5sdp"
+                        android:src="@drawable/ic_up_arrow_v3"
+                        android:onClick="@{()->viewModel.onPlusButtonClicked()}"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <View
+                        android:id="@+id/viewDividerHorizontal"
+                        android:layout_width="0dp"
+                        android:layout_height="1dp"
+                        android:background="@color/gains_boro"
+                        app:layout_constraintEnd_toEndOf="@+id/ivUpArrow"
+                        app:layout_constraintStart_toStartOf="@+id/ivUpArrow"
+                        app:layout_constraintTop_toBottomOf="@+id/ivUpArrow" />
+
+                    <ImageView
+                        android:id="@+id/ivDownArrow"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingHorizontal="@dimen/_10sdp"
+                        android:paddingVertical="@dimen/_5sdp"
+                        android:src="@drawable/ic_down_arrow_v3"
+                        android:onClick="@{()->viewModel.onMinusButtonClicked()}"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/viewDividerHorizontal">
+
+
+                    </ImageView>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+                <!--Maximum Order Amount-->
+                <TextView
+                    android:id="@+id/tvMaximumOrderAmount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_16sdp"
+                    android:gravity="center"
+                    android:text="@string/maximum_order_amount"
+                    android:textColor="@color/red_marketplace"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:textSize="@dimen/_10ssp"
+                    android:visibility="@{viewModel.typeSelected==OrderTypeEnum.FIX_PRICE?View.VISIBLE:View.GONE}"
+                    app:fontFamily="@font/sf_pro_text_regular"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/clOrderContainer" />
+                <!--Order amount label-->
+                <TextView
+                    android:id="@+id/tvOrderAmountLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_16sdp"
+                    android:gravity="center"
+                    android:text="@string/order_amount"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_12ssp"
+                    app:fontFamily="@font/sf_pro_text_regular"
+                    app:layout_constraintBottom_toBottomOf="@+id/etOrderAmount"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/etOrderAmount" />
+                <!--Order amount value-->
+                <EditText
+                    android:id="@+id/etOrderAmount"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_16sdp"
+                    android:layout_marginVertical="@dimen/_12sdp"
+                    android:background="@drawable/bg_border_bank_cards"
+                    android:fontFamily="@font/sf_pro_text_regular"
+                    android:gravity="right"
+                    android:hint="@{viewModel.typeSelected==OrderTypeEnum.FIX_PRICE?@string/minimum_1_piece:@string/minimum_100}"
+                    android:padding="@dimen/_7sdp"
+                    android:textSize="@dimen/_12ssp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/tvOrderAmountLabel"
+                    app:layout_constraintTop_toBottomOf="@id/tvMaximumOrderAmount"
+                    />
+                <!--Stepper Container-->
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/clStepperContainer"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_16sdp"
+                    android:layout_marginTop="@dimen/_16sdp"
+                    app:layout_constraintEnd_toStartOf="@+id/tvPercentage"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/etOrderAmount">
+                    <!--Stepper Horizontal Line-->
+                    <com.google.android.material.progressindicator.LinearProgressIndicator
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:progress="@{viewModel.progress}"
+                        app:indicatorColor="@color/green_munsell"
+                        app:trackColor="@color/gains_boro"
+                        />
+
+                    <!--Stepper First Step-->
+                    <ImageView
+                        android:id="@+id/rbFirstStep"
+                        android:paddingVertical="@dimen/_6sdp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_selected_step"
+                        android:onClick="@{()->viewModel.onProgress0()}"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                    <!--Stepper Second Step-->
+                    <ImageView
+                        android:id="@+id/rbSecondStep"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@{viewModel.progress>=25?@drawable/ic_selected_step:@drawable/ic_unselected_step}"
+                        android:onClick="@{()->viewModel.onProgress25()}"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/rbThirdStep"
+                        app:layout_constraintStart_toEndOf="@+id/rbFirstStep"
+                        app:layout_constraintTop_toTopOf="parent" />
+                    <!--Stepper Third Step-->
+                    <ImageView
+                        android:id="@+id/rbThirdStep"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@{viewModel.progress>=50?@drawable/ic_selected_step:@drawable/ic_unselected_step}"
+                        android:onClick="@{()->viewModel.onProgress50()}"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/rbFourStep"
+                        app:layout_constraintStart_toEndOf="@+id/rbSecondStep"
+                        app:layout_constraintTop_toTopOf="parent" />
+                    <!--Stepper Four Step-->
+                    <ImageView
+                        android:id="@+id/rbFourStep"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@{viewModel.progress>=75?@drawable/ic_selected_step:@drawable/ic_unselected_step}"
+                        android:onClick="@{()->viewModel.onProgress75()}"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/rbFiveStep"
+                        app:layout_constraintStart_toEndOf="@+id/rbThirdStep"
+                        app:layout_constraintTop_toTopOf="parent" />
+                    <!--Stepper Five Step-->
+                    <ImageView
+                        android:id="@+id/rbFiveStep"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@{viewModel.progress>=100?@drawable/ic_selected_step:@drawable/ic_unselected_step}"
+                        android:onClick="@{()->viewModel.onProgress100()}"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+                <!--Percentage textview-->
+                <!--Max textview-->
+                <TextView
+                    android:id="@+id/tvPercentage"
+                    android:layout_width="@dimen/_37sdp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_12sdp"
+                    android:gravity="center"
+                    android:text='@{@string/percentage_int(viewModel.progress,"%")}'
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_12ssp"
+                    app:fontFamily="@font/sf_pro_text_regular"
+                    app:layout_constraintBottom_toBottomOf="@+id/clStepperContainer"
+                    app:layout_constraintEnd_toStartOf="@+id/tvMax"
+                    app:layout_constraintStart_toEndOf="@id/clStepperContainer"
+                    app:layout_constraintTop_toTopOf="@+id/clStepperContainer"
+                    app:layout_constraintVertical_bias="0.4" />
+
+                <TextView
+                    android:id="@+id/tvMax"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_16sdp"
+                    android:gravity="center"
+                    android:text="@string/max"
+                    android:onClick="@{()->viewModel.onProgress100()}"
+                    android:textColor="@color/dove_gray"
+                    android:textSize="@dimen/_12ssp"
+                    app:fontFamily="@font/sf_pro_text_regular"
+                    app:layout_constraintBottom_toBottomOf="@+id/clStepperContainer"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/clStepperContainer" />
+                <!--Total Amount Label-->
+                <TextView
+                    android:id="@+id/tvTotalAmount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_16sdp"
+                    android:gravity="center"
+                    android:text="@string/total_amount"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_12ssp"
+                    android:visibility="@{viewModel.typeSelected==OrderTypeEnum.FIX_PRICE?View.VISIBLE:View.GONE}"
+                    app:fontFamily="@font/sf_pro_text_regular"
+                    app:layout_constraintBottom_toBottomOf="@+id/etTotalAmount"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/etTotalAmount" />
+                <!--Total Amount Enter Value-->
+                <EditText
+                    android:id="@+id/etTotalAmount"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="@dimen/_20sdp"
+                    android:layout_marginEnd="@dimen/_16sdp"
+                    android:layout_marginStart="@dimen/_20sdp"
+                    android:background="@drawable/bg_border_bank_cards"
+                    android:fontFamily="@font/sf_pro_text_regular"
+                    android:gravity="right"
+                    android:hint="@string/minimum_100"
+                    android:padding="@dimen/_7sdp"
+                    android:textSize="@dimen/_11ssp"
+                    android:visibility="@{viewModel.typeSelected==OrderTypeEnum.FIX_PRICE?View.VISIBLE:View.GONE}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/tvTotalAmount"
+                    app:layout_constraintTop_toBottomOf="@id/clStepperContainer"
+
+                    />
+                <!--Expected Purchase Label-->
+                <TextView
+                    android:id="@+id/tvExpectedPurchaseLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_16sdp"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:gravity="center"
+                    android:text="@string/expected_purchase"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_12ssp"
+                    android:visibility="@{viewModel.typeSelected==OrderTypeEnum.MARKET_PRICE?View.VISIBLE:View.GONE}"
+                    app:fontFamily="@font/sf_pro_text_regular"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/etTotalAmount" />
+                <!--Expected Purchase-->
+                <TextView
+                    android:id="@+id/tvExpectedPurchase"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_12sdp"
+                    android:gravity="center"
+                    android:text="@string/_10_pieces"
+                    android:textColor="@color/green_munsell"
+                    android:textSize="@dimen/_14ssp"
+                    android:visibility="@{viewModel.typeSelected==OrderTypeEnum.MARKET_PRICE?View.VISIBLE:View.GONE}"
+                    app:fontFamily="@font/sf_pro_text_bold"
+                    app:layout_constraintStart_toEndOf="@+id/tvExpectedPurchaseLabel"
+                    app:layout_constraintTop_toTopOf="@+id/tvExpectedPurchaseLabel"
+                    app:layout_constraintBottom_toBottomOf="@+id/tvExpectedPurchaseLabel"
+                    />
+                <!--submit button-->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnConfirm"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:background="@color/green_munsell"
+                    android:text="@string/confirm"
+                    android:textAllCaps="false"
+                    app:backgroundTint="@null"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvExpectedPurchaseLabel" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>

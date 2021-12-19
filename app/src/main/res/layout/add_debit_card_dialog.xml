@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.ar7lab.cherieapp.ui.wallet.deposit.DepositViewModel" />
+
+        <import type="com.ar7lab.cherieapp.enums.WalletTypeEnum" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clSelectedTabTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_wallet_selection_dialog">
+        <!--Dialog title-->
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_large"
+            android:text="@string/credit_card_dialog"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_11ssp"
+            app:fontFamily="@font/sf_pro_text_bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!--close image-->
+        <ImageView
+            android:id="@+id/ivClose"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="14dp"
+            android:padding="10dp"
+            android:src="@drawable/ic_cross"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+        <!--card number-->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/til_card_number"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_12sdp"
+            android:hint="@string/card_number"
+            app:boxCornerRadiusBottomEnd="@dimen/_7sdp"
+            app:boxCornerRadiusBottomStart="@dimen/_7sdp"
+            app:boxCornerRadiusTopEnd="@dimen/_7sdp"
+            app:boxCornerRadiusTopStart="@dimen/_7sdp"
+            app:boxStrokeColor="@drawable/text_input_box_dialog"
+            app:endIconMode="custom"
+            app:endIconTint="@null"
+            app:helperTextTextAppearance="?attr/textAppearanceCaption"
+            app:helperTextTextColor="@android:color/holo_red_dark"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvTitle">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autofillHints="emailAddress"
+                android:digits="0123456789"
+                android:drawablePadding="10dp"
+                android:fontFamily="@font/sf_pro_text_regular"
+                android:inputType="number"
+                android:maxLength="16"
+                android:padding="8dp"
+                android:textAppearance="?attr/textAppearanceBody1"
+                android:textColorHint="@color/tab_divider_grey"
+                android:textSize="@dimen/_11ssp"
+                tools:text="" />
+        </com.google.android.material.textfield.TextInputLayout>
+        <!--expiry date-->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layout_expiry_cvv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_12sdp"
+            android:layout_marginTop="@dimen/_6sdp"
+            android:layout_marginEnd="@dimen/_12sdp"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/til_card_number">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/til_expiry_date"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="5dp"
+                android:layout_weight=".50"
+                android:fontFamily="@font/sf_pro_text_regular"
+                android:hint="@string/expiry_date"
+                android:textSize="@dimen/_11ssp"
+                app:boxCornerRadiusBottomEnd="@dimen/_7sdp"
+                app:boxCornerRadiusBottomStart="@dimen/_7sdp"
+                app:boxCornerRadiusTopEnd="@dimen/_7sdp"
+                app:boxCornerRadiusTopStart="@dimen/_7sdp"
+                app:boxStrokeColor="@drawable/text_input_box_dialog"
+                app:endIconTint="@null"
+                app:helperTextTextAppearance="?attr/textAppearanceCaption"
+                app:helperTextTextColor="@android:color/holo_red_dark"
+                app:layout_constraintEnd_toStartOf="@+id/til_cvv"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_expiry_date"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:digits="0123456789"
+                    android:drawableEnd="@drawable/ic_calendar"
+                    android:drawablePadding="10dp"
+                    android:inputType="number"
+                    android:maxLength="7"
+                    android:padding="8dp"
+                    android:textAppearance="?attr/textAppearanceBody1"
+                    android:textColorHint="@color/tab_divider_grey"
+                    tools:text="" />
+            </com.google.android.material.textfield.TextInputLayout>
+            <!--Cvv no-->
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/til_cvv"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_weight=".50"
+                android:hint="@string/cvc_cvv"
+                app:boxCornerRadiusBottomEnd="@dimen/_7sdp"
+                app:boxCornerRadiusBottomStart="@dimen/_7sdp"
+                app:boxCornerRadiusTopEnd="@dimen/_7sdp"
+                app:boxCornerRadiusTopStart="@dimen/_7sdp"
+                app:boxStrokeColor="@drawable/text_input_box_dialog"
+                app:endIconTint="@null"
+                app:helperTextTextAppearance="?attr/textAppearanceCaption"
+                app:helperTextTextColor="@android:color/holo_red_dark"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/til_expiry_date"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:autofillHints="emailAddress"
+                    android:digits="0123456789"
+                    android:drawablePadding="10dp"
+                    android:fontFamily="@font/sf_pro_text_regular"
+                    android:inputType="number"
+                    android:maxLength="3"
+                    android:padding="8dp"
+                    android:textAppearance="?attr/textAppearanceBody1"
+                    android:textColorHint="@color/tab_divider_grey"
+                    android:textSize="@dimen/_11ssp"
+                    tools:text="" />
+            </com.google.android.material.textfield.TextInputLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        <!--card holder name-->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/til_cardholder_name"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_12sdp"
+            android:layout_marginTop="@dimen/_6sdp"
+            android:layout_marginEnd="@dimen/_12sdp"
+            android:hint="@string/cardholder_name"
+            app:boxCornerRadiusBottomEnd="@dimen/_7sdp"
+            app:boxCornerRadiusBottomStart="@dimen/_7sdp"
+            app:boxCornerRadiusTopEnd="@dimen/_7sdp"
+            app:boxCornerRadiusTopStart="@dimen/_7sdp"
+            app:boxStrokeColor="@drawable/text_input_box_dialog"
+            app:endIconMode="custom"
+            app:endIconTint="@null"
+            app:helperTextTextAppearance="?attr/textAppearanceCaption"
+            app:helperTextTextColor="@color/fruit_salad"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/layout_expiry_cvv">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autofillHints="emailAddress"
+                android:drawablePadding="10dp"
+                android:fontFamily="@font/sf_pro_text_regular"
+                android:inputType="textPersonName|textCapCharacters"
+                android:padding="8dp"
+                android:textAppearance="?attr/textAppearanceBody1"
+                android:textColorHint="@color/tab_divider_grey"
+                android:textSize="@dimen/_11ssp"
+                tools:text="" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <ImageView
+            android:id="@+id/ivDefaultCard"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_12sdp"
+            android:layout_marginTop="@dimen/_12ssp"
+            android:src="@drawable/ic_default_card_check"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/til_cardholder_name" />
+
+        <TextView
+            android:id="@+id/tvMarkCardAsDefault"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/_6sdp"
+            android:fontFamily="@font/sf_pro_text_regular"
+            android:text="@string/mark_this_card"
+            android:textColor="@color/dove_gray"
+            android:textSize="@dimen/_11ssp"
+            app:layout_constraintBottom_toBottomOf="@+id/ivDefaultCard"
+            app:layout_constraintStart_toEndOf="@+id/ivDefaultCard"
+            app:layout_constraintTop_toTopOf="@+id/ivDefaultCard" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnConfirmToPay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_12sdp"
+            android:layout_marginTop="@dimen/_12sdp"
+            android:fontFamily="@font/sf_pro_text_semi_bold"
+            android:paddingVertical="@dimen/_6sdp"
+            android:text="@string/save"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_11ssp"
+            android:textStyle="bold"
+            app:backgroundTint="@color/green_munsell"
+            app:cornerRadius="10dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/ivDefaultCard" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_12sdp"
+            android:background="@drawable/bg_safe_details"
+            android:padding="@dimen/_12sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnConfirmToPay">
+
+            <ImageView
+                android:id="@+id/ivSecureIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_secure_icon"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tvDontWorry"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_6sdp"
+                android:fontFamily="@font/sf_pro_text_bold"
+                android:text="@string/dont_worry"
+                android:textColor="@color/green_munsell"
+                android:textSize="@dimen/_11ssp"
+                app:layout_constraintBottom_toTopOf="@+id/tvYourInfoSafe"
+                app:layout_constraintStart_toEndOf="@+id/ivSecureIcon"
+                app:layout_constraintTop_toTopOf="@+id/ivSecureIcon" />
+
+            <TextView
+                android:id="@+id/tvYourInfoSafe"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_6sdp"
+                android:fontFamily="@font/sf_pro_text_regular"
+                android:text="@string/your_card_info"
+                android:textColor="@color/dove_gray"
+                android:textSize="@dimen/_9sdp"
+                app:layout_constraintBottom_toBottomOf="@+id/ivSecureIcon"
+                app:layout_constraintStart_toEndOf="@+id/ivSecureIcon"
+                app:layout_constraintTop_toBottomOf="@+id/tvDontWorry" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

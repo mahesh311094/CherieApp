@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="margin_large">@dimen/_24sdp</dimen>
+    <dimen name="margin_normal">@dimen/_16sdp</dimen>
+    <dimen name="margin_11">@dimen/_11sdp</dimen>
+    <dimen name="margin_small">@dimen/_8sdp</dimen>
+    <dimen name="margin_extra_small">@dimen/_4sdp</dimen>
+
+    <dimen name="padding_extra_large">@dimen/_35sdp</dimen>
+    <dimen name="padding_large">@dimen/_22sdp</dimen>
+    <dimen name="padding_normal">@dimen/_14sdp</dimen>
+    <dimen name="padding_small">@dimen/_8sdp</dimen>
+    <dimen name="padding_medium">@dimen/_10sdp</dimen>
+    <dimen name="padding_extra_small">@dimen/_4sdp</dimen>
+    <dimen name="padding_12dp">@dimen/_12sdp</dimen>
+    <dimen name="size_6">@dimen/_6sdp</dimen>
+
+    <dimen name="card_elevation">2dp</dimen>
+    <dimen name="card_corner_radius">12dp</dimen>
+
+    <dimen name="button_corner_radius">30dp</dimen>
+    <dimen name="enchanted_view_pager_margin">60dp</dimen>
+    <dimen name="enchanted_view">20dp</dimen>
+
+    <dimen name="corner_radius_card">@dimen/_10sdp</dimen>
+    <dimen name="viewpager_next_item_visible">@dimen/_12sdp</dimen>
+    <dimen name="viewpager_current_item_horizontal_margin">@dimen/_13sdp</dimen>
+
+    <dimen name="zero_dp">0dp</dimen>
+    <dimen name="bottom_nav_height">55dp</dimen>
+
+    <dimen name="size_10">@dimen/_10ssp</dimen>
+    <dimen name="size_11">@dimen/_11ssp</dimen>
+    <dimen name="size_12">@dimen/_12ssp</dimen>
+    <dimen name="size_13">@dimen/_13ssp</dimen>
+    <dimen name="size_14">@dimen/_14ssp</dimen>
+</resources>

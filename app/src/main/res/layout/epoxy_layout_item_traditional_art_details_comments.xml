@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="comment"
+            type="String" />
+
+        <variable
+            name="isLoadingMore"
+            type="androidx.databinding.ObservableBoolean" />
+
+        <variable
+            name="viewModel"
+            type="com.ar7lab.cherieapp.ui.traditionalartworkdetails.TraditionalArtworkDetailsViewModel" />
+
+        <variable
+            name="listener"
+            type="com.ar7lab.cherieapp.ui.traditionalartworkdetails.slider.ClickListener" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white">
+        <!--
+        Comment title
+        -->
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="@dimen/_8sdp"
+            android:layout_marginStart="@dimen/_12sdp"
+            android:text="@{@string/comments_with_counter(comment)}"
+            android:textAppearance="?attr/textAppearanceBody1"
+            android:textColor="@color/black"
+            app:fontFamily="@font/sf_pro_text_semi_bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.button.MaterialButton
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_30sdp"
+            android:layout_marginEnd="@dimen/_12sdp"
+            android:onClick="@{() -> listener.click()}"
+            android:padding="0dp"
+            android:textAllCaps="false"
+            android:textColor="@color/blue"
+            app:fontFamily="@font/sf_pro_text_semi_bold"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_title"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tv_title"
+            app:showProgress="@{isLoadingMore}"
+            app:textSource="@{@string/more_comments}" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

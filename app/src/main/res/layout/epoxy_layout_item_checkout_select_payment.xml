@@ -1,0 +1,524 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="com.ar7lab.cherieapp.enums.CheckoutTypeEnum" />
+
+        <import type="android.view.View" />
+
+        <variable
+            name="view"
+            type="Boolean" />
+
+        <variable
+            name="paymentListener"
+            type="com.ar7lab.cherieapp.ui.payment.selectpayment.SelectPaymentListener" />
+
+        <variable
+            name="viewModel"
+            type="com.ar7lab.cherieapp.ui.payment.selectpayment.SelectPaymentViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clTotalValueContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent">
+
+       <!-- <TextView
+            android:id="@+id/tvSelectPaymentMethodLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/_12sdp"
+            android:layout_marginTop="@dimen/_12sdp"
+            android:fontFamily="@font/sf_pro_text_semi_bold"
+            android:includeFontPadding="false"
+            android:text="@string/select_payment_method"
+            android:textColor="@color/dark_blue"
+            android:textAppearance="?attr/textAppearanceBody1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clCheireHeader"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_border_bank_cards"
+            android:padding="@dimen/_10sdp"
+            android:layout_marginHorizontal="@dimen/_12sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvSelectPaymentMethodLabel">
+
+            <ImageView
+                android:id="@+id/ivCheireIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_cherie_wallet"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tvCheireTransferLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:fontFamily="@font/sf_pro_text_semi_bold"
+                android:includeFontPadding="false"
+                android:text="@string/cherie_wallet"
+                android:textAppearance="?attr/textAppearanceBody1"
+                android:textColor="@color/dark_blue"
+                app:layout_constraintStart_toEndOf="@id/ivCheireIcon"
+                app:layout_constraintTop_toTopOf="parent"
+                />
+
+            <TextView
+                android:id="@+id/tvTotalBalance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/sf_pro_text_semi_bold"
+                android:includeFontPadding="false"
+                android:text="Total Balance: $300"
+                android:textAppearance="?attr/textAppearanceBody2"
+                android:textColor="@color/dark_blue"
+                app:layout_constraintStart_toEndOf="@+id/ivCheireIcon"
+                app:layout_constraintTop_toBottomOf="@+id/tvCheireTransferLabel" />
+
+            <com.google.android.material.radiobutton.MaterialRadioButton
+                android:id="@+id/rbCheire"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:buttonTint="@color/green_munsell"
+                android:checked="@{viewModel.typeSelected == CheckoutTypeEnum.CHERIE}"
+                android:minWidth="0dp"
+                android:minHeight="0dp"
+                android:onClick="@{()->paymentListener.addCheireCard()}"
+                app:layout_constraintBottom_toBottomOf="@id/ivCheireIcon"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="@+id/tvCheireTransferLabel"
+                app:layout_constraintTop_toTopOf="@id/ivCheireIcon"
+                app:layout_constraintVertical_bias="0.714" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clBankContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_12sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:background="@drawable/bg_border_bank_cards"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/clCheireHeader">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/clBankHeader"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/_10sdp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/ivBankIcon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_bank"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tvBankTransferLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:fontFamily="@font/sf_pro_text_semibold"
+                    android:includeFontPadding="false"
+                    android:text="@string/static_type_bank_tranfer"
+                    android:textColor="@color/dark_blue"
+                    android:textAppearance="?attr/textAppearanceBody1"
+                    app:layout_constraintBottom_toBottomOf="@+id/ivBankIcon"
+                    app:layout_constraintStart_toEndOf="@id/ivBankIcon"
+                    app:layout_constraintTop_toTopOf="@id/ivBankIcon" />
+
+                <com.google.android.material.radiobutton.MaterialRadioButton
+                    android:id="@+id/rbBank"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:buttonTint="@color/green_munsell"
+                    android:checked="@{viewModel.typeSelected == CheckoutTypeEnum.BANK}"
+                    android:minWidth="0dp"
+                    android:minHeight="0dp"
+                    android:onClick="@{()->viewModel.onSelectType(CheckoutTypeEnum.BANK)}"
+                    android:visibility="@{viewModel.typeSelected==CheckoutTypeEnum.BANK?View.GONE:View.VISIBLE}"
+                    app:layout_constraintBottom_toBottomOf="@id/ivBankIcon"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/ivBankIcon" />
+
+                <TextView
+                    android:id="@+id/tvAddBank"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:fontFamily="@font/sf_pro_text_regular"
+                    android:onClick="@{()->paymentListener.addBank()}"
+                    android:text="@string/add"
+                    android:textColor="@color/green_munsell"
+                    android:textSize="@dimen/_10ssp"
+                    android:visibility="@{viewModel.typeSelected==CheckoutTypeEnum.BANK?View.VISIBLE:View.GONE}"
+                    app:layout_constraintBottom_toBottomOf="@+id/ivBankIcon"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/ivBankIcon" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/clFirstBank"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="@{viewModel.typeSelected==CheckoutTypeEnum.BANK?View.VISIBLE:View.GONE}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/clBankHeader">
+
+                <TextView
+                    android:id="@+id/tvBankName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/sf_pro_text_medium"
+                    android:includeFontPadding="false"
+                    android:text="@string/static_bank_name"
+                    android:textColor="@color/dove_gray"
+                    android:textAppearance="?attr/textAppearanceBody2"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tvBankAccountNo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_6sdp"
+                    android:layout_marginBottom="@dimen/_6sdp"
+                    android:fontFamily="@font/sf_pro_text_regular"
+                    android:includeFontPadding="false"
+                    android:text="@string/account_no"
+                    android:textColor="@color/dove_gray"
+                    android:textAppearance="?attr/textAppearanceBody2"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tvBankName" />
+
+                <com.google.android.material.radiobutton.MaterialRadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:buttonTint="@color/green_munsell"
+                    android:minWidth="0dp"
+                    android:minHeight="0dp"
+                    android:checked="@{view?true:false}"
+                    android:layout_marginTop="@dimen/_6sdp"
+                    app:layout_constraintBottom_toBottomOf="@id/tvBankName"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/tvBankName" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <View
+                android:id="@+id/viewDivider"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginHorizontal="@dimen/_3sdp"
+                android:background="@color/gains_boro"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/clFirstBank" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/clSecondBank"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="@{viewModel.typeSelected==CheckoutTypeEnum.BANK?View.VISIBLE:View.GONE}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/viewDivider">
+
+                <TextView
+                    android:id="@+id/tvBankNameSecond"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_6sdp"
+                    android:fontFamily="@font/sf_pro_text_medium"
+                    android:includeFontPadding="false"
+                    android:text="@string/static_bank_name"
+                    android:textColor="@color/dove_gray"
+                    android:textAppearance="?attr/textAppearanceBody2"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tvBankAccountNoSecond"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_6sdp"
+                    android:layout_marginBottom="@dimen/_6sdp"
+                    android:fontFamily="@font/sf_pro_text_regular"
+                    android:includeFontPadding="false"
+                    android:text="@string/account_no"
+                    android:textColor="@color/dove_gray"
+                    android:textAppearance="?attr/textAppearanceBody2"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tvBankNameSecond" />
+
+                <com.google.android.material.radiobutton.MaterialRadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:buttonTint="@color/green_munsell"
+                    android:minWidth="0dp"
+                    android:minHeight="0dp"
+                    app:layout_constraintBottom_toBottomOf="@id/tvBankNameSecond"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/tvBankNameSecond"
+                    tools:ignore="TouchTargetSizeCheck" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clCreditCardContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:background="@drawable/bg_border_bank_cards"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/clBankContainer">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/clCardHeader"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/_10sdp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/ivCardIcon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_cards"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tvCardLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:fontFamily="@font/sf_pro_text_semibold"
+                    android:includeFontPadding="false"
+                    android:text="@string/credit_debit_card"
+                    android:textColor="@color/dark_blue"
+                    android:textAppearance="?attr/textAppearanceBody1"
+                    app:layout_constraintBottom_toBottomOf="@+id/ivCardIcon"
+                    app:layout_constraintStart_toEndOf="@id/ivCardIcon"
+                    app:layout_constraintTop_toTopOf="@id/ivCardIcon" />
+
+                <com.google.android.material.radiobutton.MaterialRadioButton
+                    android:id="@+id/rbCard"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:buttonTint="@color/green_munsell"
+                    android:checked="@{viewModel.typeSelected == CheckoutTypeEnum.CARD}"
+                    android:minWidth="0dp"
+                    android:minHeight="0dp"
+                    android:layout_marginTop="@dimen/_7sdp"
+                    android:onClick="@{()->viewModel.onSelectType(CheckoutTypeEnum.CARD)}"
+                    android:visibility="@{viewModel.typeSelected==CheckoutTypeEnum.CARD?View.GONE:View.VISIBLE}"
+                    app:layout_constraintBottom_toBottomOf="@id/ivCardIcon"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/ivCardIcon" />
+
+                <TextView
+                    android:id="@+id/tvAddCard"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:fontFamily="@font/sf_pro_text_regular"
+                    android:onClick="@{()->paymentListener.addCard()}"
+                    android:text="@string/add"
+                    android:textColor="@color/green_munsell"
+                    android:textSize="@dimen/_10ssp"
+                    android:visibility="@{viewModel.typeSelected==CheckoutTypeEnum.CARD?View.VISIBLE:View.GONE}"
+                    app:layout_constraintBottom_toBottomOf="@+id/ivCardIcon"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/ivCardIcon" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/clFirstCard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="@{viewModel.typeSelected==CheckoutTypeEnum.CARD?View.VISIBLE:View.GONE}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/clCardHeader">
+
+                <TextView
+                    android:id="@+id/tvCardNo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/sf_pro_text_medium"
+                    android:includeFontPadding="false"
+                    android:layout_marginTop="@dimen/_7sdp"
+                    android:text="@string/static_card_no"
+                    android:textColor="@color/dove_gray"
+                    android:textAppearance="?attr/textAppearanceBody2"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tvLastUsed"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_7sdp"
+                    android:layout_marginBottom="@dimen/_7sdp"
+                    android:fontFamily="@font/sf_pro_text_regular"
+                    android:includeFontPadding="false"
+                    android:text="@string/last_used"
+                    android:textColor="@color/dove_gray"
+                    android:textAppearance="?attr/textAppearanceBody2"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tvCardNo" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_master_card"
+                    app:layout_constraintBottom_toBottomOf="@id/tvCardNo"
+                    app:layout_constraintEnd_toStartOf="@+id/rbFirstCard"
+                    android:layout_marginRight="@dimen/_12sdp"
+                    android:layout_marginTop="@dimen/_6sdp"
+                    app:layout_constraintTop_toTopOf="@id/tvCardNo" />
+
+                <com.google.android.material.radiobutton.MaterialRadioButton
+                    android:id="@+id/rbFirstCard"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:buttonTint="@color/green_munsell"
+                    android:minWidth="0dp"
+                    android:minHeight="0dp"
+                    android:layout_marginTop="@dimen/_6sdp"
+                    app:layout_constraintBottom_toBottomOf="@id/tvCardNo"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/tvCardNo" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <View
+                android:id="@+id/viewDividerCard"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/gains_boro"
+                android:layout_marginHorizontal="@dimen/_3sdp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/clFirstCard" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/clSecondCard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="@{viewModel.typeSelected==CheckoutTypeEnum.CARD?View.VISIBLE:View.GONE}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/viewDividerCard">
+
+                <TextView
+                    android:id="@+id/tvCardSecond"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_11sdp"
+                    android:fontFamily="@font/sf_pro_text_medium"
+                    android:includeFontPadding="false"
+                    android:text="@string/static_card_no"
+                    android:textColor="@color/dove_gray"
+                    android:textAppearance="?attr/textAppearanceBody2"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tvLastUsedSecond"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_7sdp"
+                    android:layout_marginBottom="@dimen/_6sdp"
+                    android:fontFamily="@font/sf_pro_text_regular"
+                    android:includeFontPadding="false"
+                    android:text="@string/last_used"
+                    android:textColor="@color/dove_gray"
+                    android:textAppearance="?attr/textAppearanceBody2"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tvCardSecond" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_americalex"
+                    app:layout_constraintBottom_toBottomOf="@id/tvCardSecond"
+                    app:layout_constraintEnd_toStartOf="@+id/rbSecondCard"
+                    android:layout_marginRight="@dimen/_12sdp"
+                    android:layout_marginTop="@dimen/_6sdp"
+                    app:layout_constraintTop_toTopOf="@id/tvCardSecond" />
+                <com.google.android.material.radiobutton.MaterialRadioButton
+                    android:id="@+id/rbSecondCard"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:buttonTint="@color/green_munsell"
+                    android:minWidth="0dp"
+                    android:minHeight="0dp"
+                    android:layout_marginTop="@dimen/_6sdp"
+                    app:layout_constraintBottom_toBottomOf="@id/tvCardSecond"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/tvCardSecond" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnConfirmToPay"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_marginHorizontal="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_12sdp"
+            android:fontFamily="@font/sf_pro_text_semibold"
+            android:onClick="@{()->paymentListener.onConfirmButtonClicked()}"
+            android:paddingVertical="@dimen/_6sdp"
+            android:text="Confirm to Pay"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textAppearance="?attr/textAppearanceBody2"
+            android:textStyle="bold"
+            app:backgroundTint="@color/green_munsell"
+            app:cornerRadius="10dp"
+            app:layout_constraintTop_toBottomOf="@id/clCreditCardContainer"
+            tools:layout_editor_absoluteX="16dp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_40sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btnConfirmToPay"></View>-->
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

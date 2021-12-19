@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="walletpurchase"
+            type="com.ar7lab.cherieapp.model.WalletPurchaseDetail" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/margin_large"
+        android:paddingTop="10dp"
+        app:layout_constraintTop_toBottomOf="@+id/clTotalValueContainer">
+        <!--art image-->
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/ivItemImage"
+            android:layout_width="100dp"
+            android:layout_height="70dp"
+            android:background="?attr/colorOnPrimary"
+            android:elevation="10dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_banner_place_holder"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:shapeAppearance="@style/CornerRadios5" />
+        <!--art artist name-->
+        <TextView
+            android:id="@+id/tvArtistName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textColor="@color/dark_blue"
+            app:fontFamily="@font/sf_pro_text_regular"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@+id/guideline"
+            app:layout_constraintEnd_toStartOf="@+id/tvNftAddress"
+            app:layout_constraintStart_toEndOf="@id/ivItemImage"
+
+            />
+        <!--NFT addresss-->
+        <TextView
+            android:id="@+id/tvNftAddress"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="@string/nft_address"
+            app:fontFamily="@font/sf_pro_text_regular"
+            android:textColor="@color/dark_blue"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@+id/guideline"
+            app:layout_constraintEnd_toStartOf="@+id/btnTopUp"
+            app:layout_constraintStart_toEndOf="@id/tvArtistName" />
+        <!--Art Name-->
+        <TextView
+            android:id="@+id/tvArtName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:text="@string/static_art_name"
+            android:textAppearance="?attr/textAppearanceCaption"
+            android:textColor="@color/dark_blue"
+            app:fontFamily="@font/sf_pro_text_bold"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toStartOf="@+id/tvNftAddress"
+            app:layout_constraintStart_toEndOf="@id/ivItemImage"
+            app:layout_constraintTop_toBottomOf="@+id/tvArtistName"
+
+            />
+        <!--Amount-->
+        <TextView
+            android:id="@+id/tvAmount"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="@string/static_500_usd"
+            android:textColor="@color/dark_blue"
+            app:fontFamily="@font/sf_pro_text_regular"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toStartOf="@+id/btnTopUp"
+            app:layout_constraintStart_toEndOf="@id/tvArtName"
+            app:layout_constraintTop_toBottomOf="@+id/tvNftAddress" />
+        <!--sell button-->
+        <TextView
+            android:id="@+id/btnTopUp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/sell"
+            android:textColor="@color/green_munsell"
+            android:textSize="16sp"
+            app:fontFamily="@font/sf_pro_text_semi_bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+             />
+
+        <!--Guide Line-->
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.4" />
+
+        <!--Divider-->
+        <View
+            android:id="@+id/dividerTopUP"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginTop="10dp"
+            android:alpha="0.5"
+            android:background="@color/color_grey"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/ivItemImage" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

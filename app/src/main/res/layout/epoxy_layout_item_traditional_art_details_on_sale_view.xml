@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="com.ar7lab.cherieapp.enums.ArtworkDetailTabEnum" />
+
+        <variable
+            name="price"
+            type="Double" />
+
+        <variable
+            name="currency"
+            type="String" />
+
+        <variable
+            name="viewModel"
+            type="com.ar7lab.cherieapp.ui.traditionalartworkdetails.TraditionalArtworkDetailsViewModel" />
+
+        <variable
+            name="art"
+            type="com.ar7lab.cherieapp.model.Art" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clOnSaleContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_16sdp"
+            android:background="@drawable/bg_border_on_sales"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+            <!--sales title-->
+            <TextView
+                android:id="@+id/tvOnSaleTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_border_on_sales_label"
+                android:fontFamily="@font/sf_pro_text_bold"
+                android:gravity="center"
+                android:paddingVertical="@dimen/_4sdp"
+                android:text="@string/on_sale"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_12ssp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+            <!--Guide Line-->
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guidelineCenter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.5" />
+            <!--Price Label-->
+            <TextView
+                android:id="@+id/tvPriceLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_4sdp"
+                android:layout_marginEnd="@dimen/_2sdp"
+                android:fontFamily="@font/sf_pro_text_medium"
+                android:text="@string/price_colon"
+                android:textColor="@color/dove_gray"
+                android:textSize="@dimen/_10ssp"
+                app:layout_constraintEnd_toEndOf="@+id/guidelineCenter"
+                app:layout_constraintTop_toBottomOf="@+id/tvOnSaleTitle" />
+            <!--Price Value-->
+            <TextView
+                android:id="@+id/tvPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_4sdp"
+                android:fontFamily="@font/sf_pro_text_medium"
+                android:text="@{@string/art_price_first_currency(currency,art.startFrom)}"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_10ssp"
+                app:layout_constraintStart_toStartOf="@+id/guidelineCenter"
+                app:layout_constraintTop_toTopOf="@+id/tvPriceLabel" />
+            <!--Sale Period Label-->
+
+            <View
+                android:id="@+id/vv_1"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_1sdp"
+                android:background="@color/white"
+                android:layout_marginTop="@dimen/_4sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvPriceLabel" />
+
+            <TextView
+                android:id="@+id/tvSalePeriodLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_4sdp"
+                android:layout_marginEnd="@dimen/_2sdp"
+                android:fontFamily="@font/sf_pro_text_medium"
+                android:text="@string/sale_period_"
+                android:textColor="@color/dove_gray"
+                android:textSize="@dimen/_10ssp"
+                app:layout_constraintEnd_toEndOf="@+id/guidelineCenter"
+                app:layout_constraintTop_toBottomOf="@+id/vv_1" />
+            <!--Sale Period Value-->
+            <TextView
+                android:id="@+id/tv_sale_period"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/sf_pro_text_medium"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_10ssp"
+                app:layout_constraintStart_toStartOf="@+id/tvPrice"
+                app:layout_constraintTop_toTopOf="@+id/tvSalePeriodLabel"
+                app:showSlashDate="@{art.salesInfo.currentSale.salesStartDate}"
+                tools:text="2021-08-01" />
+
+            <TextView
+                android:id="@+id/tv_sale_date_divider"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/sf_pro_text_medium"
+                android:paddingHorizontal="@dimen/_3sdp"
+                android:text="@string/dash"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_10ssp"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_sale_period"
+                app:layout_constraintStart_toEndOf="@+id/tv_sale_period"
+                app:layout_constraintTop_toTopOf="@+id/tv_sale_period" />
+
+            <TextView
+                android:id="@+id/tv_sale_period_end"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/sf_pro_text_medium"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_10ssp"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_sale_period"
+                app:layout_constraintStart_toEndOf="@+id/tv_sale_date_divider"
+                app:layout_constraintTop_toTopOf="@+id/tv_sale_period"
+                app:showSlashDate="@{art.salesInfo.currentSale.salesEndDate}"
+                tools:text="2021-08-03" />
+
+            <View
+                android:id="@+id/vv_2"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_1sdp"
+                android:background="@color/white"
+                android:layout_marginTop="@dimen/_4sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_sale_period_end" />
+
+            <!--Sale Amount Label-->
+            <TextView
+                android:id="@+id/tvSaleAmountLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/_2sdp"
+                android:fontFamily="@font/sf_pro_text_medium"
+                android:text="@string/sales_amount"
+                android:layout_marginTop="@dimen/_4sdp"
+                android:textColor="@color/dove_gray"
+                android:textSize="@dimen/_10ssp"
+                app:layout_constraintEnd_toEndOf="@+id/guidelineCenter"
+                app:layout_constraintTop_toBottomOf="@+id/vv_2" />
+            <!--Sale Amount Value-->
+            <TextView
+                android:id="@+id/tvSaleAmount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_2sdp"
+                android:fontFamily="@font/sf_pro_text_medium"
+                android:text="@{String.valueOf(art.salesInfo.currentSale.salesQuantity)}"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_10ssp"
+                app:layout_constraintStart_toStartOf="@+id/guidelineCenter"
+                app:layout_constraintTop_toTopOf="@+id/tvSaleAmountLabel" />
+
+            <View
+                android:id="@+id/vv_3"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_1sdp"
+                android:background="@color/white"
+                android:layout_marginTop="@dimen/_4sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvSaleAmountLabel" />
+
+            <!--Sales Soldout label-->
+            <TextView
+                android:id="@+id/tvSaleSoldOutLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/_2sdp"
+                android:layout_marginBottom="@dimen/_6sdp"
+                android:layout_marginTop="@dimen/_4sdp"
+                android:fontFamily="@font/sf_pro_text_medium"
+                android:text="@string/sold_out_"
+                android:textColor="@color/dove_gray"
+                android:textSize="@dimen/_10ssp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/guidelineCenter"
+                app:layout_constraintTop_toBottomOf="@+id/vv_3" />
+            <!--Sales Soldout value-->
+            <TextView
+                android:id="@+id/tvSaleSoldOut"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_2sdp"
+                android:fontFamily="@font/sf_pro_text_medium"
+                android:text="@{String.valueOf(art.salesInfo.currentSale.soldPieces)}"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_10ssp"
+                app:layout_constraintStart_toStartOf="@+id/guidelineCenter"
+                app:layout_constraintTop_toTopOf="@+id/tvSaleSoldOutLabel" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        <!--divider-->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="@dimen/_18sdp"
+            android:background="@color/gains_boro"
+            app:layout_constraintTop_toBottomOf="@+id/clOnSaleContainer" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

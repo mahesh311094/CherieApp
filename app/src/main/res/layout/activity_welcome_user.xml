@@ -1,0 +1,529 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="com.ar7lab.cherieapp.enums.AccountTypeEnum" />
+
+        <import type="android.view.View" />
+
+        <variable
+            name="isLoading"
+            type="Boolean" />
+
+        <variable
+            name="isAvatarSelected"
+            type="Boolean" />
+
+        <variable
+            name="isCoverSelected"
+            type="Boolean" />
+
+        <variable
+            name="viewModel"
+            type="com.ar7lab.cherieapp.ui.welcomeuser.WelcomeUserViewModel" />
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:fitsSystemWindows="true">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:animateLayoutChanges="true">
+
+            <include
+                android:id="@+id/include"
+                layout="@layout/item_top_bar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:background="@color/black"
+                android:fillViewport="true"
+                android:overScrollMode="never"
+                android:scrollbars="none"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/include">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:paddingBottom="@dimen/_48sdp"
+                    tools:context=".ui.welcomeuser.WelcomeUserActivity">
+
+                    <TextView
+                        android:id="@+id/tv_description"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/_12sdp"
+                        android:layout_marginTop="@dimen/_12sdp"
+                        android:fontFamily="@font/sf_medium"
+                        android:text="@string/welcome_user_description"
+                        android:textColor="@color/dark_blue_transparent"
+                        android:textSize="@dimen/_10ssp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/_12sdp"
+                        android:layout_marginTop="@dimen/_12sdp"
+                        android:visibility="gone"
+                        app:cardCornerRadius="10dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_description"
+                        app:strokeColor="@color/list_divider_grey"
+                        app:strokeWidth="2dp">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <com.google.android.material.imageview.ShapeableImageView
+                                android:id="@+id/iv_cover"
+                                android:layout_width="0dp"
+                                android:layout_height="0dp"
+                                android:background="@color/white"
+                                android:contentDescription="@string/cover"
+                                android:scaleType="centerCrop"
+                                app:layout_constraintDimensionRatio="h,1:0.5"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintHorizontal_bias="0.0"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:shapeAppearanceOverlay="@style/CornerRadious" />
+
+                            <ImageView
+                                android:id="@+id/iv_cover_placeholder"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/_16sdp"
+                                android:contentDescription="@string/app_name"
+                                android:src="@drawable/ic_cover_placeholder"
+                                android:visibility="@{isCoverSelected ? View.GONE : View.VISIBLE}"
+                                app:layout_constraintBottom_toTopOf="@+id/tv_select_cover"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="@+id/iv_cover"
+                                app:layout_constraintVertical_chainStyle="packed"
+                                app:tint="@color/color_granite" />
+
+                            <TextView
+                                android:id="@+id/tv_select_cover"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/margin_small"
+                                android:fontFamily="@font/sf_regular"
+                                android:includeFontPadding="false"
+                                android:text="@string/select_cover_image"
+                                android:textColor="@color/color_granite"
+                                android:textSize="@dimen/_11ssp"
+                                android:visibility="@{isCoverSelected ? View.GONE : View.VISIBLE}"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/iv_cover_placeholder" />
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:id="@+id/iv_avatar"
+                        android:layout_width="@dimen/_120sdp"
+                        android:layout_height="@dimen/_120sdp"
+                        android:layout_marginTop="32dp"
+                        android:background="@color/white"
+                        android:elevation="5dp"
+                        android:padding="@dimen/_4sdp"
+                        android:scaleType="centerCrop"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.498"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_description"
+                        app:shapeAppearance="@style/CircleImageView"
+                        app:strokeColor="@color/list_divider_grey"
+                        app:strokeWidth="2dp" />
+
+                    <ImageView
+                        android:id="@+id/ivProfilePlaceHolder"
+                        android:layout_width="@dimen/_35sdp"
+                        android:layout_height="@dimen/_35sdp"
+                        android:layout_marginTop="-28dp"
+                        android:contentDescription="@string/app_name"
+                        android:elevation="10dp"
+                        android:src="@drawable/ic_user"
+                        android:visibility="@{isAvatarSelected ? View.GONE : View.VISIBLE}"
+                        app:layout_constraintBottom_toBottomOf="@+id/iv_avatar"
+                        app:layout_constraintEnd_toEndOf="@+id/iv_avatar"
+                        app:layout_constraintStart_toStartOf="@+id/iv_avatar"
+                        app:layout_constraintTop_toTopOf="@+id/iv_avatar"
+                        app:tint="@color/gains_boro" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_8sdp"
+                        android:elevation="10dp"
+                        android:fontFamily="@font/sf_medium"
+                        android:includeFontPadding="false"
+                        android:text="@string/select_profile_image"
+                        android:textColor="@color/gains_boro"
+                        android:textSize="@dimen/_11ssp"
+                        android:visibility="@{isAvatarSelected ? View.GONE : View.VISIBLE}"
+                        app:layout_constraintEnd_toEndOf="@+id/iv_avatar"
+                        app:layout_constraintStart_toStartOf="@+id/iv_avatar"
+                        app:layout_constraintTop_toBottomOf="@+id/ivProfilePlaceHolder" />
+
+                    <TextView
+                        android:id="@+id/btnPersonal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_32sdp"
+                        android:fontFamily="@font/sf_bold"
+                        android:includeFontPadding="false"
+                        android:onClick="@{() -> viewModel.selectPersonal()}"
+                        android:text="@string/personal"
+                        android:textAllCaps="false"
+                        android:textColor="@{viewModel.accountTypeSelected == AccountTypeEnum.PERSONAL ? @color/black : @color/color_granite, default=@color/color_granite}"
+                        android:textSize="@dimen/_12ssp"
+                        app:layout_constraintStart_toStartOf="@+id/tv_description"
+                        app:layout_constraintTop_toBottomOf="@+id/iv_avatar"
+                        app:rippleColor="?attr/colorAccent" />
+
+                    <TextView
+                        android:id="@+id/btnCompany"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="28dp"
+                        android:backgroundTint="@{viewModel.accountTypeSelected == AccountTypeEnum.COMPANY ? @color/black : @color/white, default=@color/black}"
+                        android:fontFamily="@font/sf_bold"
+                        android:includeFontPadding="false"
+                        android:onClick="@{() -> viewModel.selectCompany()}"
+                        android:text="@string/company"
+                        android:clickable="@{viewModel.getUserLoginType()}"
+                        android:textAllCaps="false"
+                        android:textColor="@{viewModel.accountTypeSelected == AccountTypeEnum.COMPANY ? @color/black : @color/color_granite, default=@color/color_granite}"
+                        android:textSize="@dimen/_12ssp"
+                        app:layout_constraintBottom_toBottomOf="@+id/btnPersonal"
+                        app:layout_constraintStart_toEndOf="@+id/btnPersonal"
+                        app:layout_constraintTop_toTopOf="@+id/btnPersonal"
+                        app:layout_constraintVertical_bias="0.0"
+                        app:rippleColor="?attr/colorAccent" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/et_first_name"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_12sdp"
+                        android:layout_marginHorizontal="@dimen/_12sdp"
+                        android:hint="@string/first_name"
+                        app:boxCornerRadiusBottomEnd="@dimen/_6sdp"
+                        app:boxCornerRadiusBottomStart="@dimen/_6sdp"
+                        app:boxCornerRadiusTopEnd="@dimen/_6sdp"
+                        app:boxCornerRadiusTopStart="@dimen/_6sdp"
+                        app:boxStrokeColor="@drawable/text_input_box_stroke"
+                        android:visibility="@{viewModel.accountTypeSelected == AccountTypeEnum.PERSONAL ? View.VISIBLE : View.GONE}"
+                        app:endIconDrawable="@{viewModel.isFirstNameValid() ? @drawable/ic_checked : null, default=@drawable/ic_checked}"
+                        app:endIconMode="custom"
+                        app:endIconTint="@null"
+                        app:helperText='@{viewModel.firstName.isEmpty() ? (viewModel.isSaveClicked() ? @string/firstname_required : "") : viewModel.isFirstNameValid() ? "" : @string/firstname_invalid}'
+                        app:helperTextTextAppearance="?attr/textAppearanceCaption"
+                        app:helperTextTextColor="@android:color/holo_red_dark"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/btnPersonal">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:drawableStart="@drawable/ic_company_label"
+                            android:drawablePadding="10dp"
+                            android:fontFamily="@font/sf_regular"
+                            android:inputType="textPersonName|textCapWords"
+                            android:padding="@dimen/_10sdp"
+                            android:text="@={viewModel.firstName}"
+                            android:textAppearance="?attr/textAppearanceBody1"
+                            tools:text="" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/et_last_name"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_12sdp"
+                        android:layout_marginHorizontal="@dimen/_12sdp"
+                        android:hint="@string/last_name"
+                        app:boxCornerRadiusBottomEnd="@dimen/_6sdp"
+                        app:boxCornerRadiusBottomStart="@dimen/_6sdp"
+                        app:boxCornerRadiusTopEnd="@dimen/_6sdp"
+                        app:boxCornerRadiusTopStart="@dimen/_6sdp"
+                        app:boxStrokeColor="@drawable/text_input_box_stroke"
+                        app:endIconDrawable="@{viewModel.isLastNameValid() ? @drawable/ic_checked : null, default=@drawable/ic_checked}"
+                        app:endIconMode="custom"
+                        app:endIconTint="@null"
+                        android:visibility="@{viewModel.accountTypeSelected == AccountTypeEnum.PERSONAL ? View.VISIBLE : View.GONE}"
+                        app:helperText='@{viewModel.lastName.isEmpty() ? (viewModel.isSaveClicked() ? @string/lastname_required : "") : viewModel.isLastNameValid() ? "" : @string/lastname_invalid}'
+                        app:helperTextTextAppearance="?attr/textAppearanceCaption"
+                        app:helperTextTextColor="@android:color/holo_red_dark"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/et_first_name">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:drawableStart="@drawable/ic_person"
+                            android:drawablePadding="10dp"
+                            android:fontFamily="@font/sf_regular"
+                            android:inputType="textPersonName|textCapWords"
+                            android:padding="@dimen/_10sdp"
+                            android:text="@={viewModel.lastName}"
+                            android:textAppearance="?attr/textAppearanceBody1"
+                            tools:text="" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/et_company_name"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_12sdp"
+                        android:layout_marginHorizontal="@dimen/_12sdp"
+                        android:hint="@string/company_name"
+                        android:visibility="@{viewModel.accountTypeSelected == AccountTypeEnum.PERSONAL ? View.GONE : View.VISIBLE}"
+                        app:boxCornerRadiusBottomEnd="@dimen/_6sdp"
+                        app:boxCornerRadiusBottomStart="@dimen/_6sdp"
+                        app:boxCornerRadiusTopEnd="@dimen/_6sdp"
+                        app:boxCornerRadiusTopStart="@dimen/_6sdp"
+                        app:boxStrokeColor="@drawable/text_input_box_stroke"
+                        app:endIconDrawable="@{viewModel.isCompanyNameValid() ? @drawable/ic_checked : null, default=@drawable/ic_checked}"
+                        app:endIconMode="custom"
+                        app:endIconTint="@null"
+                        app:helperText='@{viewModel.companyName.isEmpty() ? (viewModel.isSaveClicked() ? @string/company_name_required : "") : viewModel.isCompanyNameValid() ? "" : @string/company_name_invalid}'
+                        app:helperTextTextAppearance="?attr/textAppearanceCaption"
+                        app:helperTextTextColor="@android:color/holo_red_dark"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/et_last_name"
+                        tools:visibility="visible">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:drawableStart="@drawable/ic_person"
+                            android:drawablePadding="10dp"
+                            android:fontFamily="@font/sf_regular"
+                            android:inputType="textPersonName|textCapWords"
+                            android:padding="@dimen/_10sdp"
+                            android:text="@={viewModel.companyName}"
+                            android:textAppearance="?attr/textAppearanceBody1"
+                            tools:text="" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/et_email"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_12sdp"
+                        android:layout_marginHorizontal="@dimen/_12sdp"
+                        android:hint="@string/enter_email"
+                        app:boxCornerRadiusBottomEnd="@dimen/_6sdp"
+                        app:boxCornerRadiusBottomStart="@dimen/_6sdp"
+                        app:boxCornerRadiusTopEnd="@dimen/_6sdp"
+                        app:boxCornerRadiusTopStart="@dimen/_6sdp"
+                        app:boxStrokeColor="@drawable/text_input_box_stroke"
+                        app:endIconDrawable="@{viewModel.isEmailValid() ? @drawable/ic_checked : null, default=@drawable/ic_checked}"
+                        app:endIconMode="custom"
+                        app:endIconTint="@null"
+                        app:helperText='@{viewModel.email.isEmpty() ? (viewModel.isSaveClicked ? @string/email_address_required : "") : viewModel.isEmailValid() ? "" : viewModel.isSaveClicked ? @string/email_address_invalid:""}'
+                        app:helperTextTextAppearance="?attr/textAppearanceCaption"
+                        app:helperTextTextColor="@android:color/holo_red_dark"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/et_company_name">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:drawableStart="@drawable/ic_email"
+                            android:drawablePadding="10dp"
+                            android:fontFamily="@font/sf_regular"
+                            android:inputType="textEmailAddress"
+                            android:padding="13dp"
+                            android:text="@={viewModel.email}"
+                            android:textColor="@color/dark_blue"
+                            tools:text="" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <LinearLayout
+                        android:id="@+id/ll_phone"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/margin_normal"
+                        android:background="@drawable/bg_border_transparent_sign_up"
+                        android:orientation="horizontal"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/et_email">
+
+                        <com.ar7lab.cherieapp.widget.ShowDropDownAutoCompleteTextView
+                            android:id="@+id/act_country_phone_code"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@null"
+                            android:drawableStart="@drawable/ic_phone"
+                            android:drawableEnd="@drawable/ic_down_arrow"
+                            android:drawablePadding="10dp"
+                            android:focusable="false"
+                            android:focusableInTouchMode="false"
+                            android:inputType="textEmailAddress"
+                            android:minHeight="55dp"
+                            android:paddingVertical="@dimen/_6sdp"
+                            android:paddingStart="@dimen/_14sdp"
+                            android:paddingEnd="@dimen/_8sdp"
+                            android:text="@{viewModel.countryPhoneCode}"
+                            android:textAppearance="?attr/textAppearanceBody1"
+                            android:textColor="@color/dark_blue"
+                            tools:ignore="RtlSymmetry"
+                            tools:text="+84" />
+
+                        <View
+                            android:layout_width="2dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginTop="@dimen/_14sdp"
+                            android:layout_marginBottom="@dimen/_14sdp"
+                            android:background="@color/gains_boro" />
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@null"
+                            android:digits="0123456789"
+                            android:drawablePadding="10dp"
+                            android:fontFamily="@font/sf_regular"
+                            android:hint="@string/enter_mobile_number"
+                            android:imeOptions="actionNext"
+                            android:inputType="phone"
+                            android:padding="@dimen/padding_normal"
+                            android:text="@={viewModel.contactNo}"
+                            android:textColor="@color/dark_blue"
+                            android:textColorHint="@color/dark_blue_transparent"
+                            android:textSize="@dimen/_12ssp" />
+                    </LinearLayout>
+
+                    <!--<editor-fold desc="Country Name">-->
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/til_country"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_12sdp"
+                        android:layout_marginHorizontal="@dimen/_12sdp"
+                        android:hint="@string/enter_country_name"
+                        app:boxCornerRadiusBottomEnd="@dimen/_6sdp"
+                        app:boxCornerRadiusBottomStart="@dimen/_6sdp"
+                        app:boxCornerRadiusTopEnd="@dimen/_6sdp"
+                        app:boxCornerRadiusTopStart="@dimen/_6sdp"
+                        app:boxStrokeColor="@drawable/text_input_box_stroke"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/ll_phone"
+                        tools:visibility="visible">
+
+                        <com.ar7lab.cherieapp.widget.ShowDropDownAutoCompleteTextView
+                            android:id="@+id/act_country"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:drawableStart="@drawable/ic_location_v3"
+                            android:drawablePadding="12dp"
+                            android:focusable="false"
+                            android:focusableInTouchMode="false"
+                            android:fontFamily="@font/sf_regular"
+                            android:inputType="textEmailAddress"
+                            android:paddingHorizontal="@dimen/_14sdp"
+                            android:paddingVertical="@dimen/_10sdp"
+                            android:textColor="@color/dark_blue"
+                            android:textColorHint="@color/dark_blue_transparent"
+                            android:textSize="@dimen/_12ssp"
+                            tools:ignore="TouchTargetSizeCheck"
+                            tools:text="Vietnam" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+                    <!--</editor-fold>-->
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btn_save"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_12sdp"
+                        android:backgroundTint="@color/green_munsell"
+                        android:padding="@dimen/padding_normal"
+                        android:text="@string/save"
+                        android:textAllCaps="false"
+                        android:textStyle="bold"
+                        app:iconGravity="textStart"
+                        android:layout_marginHorizontal="@dimen/_12sdp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/til_country"
+                        app:rippleColor="?attr/colorAccent"
+                        app:shapeAppearance="@style/ShapeAppearance.Cherie.Tag.SocialButton"
+                        app:showProgress="@{isLoading}"
+                        app:textSource="@{@string/save}" />
+
+                    <!--app:iconSource="@{@drawable/ic_right_tick_rounded}"
+                        app:icon="@drawable/ic_right_tick_rounded"-->
+
+                    <TextView
+                        android:id="@+id/btn_skip"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_8sdp"
+                        android:fontFamily="@font/sf_medium"
+                        android:gravity="center"
+                        android:text="@string/skip_for_now"
+                        android:visibility="@{viewModel.getUserLoginType()?View.VISIBLE:View.GONE}"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_10ssp"
+                        app:layout_constraintEnd_toEndOf="@+id/btn_save"
+                        app:layout_constraintStart_toStartOf="@+id/btn_save"
+                        app:layout_constraintTop_toBottomOf="@+id/btn_save"
+                        app:rippleColor="?attr/colorAccent" />
+
+                    <include
+                        android:id="@+id/include_help"
+                        layout="@layout/item_bottom_help"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/btn_skip" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </ScrollView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+</layout>

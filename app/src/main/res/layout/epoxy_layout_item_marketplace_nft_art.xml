@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="art"
+            type="com.ar7lab.cherieapp.model.Art" />
+        <variable
+            name="listener"
+            type="com.ar7lab.cherieapp.ui.market.MarketArtListener" />
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardElevation="0dp"
+        app:cardBackgroundColor="@android:color/transparent"
+        android:onClick="@{() -> listener.onClick(art)}"
+        app:rippleColor="?attr/colorPrimaryVariant">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:id="@+id/layout_marketplace_item"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:orientation="horizontal"
+                android:weightSum="1">
+                <ImageView
+                    android:id="@+id/iv_art"
+                    android:layout_width="0dp"
+                    android:layout_height="120dp"
+                    android:layout_weight=".25"
+                    android:layout_margin="@dimen/margin_normal"
+                    android:contentDescription="@string/art"
+                    app:artImgUrl="@{art.fileUrls.get(0).url}"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/crypto_vision"/>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight=".75"
+                    android:layout_marginStart="@dimen/margin_extra_small"
+                    android:orientation="vertical">
+                    <TextView
+                        android:id="@+id/tv_art_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_large"
+                        android:text="@{art.name}"
+                        android:textAppearance="?attr/textAppearanceBody1"
+                        android:textColor="@color/blue"
+                        android:textStyle="bold"/>
+                    <TextView
+                        android:id="@+id/tv_holders"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_extra_small"
+                        android:text="RADIATION VADAR"
+                        android:textAppearance="?attr/textAppearanceBody1"
+                        android:textStyle="bold"
+                        android:textColor="?attr/colorOnSecondary"/>
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btn_"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_extra_small"
+                        android:paddingLeft="@dimen/padding_normal"
+                        android:paddingRight="@dimen/padding_normal"
+                        android:textSize="14sp"
+                        android:text="VEDAR MOOD"
+                        android:textAllCaps="false"
+                        android:textStyle="bold"
+                        android:textColor="?attr/colorSecondary"
+                        app:backgroundTint="@color/grey_marketplace"
+                        app:shapeAppearance="@style/ShapeAppearance.Cherie.Button.Primary"/>
+                </LinearLayout>
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:background="@color/list_divider_grey">
+            </View>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+</layout>

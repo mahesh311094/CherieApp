@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="com.ar7lab.cherieapp.enums.KYCStep" />
+
+        <variable
+            name="viewModel"
+            type="com.ar7lab.cherieapp.ui.kycinfo.KYVInfoViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingLeft="@dimen/_16sdp"
+        android:paddingRight="@dimen/_16sdp"
+        android:paddingTop="@dimen/_8sdp">
+
+        <TextView
+            android:id="@+id/textView9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/sf_pro_text_medium"
+            android:text="@string/personal_information"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_11ssp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/etCountryName"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:visibility="visible"
+            app:boxCornerRadiusBottomEnd="@dimen/_6sdp"
+            app:boxCornerRadiusBottomStart="@dimen/_6sdp"
+            app:boxCornerRadiusTopEnd="@dimen/_6sdp"
+            app:boxCornerRadiusTopStart="@dimen/_6sdp"
+            app:boxStrokeColor="@drawable/text_input_box_stroke"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/textView9"
+            app:layout_constraintTop_toBottomOf="@+id/textView9">
+
+            <com.ar7lab.cherieapp.widget.ShowDropDownAutoCompleteTextView
+                android:id="@+id/act_country"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:fontFamily="@font/sf_pro_text_regular"
+                android:inputType="textEmailAddress"
+                android:text="@{viewModel.country}"
+                android:paddingHorizontal="@dimen/_14sdp"
+                android:paddingVertical="@dimen/_10sdp"
+                android:textColor="@color/dark_blue"
+                android:textSize="@dimen/_12ssp"
+                tools:ignore="TouchTargetSizeCheck"
+                tools:text="Vietnam" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/til_full_name"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:hint="@string/full_name_label"
+            app:boxCornerRadiusBottomEnd="@dimen/_6sdp"
+            app:boxCornerRadiusBottomStart="@dimen/_6sdp"
+            app:boxCornerRadiusTopEnd="@dimen/_6sdp"
+            app:boxCornerRadiusTopStart="@dimen/_6sdp"
+            app:boxStrokeColor="@drawable/text_input_box_stroke"
+            app:endIconMode="custom"
+            app:endIconTint="@null"
+            app:helperText='@{viewModel.isFullNameValid()?"":@string/enter_valid_first_name}'
+            app:helperTextTextAppearance="?attr/textAppearanceCaption"
+            app:helperTextTextColor="@android:color/holo_red_dark"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/etCountryName">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_full_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autofillHints="emailAddress"
+                android:fontFamily="@font/sf_pro_text_regular"
+                android:inputType="textEmailAddress"
+                android:padding="13dp"
+                android:text="@={viewModel.fullname}"
+                android:textColor="@color/dark_blue" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/tv_date_of_birth"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:autofillHints="emailAddress"
+            android:fontFamily="@font/sf_pro_text_regular"
+            android:padding="13dp"
+            android:background="@drawable/bg_border_text_dob"
+            android:layout_marginTop="@dimen/_8sdp"
+            app:boxCornerRadiusBottomEnd="@dimen/_6sdp"
+            app:boxCornerRadiusBottomStart="@dimen/_6sdp"
+            app:boxCornerRadiusTopEnd="@dimen/_6sdp"
+            app:boxCornerRadiusTopStart="@dimen/_6sdp"
+            app:helperTextTextColor="@android:color/holo_red_dark"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/til_full_name"
+            app:boxStrokeColor="@drawable/text_input_box_stroke"
+            app:endIconDrawable="@drawable/ic_calendar"
+            android:text="@={viewModel.dateOfBirth,default=@string/date_of_birth}"
+            android:textColor="@color/dark_blue"
+            app:drawableEndCompat="@drawable/ic_calendar" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/til_residential_address"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:hint="@string/residential_address"
+            app:boxCornerRadiusBottomEnd="@dimen/_6sdp"
+            app:boxCornerRadiusBottomStart="@dimen/_6sdp"
+            app:boxCornerRadiusTopEnd="@dimen/_6sdp"
+            app:boxCornerRadiusTopStart="@dimen/_6sdp"
+            app:helperText='@{viewModel.isValidAddress()?"":@string/enter_valid_address}'
+            app:boxStrokeColor="@drawable/text_input_box_stroke"
+            app:endIconMode="custom"
+            app:endIconTint="@null"
+            app:helperTextTextAppearance="?attr/textAppearanceCaption"
+            app:helperTextTextColor="@android:color/holo_red_dark"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_date_of_birth">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_residential_address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autofillHints="emailAddress"
+                android:fontFamily="@font/sf_pro_text_regular"
+                android:inputType="textEmailAddress"
+                android:padding="13dp"
+                android:text="@={viewModel.address}"
+                android:textColor="@color/dark_blue" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/til_postal_code"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:hint="@string/postal_code"
+            app:boxCornerRadiusBottomEnd="@dimen/_6sdp"
+            app:boxCornerRadiusBottomStart="@dimen/_6sdp"
+            app:boxCornerRadiusTopEnd="@dimen/_6sdp"
+            app:boxCornerRadiusTopStart="@dimen/_6sdp"
+            app:boxStrokeColor="@drawable/text_input_box_stroke"
+            app:endIconMode="custom"
+            app:endIconTint="@null"
+            app:helperText='@{viewModel.isValidPostCode()?"":@string/enter_valid_postal_code}'
+            app:helperTextTextAppearance="?attr/textAppearanceCaption"
+            app:helperTextTextColor="@android:color/holo_red_dark"
+            app:layout_constraintEnd_toStartOf="@+id/til_city"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/til_residential_address">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_postal_code"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autofillHints="emailAddress"
+                android:fontFamily="@font/sf_pro_text_regular"
+                android:inputType="number"
+                android:padding="13dp"
+                android:text="@={viewModel.postalCode}"
+                android:textColor="@color/dark_blue" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/til_city"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:hint="@string/city"
+            app:boxCornerRadiusBottomEnd="@dimen/_6sdp"
+            app:boxCornerRadiusBottomStart="@dimen/_6sdp"
+            app:boxCornerRadiusTopEnd="@dimen/_6sdp"
+            app:boxCornerRadiusTopStart="@dimen/_6sdp"
+            app:boxStrokeColor="@drawable/text_input_box_stroke"
+            app:endIconMode="custom"
+            android:layout_marginStart="@dimen/_8sdp"
+            app:endIconTint="@null"
+            app:helperText='@{viewModel.isValidCity()?"":@string/enter_valid_city}'
+            app:helperTextTextAppearance="?attr/textAppearanceCaption"
+            app:helperTextTextColor="@android:color/holo_red_dark"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/til_postal_code"
+            app:layout_constraintTop_toBottomOf="@+id/til_residential_address">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_city"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autofillHints="emailAddress"
+                android:fontFamily="@font/sf_pro_text_regular"
+                android:inputType="textEmailAddress"
+                android:padding="13dp"
+                android:text="@={viewModel.city}"
+                android:textColor="@color/dark_blue" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_continue"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/sf_pro_text_semi_bold"
+            android:paddingVertical="@dimen/_10sdp"
+            android:layout_marginBottom="@dimen/_16sdp"
+            android:text="@string/continue_label"
+            android:onClick="@{() -> viewModel.onContinue(KYCStep.STEP_2)}"
+            android:textAllCaps="false"
+            android:textAppearance="?attr/textAppearanceBody1"
+            android:textColor="@color/white"
+            app:backgroundTint="@color/green_munsell"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:shapeAppearance="@style/ShapeAppearance.Cherie.Button.New" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

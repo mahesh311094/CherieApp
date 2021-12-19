@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="number"
+            type="Integer" />
+
+        <variable
+            name="salesInfo"
+            type="com.ar7lab.cherieapp.model.SalesInfo" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="@dimen/_4sdp"
+        android:layout_marginHorizontal="@dimen/_8sdp"
+        android:background="@drawable/bg_border_white_view">
+
+        <TextView
+            android:id="@+id/tv_sales_start"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_normal"
+            android:text="@{number == 1 ? @string/_1st_official_sales_start : number == 2 ? @string/_2nd_official_sales_start : @string/_3rd_official_sales_start}"
+            android:textAppearance="?attr/textAppearanceBody2"
+            android:textColor="@color/black_outer_space"
+            android:textStyle="bold"
+            tools:text="@string/_1st_official_sales_start"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/margin_normal"
+            android:textStyle="bold"
+            app:showDate="@{number == 1 ? salesInfo.firstSalesStartDate : number == 2 ? salesInfo.secondSalesStartDate : salesInfo.thirdSalesStartDate}"
+            tools:text="2021-08-01"
+            android:textAppearance="?attr/textAppearanceBody2"
+            android:textColor="@color/black_outer_space"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tv_sales_start" />
+
+        <TextView
+            android:id="@+id/tv_sale_quantity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_normal"
+            android:layout_marginBottom="@dimen/margin_normal"
+            android:text="@{number == 1 ? @string/_1st_official_sales_quantity : number == 2 ? @string/_2nd_official_sales_quantity : @string/_3rd_official_sales_quantity}"
+            android:textAppearance="?attr/textAppearanceBody2"
+            android:textColor="@color/black_outer_space"
+            android:textStyle="bold"
+            tools:text="@string/_1st_official_sales_quantity"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_sales_start" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/margin_normal"
+            android:textStyle="bold"
+            tools:text="392344 Pieces"
+            android:text="@{@string/holding_pieces(number == 1 ? salesInfo.firstSalesQty : number == 2 ? salesInfo.secondSalesQty : salesInfo.thirdSalesQty)}"
+            android:textAppearance="?attr/textAppearanceBody2"
+            android:textColor="@color/black_outer_space"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tv_sale_quantity" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

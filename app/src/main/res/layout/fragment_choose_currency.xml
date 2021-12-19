@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <import type="com.ar7lab.cherieapp.enums.ChooseCurrencyEnum" />
+
+        <variable
+            name="currentCurrency"
+            type="String" />
+
+        <variable
+            name="viewModel"
+            type="com.ar7lab.cherieapp.ui.currencysettings.ChooseCurrencyViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:fitsSystemWindows="true">
+
+        <!--header container-->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clToolBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:elevation="@dimen/_5sdp"
+            android:padding="@dimen/_12sdp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+            <!--back button -->
+            <ImageView
+                android:id="@+id/iv_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/_5sdp"
+                android:src="@drawable/ic_back_v3"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+            <!--deposit title-->
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/sf_pro_text_bold"
+                android:includeFontPadding="false"
+                android:text="@string/choose_currency"
+                android:textColor="@color/dark_blue"
+                android:textSize="@dimen/_13ssp"
+                app:layout_constraintBottom_toBottomOf="@+id/iv_back"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/iv_back" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <ScrollView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/_12sdp"
+            android:fillViewport="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/clToolBar">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <!--American Dollar Item-->
+                <TextView
+                    android:id="@+id/tv_doller"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_12sdp"
+                    android:layout_marginTop="16dp"
+                    android:background="@drawable/bg_border_bank_cards"
+                    android:drawableStart="@drawable/ic_dollar_circle"
+                    android:drawableEnd="@{viewModel.languageChose == ChooseCurrencyEnum.AMERICAN_DOLLAR.sign ? @drawable/ic_selected_step : @drawable/ic_unselected_step}"
+                    android:drawablePadding="@dimen/_8sdp"
+                    android:fontFamily="@font/sf_pro_text_regular"
+                    android:onClick="@{() -> viewModel.changeLanguage(ChooseCurrencyEnum.AMERICAN_DOLLAR)}"
+                    android:padding="@dimen/_12sdp"
+                    android:text="@string/american_doller"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_11ssp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:drawableEnd="@drawable/ic_checked"
+                    tools:ignore="UseCompatTextViewDrawableXml" />
+
+                <!--Japanese yen Item-->
+
+                <TextView
+                    android:id="@+id/tv_yen"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_12sdp"
+                    android:layout_marginTop="16dp"
+                    android:background="@drawable/bg_border_bank_cards"
+                    android:drawableStart="@drawable/ic_yen_circle"
+                    android:drawableEnd="@{viewModel.languageChose == ChooseCurrencyEnum.JAPANESE_YEN.sign ? @drawable/ic_selected_step  :  @drawable/ic_unselected_step}"
+                    android:drawablePadding="@dimen/_8sdp"
+                    android:fontFamily="@font/sf_pro_text_regular"
+                    android:onClick="@{() -> viewModel.changeLanguage(ChooseCurrencyEnum.JAPANESE_YEN)}"
+                    android:padding="@dimen/_12sdp"
+                    android:text="@string/japanese_yen"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_11ssp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_doller"
+                    tools:ignore="UseCompatTextViewDrawableXml" />
+
+
+                <!--save button-->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnSave"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_20sdp"
+                    android:layout_marginBottom="@dimen/_32sdp"
+                    android:fontFamily="@font/sf_pro_text_medium"
+                    android:padding="@dimen/_10sdp"
+                    android:text="@string/save"
+                    android:textAllCaps="false"
+                    android:textSize="@dimen/_12ssp"
+                    app:backgroundTint="@color/green_munsell"
+                    app:cornerRadius="10dp"
+                    app:iconGravity="textStart"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintVertical_bias="0.70"
+                    app:textSource="@{@string/save}" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </ScrollView>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

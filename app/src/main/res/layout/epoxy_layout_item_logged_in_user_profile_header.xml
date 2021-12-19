@@ -1,0 +1,548 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="user"
+            type="com.ar7lab.cherieapp.model.User" />
+
+        <import type="android.view.View" />
+
+        <variable
+            name="isLoading"
+            type="Boolean" />
+
+        <variable
+            name="viewModel"
+            type="com.ar7lab.cherieapp.ui.profile.ProfileViewModel" />
+
+        <variable
+            name="listener"
+            type="com.ar7lab.cherieapp.ui.profile.ProfileHeaderListener" />
+
+        <variable
+            name="profile"
+            type="com.ar7lab.cherieapp.ui.profile.ProfileListener" />
+
+        <variable
+            name="loader"
+            type="com.ar7lab.cherieapp.ui.profile.ProfileCardLoaderListener" />
+
+        <import type="com.ar7lab.cherieapp.enums.NftArtistArtsTypeEnum" />
+
+        <import type="android.text.InputType" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fitsSystemWindows="false"
+        android:paddingBottom="@dimen/_16sdp">
+
+        <View
+            android:id="@+id/tv_header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/iv_cover"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@color/dove_gray"
+            android:contentDescription="@string/cover"
+            android:scaleType="centerCrop"
+            app:imgUrl="@{viewModel.imageUriCover}"
+            app:layout_constraintDimensionRatio="h,1:0.60"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/iv_cover_placeholder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/ic_cover_placeholder"
+            android:visibility="@{viewModel.isCoverSelected ? View.GONE : View.VISIBLE}"
+            app:layout_constraintBottom_toTopOf="@+id/tv_select_cover"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_back"
+            app:layout_constraintVertical_chainStyle="packed" />
+
+        <TextView
+            android:id="@+id/tv_select_cover"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_small"
+            android:text="@string/select_cover_image"
+            android:textAppearance="?attr/textAppearanceSubtitle1"
+            android:textColor="@color/white"
+            android:visibility="@{viewModel.isCoverSelected ? View.GONE : View.VISIBLE}"
+            app:layout_constraintBottom_toTopOf="@+id/guideline3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/iv_cover_placeholder" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.21" />
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/iv_avatar"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_marginStart="@dimen/_4sdp"
+            android:background="@color/dove_gray"
+            android:elevation="5dp"
+            android:onClick="@{() -> listener.uploadProfilePic()}"
+            android:padding="@dimen/padding_small"
+            android:scaleType="centerCrop"
+            app:imgUrl="@{viewModel.imageUriProfile}"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_cover"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/iv_cover"
+            app:shapeAppearance="@style/CircleImageView"
+            app:strokeColor="@color/white"
+            app:strokeWidth="3dp" />
+
+        <ImageView
+            android:id="@+id/iv_edit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_8sdp"
+            android:contentDescription="@string/app_name"
+            android:elevation="10dp"
+            android:src="@drawable/ic_edit_circle"
+            app:layout_constraintBottom_toTopOf="@+id/tv_name"
+            app:layout_constraintEnd_toEndOf="@+id/iv_avatar"
+            app:layout_constraintHorizontal_bias="1.3"
+            app:layout_constraintStart_toStartOf="@+id/iv_avatar" />
+        <!-- android:visibility="@{viewModel.isAvatarSelected ? View.GONE : View.VISIBLE}"-->
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_normal"
+            android:text="@string/select_profile_image"
+            android:textAppearance="?attr/textAppearanceSubtitle1"
+            android:textColor="@color/black_outer_space"
+            android:visibility="gone"
+            app:layout_constraintStart_toEndOf="@+id/iv_avatar"
+            app:layout_constraintTop_toBottomOf="@+id/iv_cover" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_logout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_12sdp"
+            android:layout_marginEnd="16dp"
+            android:backgroundTint="@color/red_marketplace"
+            android:text="@string/logout"
+            android:textAllCaps="false"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:shapeAppearance="@style/ShapeAppearance.Cherie.Button.Primary" />
+
+        <TextView
+            android:id="@+id/tv_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_4sdp"
+            android:drawablePadding="10dp"
+            android:padding="10dp"
+            android:textAppearance="?attr/textAppearanceSubtitle1"
+            android:textColor="@color/white"
+            android:visibility="gone"
+            app:drawableStartCompat="@drawable/ic_back_arrow_white"
+            app:drawableTint="@color/white"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/img_take_photo_bg" />
+
+        <ImageView
+            android:id="@+id/img_take_photo_bg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_edit_circle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_logout" />
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="200dp"
+            android:background="?attr/colorOnPrimary"
+            android:padding="2dp"
+            android:src="@drawable/ic_placeholder"
+            android:visibility="gone"
+            app:imgUrl="@{user.profileImage}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_header"
+            app:shapeAppearance="@style/circleImageView" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/materialCardView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_12sdp"
+            android:layout_marginEnd="@dimen/_12sdp"
+            app:cardBackgroundColor="?attr/colorOnPrimary"
+            app:cardCornerRadius="6dp"
+            app:cardElevation="3dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/iv_cover"
+            app:rippleColor="@color/line_color"
+            app:strokeColor="@color/line_color"
+            app:strokeWidth="1dp">
+
+            <TextView
+                android:id="@+id/tv_add_details"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawablePadding="5dp"
+                android:fontFamily="@font/sf_pro_text_medium"
+                android:gravity="center_vertical"
+                android:paddingHorizontal="@dimen/_8sdp"
+                android:paddingVertical="@dimen/_6sdp"
+                android:text="@string/update_details"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_8ssp"
+                app:drawableStartCompat="@drawable/ic_update"
+                tools:text="@string/update_details" />
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:fontFamily="@font/sf_pro_text_semi_bold"
+            android:includeFontPadding="false"
+            android:text="@{viewModel.getUserFirstLastNameOrCompanyName()}"
+            android:textColor="@color/deep_koamaru"
+            android:textSize="@dimen/_14ssp"
+            app:layout_constraintStart_toStartOf="@+id/iv_avatar"
+            app:layout_constraintTop_toBottomOf="@+id/iv_avatar"
+            tools:text="HARU" />
+
+        <TextView
+            android:id="@+id/tv_company_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_2sdp"
+            android:includeFontPadding="false"
+            android:textColor="@color/blue"
+            android:textSize="@dimen/_11ssp"
+            android:textStyle="bold"
+            app:addUserName="@{user.userName}"
+            app:layout_constraintStart_toStartOf="@+id/iv_avatar"
+            app:layout_constraintTop_toBottomOf="@+id/tv_name"
+            app:layout_goneMarginTop="@dimen/_10sdp"
+            tools:text="Harumy" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cv_overview"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_12sdp"
+            android:layout_marginTop="@dimen/_12sdp"
+            app:cardBackgroundColor="?attr/colorOnPrimary"
+            app:cardCornerRadius="6dp"
+            app:cardElevation="2dp"
+            app:layout_constraintEnd_toEndOf="@+id/materialCardView3"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_company_name"
+            app:rippleColor="@color/line_color"
+            app:strokeColor="@color/line_color"
+            app:strokeWidth="1dp">
+
+            <EditText
+                android:id="@+id/tv_overview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:fontFamily="@font/sf_pro_text_medium"
+                android:gravity="top"
+                android:hint="@string/profile_over_view"
+                android:imeOptions="actionDone"
+                android:onEditorAction="@{(view, actionId, event) -> viewModel.onDoneClicked(view, actionId, event)}"
+                android:paddingHorizontal="@dimen/_10sdp"
+                android:paddingVertical="@dimen/_12sdp"
+                android:text="@={viewModel.overView}"
+                android:textColor="#757575"
+                android:textSize="@dimen/_10ssp"
+                app:onFocusChange="@{viewModel.OnFocusChangeListener}"
+                tools:text="Hi, I’m Temerian. I was born in Chechen Republics.
+I’m 23 years old. Cgi and Vfx artist. I’ve been working in this field from last 7 years." />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|right"
+                android:layout_marginEnd="@dimen/_6sdp"
+                android:layout_marginBottom="@dimen/_6sdp"
+                android:background="@drawable/layout_rounded_bg_profile_overview"
+                android:padding="@dimen/padding_extra_small"
+                android:src="@drawable/ic_edit_overview" />
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_save"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:padding="15dp"
+            android:text="@string/save"
+            android:textAllCaps="false"
+            android:visibility="@{viewModel.isOverViewFocus ? View.VISIBLE : View.GONE}"
+            app:backgroundTint="@color/blue"
+            app:cornerRadius="10dp"
+            app:icon="@drawable/ic_check_circle"
+            app:iconGravity="textStart"
+            app:iconSource="@{@drawable/ic_check_circle}"
+            app:layout_constraintEnd_toEndOf="@+id/cv_overview"
+            app:layout_constraintStart_toStartOf="@+id/cv_overview"
+            app:layout_constraintTop_toBottomOf="@+id/cv_overview"
+            app:showProgress="@{isLoading}"
+            app:textSource="@{@string/save}" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cv_following"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10sdp"
+            app:cardBackgroundColor="@color/alice_blue"
+            app:cardCornerRadius="6dp"
+            app:cardElevation="2dp"
+            app:layout_constraintEnd_toEndOf="@+id/cv_overview"
+            app:layout_constraintStart_toStartOf="@+id/cv_overview"
+            app:layout_constraintTop_toBottomOf="@+id/btn_save"
+            app:rippleColor="@color/line_color"
+            app:strokeColor="@color/line_color"
+            app:strokeWidth="1dp">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingVertical="@dimen/_10sdp"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp">
+
+                <TextView
+                    android:id="@+id/tv_following"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/sf_pro_text_semi_bold"
+                    android:text="@string/following"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_13ssp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/sf_pro_text_bold"
+                    android:gravity="center"
+                    android:text="@{String.valueOf(user.followingCount)}"
+                    android:textColor="@color/blue"
+                    android:textSize="@dimen/_16ssp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="12" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cv_add_payment_method"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10sdp"
+            app:cardBackgroundColor="?attr/colorOnPrimary"
+            app:cardCornerRadius="6dp"
+            app:cardElevation="2dp"
+            app:layout_constraintEnd_toEndOf="@+id/cv_overview"
+            app:layout_constraintStart_toStartOf="@+id/cv_overview"
+            app:layout_constraintTop_toBottomOf="@+id/cv_following"
+            app:rippleColor="@color/line_color"
+            app:strokeColor="@color/line_color"
+            app:strokeWidth="1dp">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="15dp">
+
+                <TextView
+                    android:id="@+id/tv_add_payment_method"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="10dp"
+                    android:text="@string/add_payment_method"
+                    android:textAppearance="?attr/textAppearanceBody1"
+                    android:textColor="?attr/colorSecondary"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="@string/add_payment_method" />
+
+                <!--<ImageView
+                    android:id="@+id/img_add_payment_method"
+                    android:layout_width="60dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="20dp"
+                    android:background="@drawable/layout_rounded_bg"
+                    android:gravity="center"
+                    android:onClick="@{() -> listener.addPaymentMethod()}"
+                    android:padding="10dp"
+                    android:src="@drawable/ic_add"
+                    android:textAppearance="?attr/textAppearanceBody1"
+                    android:textColor="@color/grey_button_switch"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_add_payment_method"
+                    app:tint="@color/blue" />-->
+
+                <com.airbnb.epoxy.EpoxyRecyclerView
+                    android:id="@+id/rv_items_card"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_4sdp"
+                    android:clipToPadding="false"
+                    android:orientation="vertical"
+                    android:overScrollMode="never"
+                    android:scrollbarStyle="insideOverlay"
+                    android:scrollbars="none"
+                    android:visibility="@{viewModel.cardCount ? View.VISIBLE : View.GONE}"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_add_payment_method"
+                    app:load="@{loader}"
+                    app:setRefresh="@{viewModel.isNeedRefresh()}" />
+
+                <ProgressBar
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:visibility="@{viewModel.cardCount ? View.GONE : View.VISIBLE}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_add_payment_method" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <TextView
+            android:id="@+id/tv_on_sale"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_12sdp"
+            android:layout_marginEnd="@dimen/_16sdp"
+            android:fontFamily="@font/sf_pro_text_semi_bold"
+            android:gravity="center"
+            android:onClick="@{() -> profile.onSaleClicked()}"
+            android:paddingHorizontal="@dimen/_12sdp"
+            android:paddingVertical="@dimen/_8sdp"
+            android:text="@{@string/on_sale_count(viewModel.salesCount)}"
+            android:textSize="@dimen/_14ssp"
+            app:layout_constraintEnd_toStartOf="@+id/tv_owned"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="spread"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cv_add_payment_method"
+            tools:text="On Sale (0)" />
+
+        <TextView
+            android:id="@+id/tv_owned"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_16sdp"
+            android:fontFamily="@font/sf_pro_text_semi_bold"
+            android:gravity="center"
+            android:onClick="@{() -> profile.onOwnedClicked()}"
+            android:paddingHorizontal="@dimen/_12sdp"
+            android:paddingVertical="@dimen/_8sdp"
+            android:text="@{@string/owned_count(viewModel.ownedCount)}"
+            android:textSize="@dimen/_14ssp"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_on_sale"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/tv_on_sale"
+            app:layout_constraintTop_toTopOf="@+id/tv_on_sale"
+            tools:text="Owned (0)" />
+
+        <View
+            android:id="@+id/vv_1"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_2sdp"
+            android:background="@color/list_divider_grey"
+            android:visibility="invisible"
+            app:layout_constraintTop_toBottomOf="@+id/tv_on_sale"
+            app:layout_goneMarginTop="@dimen/_8sdp" />
+
+        <View
+            android:id="@+id/vv_2"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_1sdp"
+            android:background="@color/cetacean_blue"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/vv_3"
+            app:layout_constraintTop_toTopOf="@+id/vv_1" />
+
+        <View
+            android:id="@+id/vv_3"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_1sdp"
+            android:background="@color/cetacean_blue"
+            app:layout_constraintBottom_toBottomOf="@+id/vv_2"
+            app:layout_constraintEnd_toStartOf="@+id/vv_2"
+            app:layout_constraintHorizontal_chainStyle="spread"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/vv_2" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_24sdp"
+            android:fontFamily="@font/sf_pro_text_bold"
+            android:gravity="center"
+            android:text="@string/no_items_found"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_16ssp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/vv_3" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_4sdp"
+            android:fontFamily="@font/sf_pro_text_medium"
+            android:gravity="center"
+            android:text="@string/go_to_the_marketplace_to_buy_or_bid_on_arts"
+            android:textColor="@color/tab_divider_grey"
+            android:textSize="@dimen/_12ssp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="com.ar7lab.cherieapp.enums.ArtworkDetailTabEnum" />
+
+        <variable
+            name="viewModel"
+            type="com.ar7lab.cherieapp.ui.nftartworkdetails.NFTArtworkDetailsViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white">
+        <!--Investment Info Tab Text-->
+        <TextView
+            android:id="@+id/tv_investment"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:gravity="center"
+            android:onClick="@{() -> viewModel.changeTab(ArtworkDetailTabEnum.NONE_TAB)}"
+            android:padding="@dimen/padding_normal"
+            android:text="@string/investment_info"
+            android:textAppearance="?attr/textAppearanceBody2"
+            android:textColor="@{viewModel.tabTypeSelected == ArtworkDetailTabEnum.NONE_TAB  ? @color/black : @color/dove_gray}"
+            android:textStyle="bold"
+            android:visibility="gone"
+            app:layout_constraintEnd_toStartOf="@+id/tv_work_and_artist"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent="0.5"
+            tools:background="@color/white"
+            tools:textColor="@color/black" />
+        <!--Investment Info Tab Underline-->
+        <View
+            android:layout_width="0dp"
+            android:layout_height="4dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:background="@color/black"
+            android:visibility="@{viewModel.tabTypeSelected == ArtworkDetailTabEnum.NONE_TAB  ? 0 : 8}"
+            app:layout_constraintEnd_toEndOf="@+id/tv_investment"
+            app:layout_constraintStart_toStartOf="@+id/tv_investment"
+            app:layout_constraintTop_toBottomOf="@+id/tv_investment" />
+
+        <!--Work and Artist Info Tab Text-->
+        <TextView
+            android:id="@+id/tv_work_and_artist"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_8sdp"
+            android:background="@color/white"
+            android:fontFamily="@font/sf_pro_text_medium"
+            android:gravity="center"
+            android:onClick="@{() -> viewModel.changeTab(ArtworkDetailTabEnum.NONE_TAB)}"
+            android:paddingVertical="@dimen/padding_normal"
+            android:text="@string/work_and_artist_info"
+            android:textColor="@{viewModel.tabTypeSelected == ArtworkDetailTabEnum.NONE_TAB  ? @color/black : @color/dove_gray}"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@+id/tv_investment"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent="0.5"
+            tools:background="@color/white"
+            tools:textColor="@color/black" />
+        <!--Work and Artist Tab Underline-->
+        <View
+            android:layout_width="0dp"
+            android:layout_height="4dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:background="@color/black"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="@+id/tv_work_and_artist"
+            app:layout_constraintStart_toStartOf="@+id/tv_work_and_artist"
+            app:layout_constraintTop_toBottomOf="@+id/tv_work_and_artist" />
+
+        <!--android:visibility="@{viewModel.tabTypeSelected == ArtworkDetailTabEnum.WORK_AND_ARTIST_INFO  ? 0 : 8}"-->
+
+        <!--full width divider-->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/list_divider_grey"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_work_and_artist"
+
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

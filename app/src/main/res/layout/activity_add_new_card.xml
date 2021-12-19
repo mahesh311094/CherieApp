@@ -1,0 +1,372 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.ar7lab.cherieapp.ui.payment.addnewcard.AddNewCardViewModel" />
+
+        <variable
+            name="isLoading"
+            type="Boolean" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clHeaderContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/dark_blue"
+            android:paddingBottom="@dimen/_4sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/tv_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="26dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:drawablePadding="10dp"
+                android:padding="10dp"
+                android:textAppearance="?attr/textAppearanceSubtitle1"
+                app:drawableStartCompat="@drawable/ic_back_arrow_white"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_buy_now"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="26dp"
+                android:layout_marginEnd="20dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:fontFamily="@font/sf_pro_text_medium"
+                android:gravity="center_horizontal"
+                android:padding="10dp"
+                android:text="@string/add_credit_card"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_14ssp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="?attr/colorOnPrimary"
+            android:fillViewport="true"
+            android:overScrollMode="never"
+            android:scrollbars="none"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/clHeaderContainer"
+            tools:context=".ui.tradingart.TradingArtActivity">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/til_cardholder_name"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="15dp"
+                    android:hint="@string/cardholder_name"
+                    app:boxStrokeColor="@drawable/text_input_box_stroke"
+                    app:endIconMode="custom"
+                    app:endIconTint="@null"
+                    app:helperTextTextAppearance="?attr/textAppearanceCaption"
+                    app:helperTextTextColor="@color/fruit_salad"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:autofillHints="emailAddress"
+                        android:drawableStart="@drawable/ic_cardholder_name"
+                        android:drawablePadding="10dp"
+                        android:inputType="textPersonName"
+                        android:padding="8dp"
+                        android:textAppearance="?attr/textAppearanceBody1"
+                        android:textColorHint="@color/tab_divider_grey"
+                        tools:text="" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/til_card_number"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="15dp"
+                    android:hint="@string/card_number"
+                    app:boxStrokeColor="@drawable/text_input_box_stroke"
+                    app:endIconMode="custom"
+                    app:endIconTint="@null"
+                    app:helperText='@{viewModel.cardNumber.isEmpty() ? (viewModel.isSaveClicked ? @string/card_number_required : "") : viewModel.isCardValid() ? "" : @string/card_number_invalid}'
+                    app:helperTextTextAppearance="?attr/textAppearanceCaption"
+                    app:helperTextTextColor="@android:color/holo_red_dark"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/til_cardholder_name">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:autofillHints="emailAddress"
+                        android:digits="0123456789"
+                        android:drawableStart="@drawable/ic_card"
+                        android:drawablePadding="10dp"
+                        android:inputType="phone"
+                        android:maxLength="16"
+                        android:padding="8dp"
+                        android:text="@={viewModel.cardNumber}"
+                        android:textAppearance="?attr/textAppearanceBody1"
+                        android:textColorHint="@color/tab_divider_grey"
+                        tools:text="" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <LinearLayout
+                    android:id="@+id/layout_expiry_cvv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="15dp"
+                    android:orientation="horizontal"
+                    app:layout_constraintStart_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/til_card_number">
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/til_expiry_date"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="5dp"
+                        android:layout_weight=".50"
+                        android:hint="@string/expiry_date"
+                        app:boxStrokeColor="@drawable/text_input_box_stroke"
+                        app:endIconTint="@null"
+                        app:helperText='@{viewModel.cardExpMonthYear.isEmpty() ? (viewModel.isSaveClicked ? @string/card_Expiry_required : "") : viewModel.isCardExpiryValid() ? "" : @string/card_Expiry_invalid}'
+                        app:helperTextTextAppearance="?attr/textAppearanceCaption"
+                        app:helperTextTextColor="@android:color/holo_red_dark"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_buy_now">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/et_expiry_date"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:digits="0123456789"
+                            android:drawableStart="@drawable/ic_expiry"
+                            android:drawablePadding="10dp"
+                            android:inputType="phone"
+                            android:maxLength="7"
+                            android:padding="8dp"
+                            android:text="@={viewModel.cardExpMonthYear}"
+                            android:textAppearance="?attr/textAppearanceBody1"
+                            android:textColorHint="@color/tab_divider_grey"
+                            tools:text="" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/til_cvv"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="5dp"
+                        android:layout_weight=".50"
+                        android:hint="@string/cvc_cvv"
+                        app:boxStrokeColor="@drawable/text_input_box_stroke"
+                        app:endIconTint="@null"
+                        app:helperText='@{viewModel.cardCVC.isEmpty() ? (viewModel.isSaveClicked ? @string/cvc_cvv_required : "") : viewModel.isCVCValid() ? "" : @string/cvc_cvv_invalid}'
+                        app:helperTextTextAppearance="?attr/textAppearanceCaption"
+                        app:helperTextTextColor="@android:color/holo_red_dark"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_buy_now">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:autofillHints="emailAddress"
+                            android:digits="0123456789"
+                            android:drawableStart="@drawable/ic_cvv"
+                            android:drawablePadding="10dp"
+                            android:inputType="phone"
+                            android:maxLength="3"
+                            android:padding="8dp"
+                            android:text="@={viewModel.cardCVC}"
+                            android:textAppearance="?attr/textAppearanceBody1"
+                            android:textColorHint="@color/tab_divider_grey"
+                            tools:text="" />
+                    </com.google.android.material.textfield.TextInputLayout>
+                </LinearLayout>
+
+                <!-- <View
+
+                     android:layout_width="match_parent"
+                     android:layout_height="1dp"
+                     android:layout_marginStart="16dp"
+                     android:layout_marginTop="30dp"
+                     android:layout_marginEnd="16dp"
+                     android:background="@color/list_divider_grey"
+                     app:layout_constraintStart_toEndOf="parent"
+                     app:layout_constraintStart_toStartOf="parent"
+                     app:layout_constraintTop_toBottomOf="@+id/layout_expiry_cvv"></View>-->
+
+                <TextView
+                    android:id="@+id/items_divider"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:paddingHorizontal="@dimen/_2sdp"
+                    android:paddingVertical="@dimen/_4sdp"
+                    android:text="@string/additional_info"
+                    android:textAppearance="?attr/textAppearanceBody2"
+                    android:textColor="@color/tab_divider_grey"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="@+id/layout_expiry_cvv"
+                    app:layout_constraintTop_toBottomOf="@+id/layout_expiry_cvv" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/til_add_street_address"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="6dp"
+                    android:layout_marginEnd="16dp"
+                    android:hint="@string/add_street_address"
+                    app:boxStrokeColor="@drawable/text_input_box_stroke"
+                    app:endIconMode="custom"
+                    app:endIconTint="@null"
+                    app:helperTextTextAppearance="?attr/textAppearanceCaption"
+                    app:helperTextTextColor="@color/fruit_salad"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/items_divider">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:autofillHints="emailAddress"
+                        android:drawableStart="@drawable/ic_address"
+                        android:drawablePadding="10dp"
+                        android:inputType="textPostalAddress"
+                        android:padding="8dp"
+                        android:textAppearance="?attr/textAppearanceBody1"
+                        android:textColorHint="@color/tab_divider_grey"
+                        tools:text="" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/til_add_city"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="15dp"
+                    android:hint="@string/add_city"
+                    app:boxStrokeColor="@drawable/text_input_box_stroke"
+                    app:endIconMode="custom"
+                    app:endIconTint="@null"
+                    app:helperTextTextAppearance="?attr/textAppearanceCaption"
+                    app:helperTextTextColor="@color/fruit_salad"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/til_add_street_address">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:autofillHints="emailAddress"
+                        android:drawableStart="@drawable/ic_city"
+                        android:drawablePadding="10dp"
+                        android:inputType="textPostalAddress"
+                        android:padding="8dp"
+                        android:textAppearance="?attr/textAppearanceBody1"
+                        android:textColorHint="@color/tab_divider_grey"
+                        tools:text="" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/til_postal_code"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="15dp"
+                    android:hint="@string/add_postal_code"
+                    app:boxStrokeColor="@drawable/text_input_box_stroke"
+                    app:endIconMode="custom"
+                    app:endIconTint="@null"
+                    app:helperTextTextAppearance="?attr/textAppearanceCaption"
+                    app:helperTextTextColor="@color/fruit_salad"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/til_add_city">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:autofillHints="emailAddress"
+                        android:digits="0123456789"
+                        android:drawableStart="@drawable/ic_postal_code"
+                        android:drawablePadding="10dp"
+                        android:inputType="phone"
+                        android:padding="8dp"
+                        android:textAppearance="?attr/textAppearanceBody1"
+                        android:textColorHint="@color/tab_divider_grey"
+                        tools:text="" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_save"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="16dp"
+                    android:padding="15dp"
+                    android:text="@string/save"
+                    android:textAllCaps="false"
+                    app:backgroundTint="@color/dark_blue"
+                    app:cornerRadius="10dp"
+                    app:iconGravity="textStart"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/til_postal_code"
+                    app:showProgress="@{isLoading}"
+                    app:textSource="@{@string/save}" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </ScrollView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</layout>

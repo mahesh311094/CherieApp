@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="com.ar7lab.cherieapp.R" />
+
+        <variable
+            name="art"
+            type="com.ar7lab.cherieapp.model.Art" />
+
+        <import type="com.ar7lab.cherieapp.enums.MarketChartTypeEnum" />
+
+        <variable
+            name="isHaveData"
+            type="Boolean" />
+
+        <variable
+            name="viewModel"
+            type="com.ar7lab.cherieapp.ui.tradingart.TradingArtViewModel" />
+
+        <import type="android.view.View" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/tab_marketplace"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_16sdp"
+        android:background="@color/white"
+        android:orientation="horizontal"
+        android:paddingBottom="@dimen/_8sdp"
+        app:layout_constraintTop_toBottomOf="@+id/clHeaderContainer">
+
+        <!--3 month text-->
+        <TextView
+            android:id="@+id/tv3Month"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="?attr/selectableItemBackground"
+            android:fontFamily="@font/sf_pro_text_regular"
+            android:onClick="@{()->viewModel.changeMarketChartType(MarketChartTypeEnum.MONTHS_3)}"
+            android:paddingVertical="@dimen/_2sdp"
+            android:text="@string/_3_month"
+            android:textColor="@{viewModel.marketChartTypeSelected == MarketChartTypeEnum.MONTHS_3?@color/green_munsell:@color/philippine_silver}"
+            android:textSize="@dimen/_12ssp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:textRegularSemibold="@{viewModel.marketChartTypeSelected == MarketChartTypeEnum.MONTHS_3}" />
+        <!--3 month tab divider-->
+        <View
+            android:layout_width="0dp"
+            android:layout_height="2dp"
+            android:background="@color/green_munsell"
+            android:visibility="@{viewModel.marketChartTypeSelected == MarketChartTypeEnum.MONTHS_3?View.VISIBLE:View.GONE}"
+            app:layout_constraintEnd_toEndOf="@+id/tv3Month"
+            app:layout_constraintStart_toStartOf="@+id/tv3Month"
+            app:layout_constraintTop_toBottomOf="@+id/tv3Month" />
+
+        <!--6 month tab-->
+        <TextView
+            android:id="@+id/tv6Months"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_12sdp"
+            android:layout_weight=".50"
+            android:background="?attr/selectableItemBackground"
+            android:fontFamily="@font/sf_pro_text_regular"
+            android:gravity="center"
+            android:onClick="@{()->viewModel.changeMarketChartType(MarketChartTypeEnum.MONTHS_6)}"
+            android:paddingVertical="@dimen/_2sdp"
+            android:text="@string/_6_month"
+            android:textColor="@{viewModel.marketChartTypeSelected == MarketChartTypeEnum.MONTHS_6?@color/green_munsell:@color/philippine_silver}"
+            android:textSize="@dimen/_12ssp"
+            app:layout_constraintStart_toEndOf="@+id/tv3Month"
+            app:layout_constraintTop_toTopOf="parent"
+            app:textRegularSemibold="@{viewModel.marketChartTypeSelected == MarketChartTypeEnum.MONTHS_6}" />
+        <!--3 month tab divider-->
+        <View
+            android:layout_width="0dp"
+            android:layout_height="2dp"
+            android:background="@color/green_munsell"
+            android:visibility="@{viewModel.marketChartTypeSelected == MarketChartTypeEnum.MONTHS_6?View.VISIBLE:View.GONE}"
+            app:layout_constraintEnd_toEndOf="@+id/tv6Months"
+            app:layout_constraintStart_toStartOf="@+id/tv6Months"
+            app:layout_constraintTop_toBottomOf="@+id/tv6Months" />
+        <!--1 years text-->
+        <TextView
+            android:id="@+id/tv1Year"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_12sdp"
+            android:layout_weight=".50"
+            android:background="?attr/selectableItemBackground"
+            android:fontFamily="@font/sf_pro_text_regular"
+            android:gravity="center"
+            android:onClick="@{()->viewModel.changeMarketChartType(MarketChartTypeEnum.YEAR_1)}"
+            android:paddingVertical="@dimen/_2sdp"
+            android:text="@string/_1_year"
+            android:textColor="@{viewModel.marketChartTypeSelected == MarketChartTypeEnum.YEAR_1?@color/green_munsell:@color/philippine_silver}"
+            android:textSize="@dimen/_12ssp"
+            app:layout_constraintStart_toEndOf="@+id/tv6Months"
+            app:layout_constraintTop_toTopOf="parent"
+            app:textRegularSemibold="@{viewModel.marketChartTypeSelected == MarketChartTypeEnum.YEAR_1}" />
+        <!--1 year divider-->
+        <View
+            android:layout_width="0dp"
+            android:layout_height="2dp"
+            android:background="@color/green_munsell"
+            android:visibility="@{viewModel.marketChartTypeSelected == MarketChartTypeEnum.YEAR_1?View.VISIBLE:View.GONE}"
+            app:layout_constraintEnd_toEndOf="@+id/tv1Year"
+            app:layout_constraintStart_toStartOf="@+id/tv1Year"
+            app:layout_constraintTop_toBottomOf="@+id/tv1Year" />
+        <!--3 year text-->
+        <TextView
+            android:id="@+id/tv3Year"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_12sdp"
+            android:layout_weight=".50"
+            android:background="?attr/selectableItemBackground"
+            android:fontFamily="@font/sf_pro_text_regular"
+            android:gravity="center"
+            android:onClick="@{()->viewModel.changeMarketChartType(MarketChartTypeEnum.YEAR_3)}"
+            android:paddingVertical="@dimen/_2sdp"
+            android:text="@string/_3_year"
+            android:textColor="@{viewModel.marketChartTypeSelected == MarketChartTypeEnum.YEAR_3?@color/green_munsell:@color/philippine_silver}"
+            android:textSize="@dimen/_12ssp"
+            app:layout_constraintStart_toEndOf="@+id/tv1Year"
+            app:layout_constraintTop_toTopOf="parent"
+            app:textRegularSemibold="@{viewModel.marketChartTypeSelected == MarketChartTypeEnum.YEAR_3}" />
+        <!--3 year divider-->
+        <View
+            android:layout_width="0dp"
+            android:layout_height="2dp"
+            android:background="@color/green_munsell"
+            android:visibility="@{viewModel.marketChartTypeSelected == MarketChartTypeEnum.YEAR_3?View.VISIBLE:View.GONE}"
+            app:layout_constraintEnd_toEndOf="@+id/tv3Year"
+            app:layout_constraintStart_toStartOf="@+id/tv3Year"
+            app:layout_constraintTop_toBottomOf="@+id/tv3Year" />
+        <!--5 Year-->
+        <TextView
+            android:id="@+id/tv5Year"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_12sdp"
+            android:layout_weight=".50"
+            android:background="?attr/selectableItemBackground"
+            android:fontFamily="@font/sf_pro_text_regular"
+            android:gravity="center"
+            android:onClick="@{()->viewModel.changeMarketChartType(MarketChartTypeEnum.YEAR_5)}"
+            android:paddingVertical="@dimen/_2sdp"
+            android:text="@string/_5_year"
+            android:textColor="@{viewModel.marketChartTypeSelected == MarketChartTypeEnum.YEAR_5?@color/green_munsell:@color/philippine_silver}"
+            android:textSize="@dimen/_12ssp"
+            app:layout_constraintStart_toEndOf="@+id/tv3Year"
+            app:layout_constraintTop_toTopOf="parent"
+            app:textRegularSemibold="@{viewModel.marketChartTypeSelected == MarketChartTypeEnum.YEAR_5}" />
+        <!--divider 5 year-->
+        <View
+            android:layout_width="0dp"
+            android:layout_height="2dp"
+            android:background="@color/green_munsell"
+            android:visibility="@{viewModel.marketChartTypeSelected == MarketChartTypeEnum.YEAR_5?View.VISIBLE:View.GONE}"
+            app:layout_constraintEnd_toEndOf="@+id/tv5Year"
+            app:layout_constraintStart_toStartOf="@+id/tv5Year"
+            app:layout_constraintTop_toBottomOf="@+id/tv5Year" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</layout>

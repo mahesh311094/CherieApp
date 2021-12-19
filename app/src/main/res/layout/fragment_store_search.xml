@@ -1,0 +1,393 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="com.ar7lab.cherieapp.R" />
+
+        <import type="com.ar7lab.cherieapp.enums.MarketTypeEnum" />
+
+        <import type="com.ar7lab.cherieapp.enums.SearchTypeEnum" />
+
+        <import type="android.view.View" />
+
+        <variable
+            name="isRefreshing"
+            type="Boolean" />
+
+        <variable
+            name="isHaveData"
+            type="Boolean" />
+
+        <variable
+            name="viewModel"
+            type="com.ar7lab.cherieapp.ui.storesearch.StoreSearchViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
+        android:focusable="false"
+        android:id="@+id/parentView"
+        android:focusableInTouchMode="false"
+        tools:context=".ui.market.MarketFragment">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_top"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:elevation="@dimen/_5sdp"
+            android:paddingBottom="@dimen/_4sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/iv_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="@string/app_name"
+                android:padding="@dimen/padding_normal"
+                android:src="@drawable/ic_back_v3"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:tint="@color/charleston_green" />
+
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/sf_bold"
+                android:includeFontPadding="false"
+                android:text="@string/search_result"
+                android:textColor="@color/cetacean_blue"
+                android:textSize="@dimen/_14ssp"
+                app:layout_constraintBottom_toBottomOf="@+id/iv_back"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/iv_back" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <!--<editor-fold desc="Search Artwork">-->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/til_search"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_16sdp"
+            app:boxCornerRadiusBottomEnd="@dimen/_6sdp"
+            app:boxCornerRadiusBottomStart="@dimen/_6sdp"
+            app:boxCornerRadiusTopEnd="@dimen/_6sdp"
+            app:boxCornerRadiusTopStart="@dimen/_6sdp"
+            app:boxStrokeColor="@drawable/market_box_stroke"
+            app:boxStrokeWidth="@dimen/_1sdp"
+            app:hintEnabled="false"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cl_top">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_search"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_market_search"
+                android:drawablePadding="10dp"
+                android:hint="@string/search_by_artwork_artist"
+                android:imeOptions="actionDone"
+                android:inputType="textCapWords"
+                android:lines="1"
+                android:padding="@dimen/_10sdp"
+                android:textColor="@color/black"
+                android:textColorHint="@color/spanish_grey"
+                android:textCursorDrawable="@drawable/market_color_cursor" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+        <!--</editor-fold>-->
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_2sdp"
+            android:layout_marginTop="@dimen/_16sdp"
+            android:layout_marginEnd="@dimen/_6sdp"
+            android:fontFamily="@font/sf_medium"
+            android:includeFontPadding="false"
+            android:text="@{@string/showing_result(viewModel.totalResult,viewModel.searchQuery)}"
+            android:textColor="@color/normal_text_color"
+            android:textSize="@dimen/_12ssp"
+            android:visibility="@{viewModel.isNeedSearch()?View.VISIBLE:View.GONE}"
+            app:layout_constraintEnd_toStartOf="@+id/iv_close_search"
+            app:layout_constraintStart_toStartOf="@+id/til_search"
+            app:layout_constraintTop_toBottomOf="@+id/til_search"
+            tools:text="Showing 5 Results in Greens" />
+
+        <!--<ImageView
+            android:id="@+id/iv_close"
+            android:layout_width="@dimen/_10sdp"
+            android:layout_height="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_12sdp"
+            android:src="@drawable/ic_close"
+            android:visibility="@{viewModel.isSearchBoxShow ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="@+id/til_search"
+            app:layout_constraintEnd_toEndOf="@+id/til_search"
+            app:layout_constraintTop_toTopOf="@+id/til_search"
+            app:tint="@color/white" />-->
+
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
+            android:id="@+id/cl_tab"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_12sdp"
+            android:layout_marginTop="@dimen/_12sdp"
+            android:layout_marginEnd="@dimen/_12sdp"
+            android:background="@color/white"
+            android:fitsSystemWindows="true"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView5">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <HorizontalScrollView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:fillViewport="true"
+                    android:overScrollMode="never"
+                    android:scrollbars="none"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/tv_on_sale"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="@dimen/_6sdp"
+                            android:fontFamily="@font/sf_bold"
+                            android:gravity="center"
+                            android:paddingHorizontal="@dimen/_2sdp"
+                            android:text="@{@string/on_sale_count_search(viewModel.onsaleCount)}"
+                            android:textColor="@{viewModel.searchTypeSelected == SearchTypeEnum.ON_SALE ? @color/black : @color/philippine_silver}"
+                            android:textSize="@dimen/_14ssp"
+                            android:visibility="@{(viewModel.onsaleCount.equals(`0`) || viewModel.onsaleCount.equals(``) || !isHaveData)? View.GONE : View.VISIBLE}"
+                            tools:text="On Sale (0)" />
+
+                        <TextView
+                            android:id="@+id/tv_upcoming_deals"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="@dimen/_6sdp"
+                            android:fontFamily="@font/sf_bold"
+                            android:gravity="center"
+                            android:paddingHorizontal="@dimen/_2sdp"
+                            android:text="@{@string/upcoming_deals_count_search(viewModel.upcomingDealsCount)}"
+                            android:textColor="@{viewModel.searchTypeSelected == SearchTypeEnum.UPCOMING_DEALS ? @color/black : @color/philippine_silver}"
+                            android:textSize="@dimen/_14ssp"
+                            android:visibility="@{(viewModel.upcomingDealsCount.equals(`0`) || viewModel.onsaleCount.equals(``) || !isHaveData)? View.GONE : View.VISIBLE}"
+                            tools:text="Upcoming Deals (0)" />
+
+                        <TextView
+                            android:id="@+id/tv_past_deals"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/sf_bold"
+                            android:gravity="center"
+                            android:paddingHorizontal="@dimen/_2sdp"
+                            android:text="@{@string/past_deals_count_search(viewModel.pastDealsCount)}"
+                            android:textColor="@{viewModel.searchTypeSelected == SearchTypeEnum.PAST_DEALS ? @color/black : @color/philippine_silver}"
+                            android:textSize="@dimen/_14ssp"
+                            android:visibility="@{(viewModel.pastDealsCount.equals(`0`) || viewModel.onsaleCount.equals(``) || !isHaveData)? View.GONE : View.VISIBLE}"
+                            tools:text="Past Deals (0)" />
+
+                        <TextView
+                            android:id="@+id/tv_artist"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/sf_bold"
+                            android:gravity="center"
+                            android:paddingHorizontal="@dimen/_2sdp"
+                            android:text="@{@string/artist_count_search(viewModel.artistCount)}"
+                            android:textColor="@{viewModel.searchTypeSelected == SearchTypeEnum.ARTIST ? @color/black : @color/philippine_silver}"
+                            android:textSize="@dimen/_14ssp"
+                            android:visibility="@{(viewModel.artistCount.equals(`0`) || viewModel.artistCount.equals(``) || !isHaveData)? View.GONE : View.VISIBLE}"
+                            tools:text="Artist (0)" />
+                    </LinearLayout>
+                </HorizontalScrollView>
+                <!--<TextView
+                    android:id="@+id/tv_on_sale"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/sf_bold"
+                    android:gravity="center"
+                    android:textColor="@color/black"
+                    android:paddingHorizontal="@dimen/_2sdp"
+                    android:visibility="@{viewModel.onsaleCount.equals(`0`) ? View.GONE : View.VISIBLE}"
+                    android:text="@{@string/on_sale_count_search(viewModel.onsaleCount)}"
+                    android:textSize="@dimen/_14ssp"
+                    app:layout_constraintEnd_toStartOf="@+id/tv_upcoming_deals"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintHorizontal_chainStyle="spread"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="On Sale (0)" />
+
+                <TextView
+                    android:id="@+id/tv_upcoming_deals"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/sf_bold"
+                    android:gravity="center"
+                    android:textColor="@color/philippine_silver"
+                    android:paddingHorizontal="@dimen/_2sdp"
+                    android:textSize="@dimen/_14ssp"
+                    android:visibility="@{viewModel.upcomingDealsCount.equals(`0`) ? View.GONE : View.VISIBLE}"
+                    android:text="@{@string/upcoming_deals_count_search(viewModel.upcomingDealsCount)}"
+                    app:layout_constraintEnd_toStartOf="@+id/tv_past_deals"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/tv_on_sale"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="Upcoming Deals (0)" />
+                <TextView
+                    android:id="@+id/tv_past_deals"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/sf_bold"
+                    android:gravity="center"
+                    android:textColor="@color/philippine_silver"
+                    android:paddingHorizontal="@dimen/_2sdp"
+                    android:textSize="@dimen/_14ssp"
+                    android:visibility="@{viewModel.pastDealsCount.equals(`0`) ? View.GONE : View.VISIBLE}"
+                    android:text="@{@string/past_deals_count_search(viewModel.pastDealsCount)}"
+                    app:layout_constraintEnd_toStartOf="@+id/tv_artist"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/tv_upcoming_deals"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="Past Deals (0)" />
+
+                <TextView
+                    android:visibility="gone"
+                    android:id="@+id/tv_artist"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/sf_bold"
+                    android:gravity="center"
+                    android:paddingHorizontal="@dimen/_2sdp"
+                    android:textSize="@dimen/_14ssp"
+                    android:text="Artist (0)"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/tv_past_deals"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="Artist (0)" />-->
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/swipeRefreshLayout2"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@color/white"
+            android:paddingHorizontal="@dimen/_2sdp"
+            android:visibility="@{isHaveData ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cl_tab"
+            app:layout_goneMarginTop="@dimen/_4sdp"
+            app:onRefreshListener="@{() -> viewModel.onRefresh()}"
+            app:refreshing="@{isRefreshing}">
+
+            <com.airbnb.epoxy.EpoxyRecyclerView
+                android:id="@+id/rv_items"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@color/white"
+                android:clipToPadding="false"
+                android:orientation="vertical"
+                android:scrollbarStyle="insideOverlay"
+                android:scrollbars="none"
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                app:spanCount="2"
+                tools:listitem="@layout/epoxy_layout_item_marketplace" />
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+        <ImageView
+            android:id="@+id/imageView6"
+            android:layout_width="@dimen/_150sdp"
+            android:layout_height="@dimen/_150sdp"
+            android:src="@drawable/img_data_not_found"
+            android:visibility="@{isHaveData ? View.GONE : View.VISIBLE}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="@dimen/_16sdp"
+            app:layout_constraintTop_toBottomOf="@+id/til_search"
+            app:layout_constraintVertical_chainStyle="packed" />
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:fontFamily="@font/sf_pro_text_bold"
+            android:gravity="center"
+            android:includeFontPadding="false"
+            android:text="@string/no_items_found"
+            android:textColor="@color/dove_gray"
+            android:textSize="@dimen/_13ssp"
+            android:visibility="@{isHaveData ? View.GONE : View.VISIBLE}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView6" />
+
+        <TextView
+            android:id="@+id/textView7"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_4sdp"
+            android:gravity="center"
+            android:includeFontPadding="false"
+            android:text="@string/go_to_the_marketplace_to_buy_or_bid_on_arts"
+            android:textAppearance="?attr/textAppearanceHeadline6"
+            android:textColor="@color/dove_gray"
+            android:textSize="@dimen/_12ssp"
+            android:visibility="@{isHaveData ? View.GONE : View.VISIBLE}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView6" />
+
+        <ImageView
+            android:id="@+id/iv_close_search"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_close_dialog"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@+id/textView5"
+            app:layout_constraintEnd_toEndOf="@+id/til_search"
+            app:layout_constraintTop_toTopOf="@+id/textView5" />
+        <!--android:visibility="@{viewModel.isNeedSearch()?View.VISIBLE:View.GONE}"-->
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

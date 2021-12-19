@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="pastsale"
+            type="com.ar7lab.cherieapp.model.PastSale" />
+
+        <variable
+            name="title"
+            type="String" />
+
+        <variable
+            name="currency"
+            type="String" />
+
+        <variable
+            name="art"
+            type="com.ar7lab.cherieapp.model.Art" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorOnPrimary">
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_16sdp"
+            android:layout_marginVertical="@dimen/_12sdp"
+            android:background="@drawable/bg_border_past_sales"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guidelineCenter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.4" />
+
+
+            <!--sales title-->
+            <TextView
+                android:id="@+id/tvTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_border_past_sales_label"
+                android:fontFamily="@font/sf_pro_text_bold"
+                android:gravity="center"
+                android:padding="@dimen/_8sdp"
+                android:text="@{@string/number_off_sell(title)}"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_11ssp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="1st Sell" />
+
+
+            <!--Total Number of shares sold-->
+            <TextView
+                android:id="@+id/tvPriceLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_6sdp"
+                android:layout_marginEnd="@dimen/_6sdp"
+                android:layout_marginBottom="@dimen/_6sdp"
+                android:fontFamily="@font/sf_pro_text_regular"
+                android:text="@string/price_colon"
+                android:textColor="@color/dove_gray"
+                android:textSize="@dimen/_10ssp"
+                app:layout_constraintEnd_toEndOf="@+id/guidelineCenter"
+                app:layout_constraintTop_toBottomOf="@+id/tvTitle" />
+            <!--Total Number of shares sold value-->
+            <TextView
+                android:id="@+id/tvPrice"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_2sdp"
+                android:layout_marginEnd="@dimen/_8sdp"
+                android:fontFamily="@font/sf_pro_text_medium"
+                android:text="@{@string/per_piece(currency,art.startFrom)}"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_10ssp"
+                app:layout_constraintBottom_toBottomOf="@+id/tvPriceLabel"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/guidelineCenter"
+                app:layout_constraintTop_toTopOf="@+id/tvPriceLabel" />
+
+
+            <!--Sale Piriod title -->
+            <TextView
+                android:id="@+id/tv_sale_period_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_6sdp"
+                android:fontFamily="@font/sf_pro_text_regular"
+                android:text="@string/sale_period_"
+                android:textColor="@color/dove_gray"
+                android:textSize="@dimen/_10ssp"
+                app:layout_constraintEnd_toEndOf="@+id/tvPriceLabel"
+                app:layout_constraintTop_toBottomOf="@+id/tvPriceLabel" />
+
+            <!--sales period start value-->
+            <TextView
+                android:id="@+id/tv_sale_period"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/sf_pro_text_medium"
+                android:textColor="@color/black"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_sale_period_title"
+                app:layout_constraintLeft_toRightOf="@+id/tv_sale_period_end"
+                app:layout_constraintStart_toStartOf="@+id/tvPrice"
+                app:layout_constraintTop_toTopOf="@+id/tv_sale_period_title"
+                app:showSlashDate="@{pastsale.salesStartDate}"
+                tools:text="2021-08-01" />
+
+            <TextView
+                android:id="@+id/tv_dash"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_4sdp"
+                android:fontFamily="@font/sf_pro_text_medium"
+                android:text="@string/dash"
+                android:textColor="@color/black"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_sale_period_title"
+                app:layout_constraintLeft_toRightOf="@+id/tv_sale_period_end"
+                app:layout_constraintStart_toEndOf="@+id/tv_sale_period"
+                app:layout_constraintTop_toTopOf="@+id/tv_sale_period_title" />
+
+            <!--sales period end values-->
+            <TextView
+                android:id="@+id/tv_sale_period_end"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_4sdp"
+                android:fontFamily="@font/sf_pro_text_medium"
+                android:textColor="@color/black"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_sale_period_title"
+                app:layout_constraintStart_toEndOf="@+id/tv_dash"
+                app:layout_constraintTop_toTopOf="@+id/tv_sale_period_title"
+                app:showSlashDate="@{pastsale.salesEndDate}"
+                tools:text="2021-08-03" />
+
+            <!--Total Number of shares sold-->
+            <TextView
+                android:id="@+id/tvSaleAmountLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_6sdp"
+                android:fontFamily="@font/sf_pro_text_regular"
+                android:text="@string/sales_amount"
+                android:textColor="@color/dove_gray"
+                android:textSize="@dimen/_10ssp"
+                app:layout_constraintEnd_toEndOf="@+id/tvPriceLabel"
+                app:layout_constraintTop_toBottomOf="@+id/tv_sale_period_title" />
+            <!--Total Number of shares sold value-->
+            <TextView
+                android:id="@+id/tvSaleAmount"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/_8sdp"
+                android:fontFamily="@font/sf_pro_text_medium"
+                android:text="@{@string/per_piece(currency,pastsale.salesQuantity)}"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_10ssp"
+                app:layout_constraintBottom_toBottomOf="@+id/tvSaleAmountLabel"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/tvPrice"
+                app:layout_constraintTop_toTopOf="@+id/tvSaleAmountLabel" />
+
+            <!--Total Number of shares sold-->
+            <TextView
+                android:id="@+id/tv_total_share_sold_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_6sdp"
+                android:layout_marginBottom="@dimen/_6sdp"
+                android:fontFamily="@font/sf_pro_text_regular"
+                android:text="@string/sold_out_"
+                android:textColor="@color/dove_gray"
+                android:textSize="@dimen/_10ssp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/tvPriceLabel"
+                app:layout_constraintTop_toBottomOf="@+id/tvSaleAmount" />
+            <!--Total Number of shares sold value-->
+            <TextView
+                android:id="@+id/tv_total_share_sold"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/_8sdp"
+                android:fontFamily="@font/sf_pro_text_medium"
+                android:text="@{String.valueOf(pastsale.soldPieces)}"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_10ssp"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_total_share_sold_title"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/tvPrice"
+                app:layout_constraintTop_toTopOf="@+id/tv_total_share_sold_title"
+                tools:text="100" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <!--divider-->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="@dimen/_16sdp"
+            android:background="@color/gains_boro"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/clContainer" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

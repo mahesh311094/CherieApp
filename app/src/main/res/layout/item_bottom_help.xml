@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingBottom="@dimen/_4sdp">
+
+    <View
+        android:id="@+id/view6"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_1sdp"
+        android:layout_marginTop="@dimen/_8sdp"
+        android:alpha="0.3"
+        android:background="@color/color_grey"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_facing_issue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_4sdp"
+        android:background="?attr/selectableItemBackground"
+        android:fontFamily="@font/sf_medium"
+        android:gravity="center"
+        android:text="@string/facing_issue"
+        android:textColor="@color/grey_button_switch"
+        android:textSize="@dimen/_11ssp"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toStartOf="@+id/tv_signup"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view6" />
+
+    <TextView
+        android:id="@+id/tv_signup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_4sdp"
+        android:background="?attr/selectableItemBackground"
+        android:fontFamily="@font/sf_bold"
+        android:gravity="center"
+        android:text="@string/contact_help_center"
+        android:textColor="@color/green_munsell"
+        android:textSize="@dimen/_11ssp"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/tv_facing_issue"
+        app:layout_constraintTop_toTopOf="@+id/tv_facing_issue" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

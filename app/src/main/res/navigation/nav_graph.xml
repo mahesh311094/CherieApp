@@ -1,0 +1,717 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/store">
+
+    <fragment
+        android:id="@+id/store"
+        android:name="com.ar7lab.cherieapp.ui.store.StoreFragment"
+        android:label="fragment_store"
+        tools:layout="@layout/fragment_store">
+        <action
+            android:id="@+id/action_store_to_top_artists"
+            app:destination="@id/top_artists"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out" />
+        <action
+            android:id="@+id/action_store_to_view_art_comments"
+            app:destination="@id/view_art_comments"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out" />
+        <action
+            android:id="@+id/action_store_to_traditional_artwork_details"
+            app:destination="@id/traditional_artwork_details"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out"/>
+        <action
+            android:id="@+id/action_store_to_nft_artwork_details"
+            app:destination="@id/nft_artwork_details"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out"/>
+        <action
+            android:id="@+id/action_store_to_nft_artist_profile"
+            app:destination="@id/nft_artist_profile"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out"/>
+        <action
+            android:id="@+id/action_store_to_notification"
+            app:destination="@id/notification"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out" />
+        <action
+            android:id="@+id/action_store_to_preferences"
+            app:destination="@id/preferences"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out" />
+        <action
+            android:id="@+id/action_store_to_view_art_likes"
+            app:destination="@id/view_art_likes"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out"/>
+        <action
+            android:id="@+id/action_store_to_store_onsale"
+            app:destination="@id/storeonsale"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out"/>
+        <action
+            android:id="@+id/action_store_to_store_search"
+            app:destination="@id/store_search"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out"/>
+        <action
+            android:id="@+id/action_store_to_store_upcoming_deals"
+            app:destination="@id/storeupcomingdeals"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out"/>
+        <action
+            android:id="@+id/action_store_to_store_past_sale"
+            app:destination="@id/storepastsale"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out"/>
+        <action
+            android:id="@+id/action_store_to_trade"
+            app:destination="@id/market"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out"/>
+
+        <action
+            android:id="@+id/action_store_to_likes"
+            app:destination="@id/store_likes"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out"/>
+
+    </fragment>
+    <fragment
+        android:id="@+id/deposit"
+        android:name="com.ar7lab.cherieapp.ui.wallet.deposit.DepositFragment"
+        android:label="fragment_deposit"
+        tools:layout="@layout/fragment_deposit">
+        <action
+            android:id="@+id/action_deposit_to_deposit_step_two"
+            app:destination="@id/deposit_second_step"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out" />
+        <action
+            android:id="@+id/action_deposit_to_bank_detail"
+            app:destination="@id/bank_detail"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out" />
+    </fragment>
+    <fragment
+        android:id="@+id/deposit_second_step"
+        android:name="com.ar7lab.cherieapp.ui.wallet.deposit.DepositSecondStepFragment"
+        android:label="fragment_deposite_second_step"
+        tools:layout="@layout/fragment_second_step_deposit" />
+    <fragment
+        android:id="@+id/storeonsale"
+        android:name="com.ar7lab.cherieapp.ui.storeonsale.StoreOnsaleFragment"
+        android:label="fragment_storeonsale"
+        tools:layout="@layout/fragment_store_onsale">
+        <action
+            android:id="@+id/action_store_to_traditional_artwork_details"
+            app:destination="@id/traditional_artwork_details"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out"/>
+    </fragment>
+    <fragment
+        android:id="@+id/storeupcomingdeals"
+        android:name="com.ar7lab.cherieapp.ui.storeupcomingdeals.StoreUpcomingDealsFragment"
+        android:label="fragment_storeupcomingdeals"
+        tools:layout="@layout/fragment_store_upcoming_deals">
+        <action
+            android:id="@+id/action_store_to_traditional_artwork_details"
+            app:destination="@id/traditional_artwork_details"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out"/>
+    </fragment>
+    <fragment
+        android:id="@+id/storepastsale"
+        android:name="com.ar7lab.cherieapp.ui.storepastsale.StorePastSaleFragment"
+        android:label="fragment_storepastsale"
+        tools:layout="@layout/fragment_store_past_sale">
+        <action
+            android:id="@+id/action_store_to_traditional_artwork_details"
+            app:destination="@id/traditional_artwork_details"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out"/>
+    </fragment>
+    <fragment
+        android:id="@+id/notification"
+        android:name="com.ar7lab.cherieapp.ui.notification.NotificationFragment"
+        android:label="fragment_notification"
+        tools:layout="@layout/fragment_notification" />
+
+    <fragment
+        android:id="@+id/store_search"
+        android:name="com.ar7lab.cherieapp.ui.storesearch.StoreSearchFragment"
+        android:label="fragment_store_search"
+        tools:layout="@layout/fragment_store_search">
+        <argument
+            android:name="storeType"
+            app:argType="com.ar7lab.cherieapp.enums.StoreTypeEnum" />
+        <action
+            android:id="@+id/action_store_search_to_traditional_artwork_details"
+            app:destination="@id/traditional_artwork_details"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out"/>
+        <action
+            android:id="@+id/action_store_search_to_nft_artwork_details"
+            app:destination="@id/nft_artwork_details"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out"/>
+        <action
+            android:id="@+id/action_store_search_to_trade"
+            app:destination="@id/market"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/store_likes"
+        android:name="com.ar7lab.cherieapp.ui.storelikelist.StoreLikesFragment"
+        android:label="fragment_store_likes"
+        tools:layout="@layout/fragment_store_likes">
+        <action
+            android:id="@+id/action_store_to_trade"
+            app:destination="@id/market"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/preferences"
+        android:name="com.ar7lab.cherieapp.ui.more.PreferencesFragment"
+        android:label="fragment_preferences"
+        tools:layout="@layout/fragment_preferences">
+        <action
+            android:id="@+id/action_preferences_to_help_and_support"
+            app:destination="@id/help_and_support"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out" />
+        <action
+            android:id="@+id/action_preferences_to_notification_setting"
+            app:destination="@id/notification_setting"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out" />
+        <action
+            android:id="@+id/action_preferences_to_choose_language"
+            app:destination="@id/choose_language"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out" />
+        <!--currency action-->
+        <action
+            android:id="@+id/action_preferences_to_choose_currency"
+            app:destination="@id/choose_currency"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out" />
+        <action
+            android:id="@+id/action_preferences_to_change_password"
+            app:destination="@id/change_password"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out" />
+        <action
+            android:id="@+id/action_preferences_to_notification"
+            app:destination="@id/notification"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out" />
+        <action
+            android:id="@+id/action_preferences_to_bank_detail"
+            app:destination="@id/bank_detail"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out" />
+    </fragment>
+
+
+
+    <fragment
+        android:id="@+id/market"
+        android:name="com.ar7lab.cherieapp.ui.market.MarketFragment"
+        android:label="fragment_market"
+        tools:layout="@layout/fragment_market" >
+        <action
+            android:id="@+id/action_market_to_notification"
+            app:destination="@id/notification"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out" />
+        <action
+            android:id="@+id/action_market_to_preferences"
+            app:destination="@id/preferences"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out" />
+        <action
+            android:id="@+id/action_market_to_market_detail"
+            app:destination="@id/market_detail"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/wallet"
+        android:name="com.ar7lab.cherieapp.ui.wallet.WalletFragment"
+        android:label="fragment_wallet"
+        tools:layout="@layout/fragment_wallet">
+        <action
+            android:id="@+id/action_wallet_to_notification"
+            app:destination="@id/notification"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out" />
+        <action
+            android:id="@+id/action_wallet_to_deposit"
+            app:destination="@id/deposit"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out" />
+        <action
+            android:id="@+id/action_wallet_to_preferences"
+            app:destination="@id/preferences"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out" />
+        <action
+            android:id="@+id/action_wallet_to_bank_detail"
+            app:destination="@id/bank_detail"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/news"
+        android:name="com.ar7lab.cherieapp.ui.news.NewsFragment"
+        android:label="fragment_news"
+        tools:layout="@layout/fragment_news">
+        <action
+            android:id="@+id/action_news_to_news_details"
+            app:destination="@id/news_details"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out" />
+        <action
+            android:id="@+id/action_news_to_notification"
+            app:destination="@id/notification"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out" />
+        <action
+            android:id="@+id/action_news_to_preferences"
+            app:destination="@id/preferences"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out" />
+        <action
+            android:id="@+id/action_news_to_news_bookmarked_list"
+            app:destination="@id/news_bookmarked_list"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/profile"
+        android:name="com.ar7lab.cherieapp.ui.profile.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile">
+        <action
+            android:id="@+id/action_profile_to_edit_user_profile"
+            app:destination="@id/edit_user_profile"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out" />
+
+        <action
+            android:id="@+id/action_profile_to_notification"
+            app:destination="@id/notification"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out" />
+        <action
+            android:id="@+id/action_profile_to_preferences"
+            app:destination="@id/preferences"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/edit_user_profile"
+        android:name="com.ar7lab.cherieapp.ui.edituserprofiledetails.EditUserProfileDetailsFragment"
+        android:label="fragment_edit_user_profile"
+        tools:layout="@layout/fragment_edit_user_profile_details" >
+        <argument
+            android:name="user"
+            app:argType="com.ar7lab.cherieapp.model.User" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/top_artists"
+        android:name="com.ar7lab.cherieapp.ui.topartists.TopArtistsFragment"
+        android:label="fragment_top_artists"
+        tools:layout="@layout/fragment_top_artists">
+        <argument
+            android:name="artistType"
+            app:argType="com.ar7lab.cherieapp.enums.TopArtistsTypeEnum" />
+        <action
+            android:id="@+id/action_nf_artist_profile"
+            app:destination="@id/nft_artist_profile"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out"/>
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/view_art_comments"
+        android:name="com.ar7lab.cherieapp.ui.viewartcomments.ViewArtCommentsFragment"
+        android:label="fragment_view_art_comments"
+        tools:layout="@layout/fragment_view_art_comments">
+        <argument
+            android:name="art"
+            app:argType="com.ar7lab.cherieapp.model.Art" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/traditional_artwork_details"
+        android:name="com.ar7lab.cherieapp.ui.traditionalartworkdetails.TraditionalArtworkDetailsFragment"
+        android:label="fragment_traditional_artwork_details"
+        tools:layout="@layout/fragment_traditional_artwork_details">
+        <argument
+            android:name="art"
+            app:argType="com.ar7lab.cherieapp.model.Art" />
+        <action
+            android:id="@+id/action_traditional_artwork_details_to_nft_artist_profile"
+            app:destination="@id/nft_artist_profile"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out" />
+        <action
+            android:id="@+id/action_traditional_artwork_details_to_view_art_comments"
+            app:destination="@id/view_art_comments"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out" />
+        <action
+            android:id="@+id/action_traditional_artwork_details_to_view_art_likes"
+            app:destination="@id/view_art_likes"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out"/>
+        <action
+            android:id="@+id/action_traditional_artwork_details_to_selectPaymentFragment"
+            app:destination="@id/selectPaymentFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nft_artwork_details"
+        android:name="com.ar7lab.cherieapp.ui.nftartworkdetails.NFTArtworkDetailsFragment"
+        android:label="fragment_nft_artwork_details"
+        tools:layout="@layout/fragment_nft_artwork_details">
+        <argument
+            android:name="art"
+            app:argType="com.ar7lab.cherieapp.model.Art" />
+        <action
+            android:id="@+id/action_nft_artwork_details_to_nft_artist_profile"
+            app:destination="@id/nft_artist_profile"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out" />
+        <action
+            android:id="@+id/action_nft_artwork_details_to_view_art_comments"
+            app:destination="@id/view_art_comments"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out" />
+        <action
+            android:id="@+id/action_nft_artwork_details_to_view_art_likes"
+            app:destination="@id/view_art_likes"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/nft_artist_profile"
+        android:name="com.ar7lab.cherieapp.ui.nftartistprofile.NFTArtistProfileFragment"
+        android:label="fragment_nft_artist_profile"
+        tools:layout="@layout/epoxy_layout_item_nft_artist_profile_header">
+        <action
+            android:id="@+id/action_artist_profile_to_view_art_comments"
+            app:destination="@id/view_art_comments"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out" />
+        <argument
+            android:name="artist"
+            app:argType="com.ar7lab.cherieapp.model.Artist" />
+        <argument
+            android:name="artistType"
+            app:argType="com.ar7lab.cherieapp.enums.TopArtistsTypeEnum" />
+    </fragment>
+    <fragment
+        android:id="@+id/news_details"
+        android:name="com.ar7lab.cherieapp.ui.newsdetails.NewsDetailsFragment"
+        android:label="fragment_news_details"
+        tools:layout="@layout/fragment_news_details">
+        <argument
+            android:name="news"
+            app:argType="com.ar7lab.cherieapp.model.News" />
+        <argument
+            android:name="isFromBookmarked"
+            app:argType="boolean"
+            />
+        <deepLink
+            android:id="@+id/deepLink"
+            app:uri="https://dev.cherie.gallery/news?newsId={newsId}" />
+    </fragment>
+    <fragment
+        android:id="@+id/view_art_likes"
+        android:name="com.ar7lab.cherieapp.ui.viewartlikes.ViewArtLikesFragment"
+        android:label="fragment_view_art_likes"
+        tools:layout="@layout/fragment_view_art_likes">
+        <argument
+            android:name="art"
+            app:argType="com.ar7lab.cherieapp.model.Art" />
+    </fragment>
+    <fragment
+        android:id="@+id/notification_setting"
+        android:name="com.ar7lab.cherieapp.ui.notificationsetting.NotificationSettingFragment"
+        android:label="fragment_notification_setting"
+        tools:layout="@layout/fragment_notification_setting">
+    </fragment>
+    <fragment
+        android:id="@+id/change_password"
+        android:name="com.ar7lab.cherieapp.ui.changepassword.ChangePasswordFragment"
+        android:label="fragment_change_password"
+        tools:layout="@layout/fragment_change_password" />
+    <fragment
+        android:id="@+id/help_and_support"
+        android:name="com.ar7lab.cherieapp.ui.helpandsupport.HelpAndSupportFragment"
+        android:label="fragment_help_and_support"
+        tools:layout="@layout/fragment_help_and_support">
+
+        <action
+            android:id="@+id/action_help_and_support_to_request_callback"
+            app:destination="@id/request_callback"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out" />
+        <action
+            android:id="@+id/action_help_and_support_to_query_details"
+            app:destination="@id/query_details"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out" />
+    </fragment>
+    <fragment
+        android:id="@+id/request_callback"
+        android:name="com.ar7lab.cherieapp.ui.requestcallback.RequestCallBackFragment"
+        android:label="fragment_request_callback"
+        tools:layout="@layout/fragment_request_callback" />
+    <fragment
+        android:id="@+id/query_details"
+        android:name="com.ar7lab.cherieapp.ui.querydetails.QueryDetailsFragment"
+        android:label="fragment_query_details"
+        tools:layout="@layout/fragment_query_details">
+        <argument
+            android:name="faq"
+            app:argType="com.ar7lab.cherieapp.model.FAQ" />
+    </fragment>
+    <fragment
+        android:id="@+id/choose_language"
+        android:name="com.ar7lab.cherieapp.ui.chooselanguage.ChooseLanguageFragment"
+        android:label="fragment_choose_language"
+        tools:layout="@layout/fragment_choose_language" />
+    <!--currency fragment-->
+    <fragment
+        android:id="@+id/choose_currency"
+        android:name="com.ar7lab.cherieapp.ui.currencysettings.ChooseCurrencyFragment"
+        android:label="fragment_choose_currency"
+        tools:layout="@layout/fragment_choose_currency" />
+
+    <!--currency fragment-->
+    <fragment
+        android:id="@+id/market_detail"
+        android:name="com.ar7lab.cherieapp.ui.market_detail.MarketDetailFragment"
+        android:label="fragment_market_detail"
+        tools:layout="@layout/fragment_market_detail" >
+        <argument
+            android:name="art"
+            app:argType="com.ar7lab.cherieapp.model.Art" />
+        <action
+            android:id="@+id/action_market_detail_to_deposit"
+            app:destination="@id/deposit"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out" />
+    </fragment>
+    <!--bank detail fragment-->
+    <fragment
+        android:id="@+id/bank_detail"
+        android:name="com.ar7lab.cherieapp.ui.bank_detail.BankDetailFragment"
+        android:label="fragment_bank_detail"
+        tools:layout="@layout/fragment_bank_detail" >
+
+        <argument
+            android:name="isSetting"
+            app:argType="boolean" />
+
+        <argument
+            android:name="artId"
+            app:argType="string"
+            app:nullable="true"/>
+
+        <argument
+            android:name="salesId"
+            app:argType="string"
+            app:nullable="true"/>
+
+        <argument
+            android:name="totalPieces"
+            app:argType="string"
+            app:nullable="true"/>
+
+        <argument
+            android:name="totalPrice"
+            app:argType="string"
+            app:nullable="true"/>
+
+        <argument
+            android:name="bankId"
+            app:argType="string"
+            app:nullable="true"/>
+
+        <argument
+            android:name="checkoutOrWallet"
+            app:argType="string" />
+
+        <argument
+            android:name="bankDetails"
+            app:argType="com.ar7lab.cherieapp.model.BankDetails"
+            app:nullable="true"/>
+        <argument
+            android:name="amount"
+            app:argType="float" />
+
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/news_bookmarked_list"
+        android:name="com.ar7lab.cherieapp.ui.newsbookmarkedlist.NewsBookmarkedListFragment"
+        android:label="fragment_news_bookmarked_list"
+        tools:layout="@layout/fragment_news_bookmarked_list">
+        <action
+            android:id="@+id/action_news_bookmarked_list_to_news_details"
+            app:destination="@id/news_details"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out" />
+    </fragment>
+    <fragment
+        android:id="@+id/selectPaymentFragment"
+        android:name="com.ar7lab.cherieapp.ui.payment.selectpayment.SelectPaymentFragment"
+        android:label="SelectPaymentFragment" >
+
+    <argument
+        android:name="art"
+        app:argType="com.ar7lab.cherieapp.model.Art" />
+        <action
+            android:id="@+id/action_selectPaymentFragment_to_bank_detail"
+            app:destination="@id/bank_detail" />
+        <action
+            android:id="@+id/action_selectPaymentFragment_to_wallet"
+            app:destination="@id/wallet" />
+    </fragment>
+
+</navigation>

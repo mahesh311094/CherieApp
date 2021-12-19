@@ -1,0 +1,389 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="art"
+            type="com.ar7lab.cherieapp.model.Art" />
+
+        <variable
+            name="artist"
+            type="com.ar7lab.cherieapp.model.Artist" />
+
+        <variable
+            name="listener"
+            type="com.ar7lab.cherieapp.ui.store.ArtListener" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_4sdp">
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="@{() -> listener.onClick(art)}"
+            app:cardCornerRadius="6dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:rippleColor="@color/line_color"
+            app:strokeColor="@color/line_color"
+            app:strokeWidth="1dp">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="@dimen/_8sdp">
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cv_art"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_120sdp"
+                    android:onClick="@{() -> listener.onClick(art)}"
+                    app:cardCornerRadius="6dp"
+                    app:cardElevation="2dp"
+                    android:layout_margin="@dimen/_12sdp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:rippleColor="@color/line_color"
+                    app:strokeColor="@color/line_color"
+                    app:strokeWidth="1dp">
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:id="@+id/iv_art"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:adjustViewBounds="true"
+                        android:background="@drawable/bg_line_border"
+                        android:contentDescription="@string/art"
+                        android:src="@drawable/ic_placeholder"
+                        app:artImgUrl="@{art.fileUrls.get(0).url}"
+                        app:layout_constraintDimensionRatio="h,1:0.75"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:shapeAppearanceOverlay="@style/CornerRadious" />
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <TextView
+                    android:id="@+id/btn_sale"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:fontFamily="@font/sf_pro_text_medium"
+                    android:paddingHorizontal="@dimen/_10sdp"
+                    android:paddingVertical="@dimen/_3sdp"
+                    android:text="@{art.status.substring(0,1).toUpperCase() + art.status.substring(1).toLowerCase()}"
+                    android:textSize="@dimen/_10ssp"
+                    app:layout_constraintEnd_toEndOf="@+id/cv_art"
+                    app:layout_constraintTop_toBottomOf="@+id/cv_art"
+                    app:setStatusBG="@{art.status}"
+                    app:setStatusTextColor="@{art.status}"
+                    tools:text="On Sell" />
+
+                <TextView
+                    android:id="@+id/tv_art_name"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_4sdp"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/sf_pro_text_semi_bold"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:text="@{art.name}"
+                    android:textAppearance="?attr/textAppearanceBody2"
+                    android:textColor="?attr/colorOnSecondary"
+                    android:textSize="@dimen/_12ssp"
+                    app:layout_constraintEnd_toStartOf="@+id/gl_1"
+                    app:layout_constraintStart_toStartOf="@+id/cv_art"
+                    app:layout_constraintTop_toBottomOf="@+id/btn_sale"
+                    tools:text="Untitled Greens, 2014" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/gl_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.69" />
+
+                <TextView
+                    android:id="@+id/tv_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_2sdp"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/sf_pro_text_medium"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:text="@string/price"
+                    android:textColor="@color/grey_button_switch"
+                    android:textSize="@dimen/_10ssp"
+                    app:layout_constraintBottom_toTopOf="@+id/tv_name"
+                    app:layout_constraintStart_toStartOf="@+id/gl_1"
+                    app:layout_constraintTop_toTopOf="@+id/tv_art_name"
+                    tools:text="Price:" />
+
+                <TextView
+                    android:id="@+id/tv_price_amount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/sf_pro_text_bold"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:text="@{@string/full_price(art.price, art.currency)}"
+                    android:textColor="@color/blue"
+                    android:textSize="@dimen/_10ssp"
+                    app:layout_constraintStart_toStartOf="@+id/tv_price"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_price"
+                    tools:text="$15,845" />
+
+                <TextView
+                    android:id="@+id/tv_artist"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/sf_pro_text_medium"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:text="@string/artist_"
+                    android:textColor="@color/grey_button_switch"
+                    android:textSize="@dimen/_8ssp"
+                    app:layout_constraintStart_toStartOf="@+id/tv_art_name"
+                    app:layout_constraintTop_toTopOf="@+id/tv_name" />
+
+                <TextView
+                    android:id="@+id/tv_name"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_4sdp"
+                    android:layout_marginEnd="@dimen/_4sdp"
+                    android:fontFamily="@font/sf_pro_text_medium"
+                    android:onClick="@{() -> listener.artistProfileClick(artist)}"
+                    android:singleLine="true"
+                    android:textColor="@color/artist_color"
+                    android:textSize="@dimen/_8ssp"
+                    app:artistName="@{art.artist.name}"
+                    app:birthDate="@{art.artist.birthDate}"
+                    app:deathDate="@{art.artist.deathDate}"
+                    app:layout_constraintEnd_toStartOf="@+id/gl_1"
+                    app:layout_constraintStart_toEndOf="@+id/tv_artist"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_art_name"
+                    tools:text="Yayoi Kusama, 1958 ~ 2020" />
+
+                <TextView
+                    android:id="@+id/tv_sales"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_2sdp"
+                    android:layout_marginEnd="@dimen/_2sdp"
+                    android:fontFamily="@font/sf_pro_text_medium"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:text="@string/sales"
+                    android:textColor="@color/grey_button_switch"
+                    android:textSize="@dimen/_8ssp"
+                    app:layout_constraintStart_toStartOf="@+id/tv_price_amount"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_price_amount"
+                    tools:text="Sales:" />
+
+                <TextView
+                    android:id="@+id/tv_sales_amount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_2sdp"
+                    android:layout_marginEnd="@dimen/_2sdp"
+                    android:fontFamily="@font/sf_pro_text_bold"
+                    android:text="@{@string/full_sales(art.shareSalesRate)}"
+                    android:textColor="@color/blue"
+                    android:textSize="@dimen/_8ssp"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_sales"
+                    app:layout_constraintStart_toEndOf="@+id/tv_sales"
+                    app:layout_constraintTop_toTopOf="@+id/tv_sales"
+                    tools:text="25.55" />
+
+                <TextView
+                    android:id="@+id/tv_pr"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_1sdp"
+                    android:fontFamily="@font/sf_pro_text_bold"
+                    android:text="@string/_pr"
+                    android:textColor="@color/blue"
+                    android:textSize="@dimen/_8ssp"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_sales"
+                    app:layout_constraintStart_toEndOf="@+id/tv_sales_amount"
+                    app:layout_constraintTop_toTopOf="@+id/tv_sales" />
+
+                <TextView
+                    android:id="@+id/tv_sold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_2sdp"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/sf_pro_text_semi_bold"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:text="@string/sold"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_8ssp"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_sales_amount"
+                    app:layout_constraintStart_toEndOf="@+id/tv_pr"
+                    app:layout_constraintTop_toTopOf="@+id/tv_sales_amount" />
+
+                <TextView
+                    android:id="@+id/tv_soles_rate"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_normal"
+                    android:layout_marginEnd="@dimen/margin_normal"
+                    android:text="@{@string/soles_rate(art.investmentInfo.ownershipSales)}"
+                    android:textAppearance="?attr/textAppearanceSubtitle2"
+                    android:textColor="@color/dove_gray"
+                    android:visibility="gone"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_name"
+                    tools:text="@string/soles_rate" />
+
+                <TextView
+                    android:id="@+id/tvPrice"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_normal"
+                    android:ellipsize="end"
+                    android:maxLines="2"
+                    android:text="@{@string/art_price_one_line(art.price, art.currency)}"
+                    android:textAppearance="?attr/textAppearanceBody2"
+                    android:textColor="?colorOnSecondary"
+                    android:textStyle="bold"
+                    android:visibility="gone"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_soles_rate"
+                    tools:text="" />
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/iv_profile"
+                    android:layout_width="@dimen/_25sdp"
+                    android:layout_height="@dimen/_25sdp"
+                    android:layout_marginTop="@dimen/_4sdp"
+                    android:contentDescription="@string/setting"
+                    android:src="@drawable/ic_placeholder"
+                    app:artImgUrl="@{art.fileUrls.get(0).url}"
+                    app:layout_constraintStart_toStartOf="@+id/tv_artist"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_name"
+                    app:shapeAppearance="@style/circleImageView"
+                    app:strokeColor="@color/white"
+                    app:strokeWidth="@dimen/_2sdp" />
+
+                <TextView
+                    android:id="@+id/tv_artist_name"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_8sdp"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/sf_pro_text_medium"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:text="@{art.artist.name}"
+                    android:textAppearance="?attr/textAppearanceBody2"
+                    android:textColor="?attr/colorOnSecondary"
+                    android:textSize="@dimen/_10ssp"
+                    app:layout_constraintBottom_toBottomOf="@+id/iv_profile"
+                    app:layout_constraintEnd_toStartOf="@+id/gl_1"
+                    app:layout_constraintStart_toEndOf="@+id/iv_profile"
+                    app:layout_constraintTop_toTopOf="@+id/iv_profile"
+                    tools:text="Yayoi Kusama" />
+
+                <View
+                    android:id="@+id/view2"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_1sdp"
+                    android:layout_marginTop="@dimen/_12sdp"
+                    android:background="@color/light_blue_2"
+                    app:layout_constraintEnd_toEndOf="@+id/cv_art"
+                    app:layout_constraintStart_toStartOf="@+id/cv_art"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_artist_name" />
+
+                <ImageView
+                    android:id="@+id/iv_like"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/_6sdp"
+                    android:onClick="@{() -> listener.likeClick(art)}"
+                    android:paddingTop="@dimen/padding_small"
+                    android:paddingBottom="@dimen/padding_small"
+                    android:src="@{art.liked ? @drawable/ic_heart_filled : @drawable/ic_heart, default=@drawable/ic_heart}"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_like"
+                    app:layout_constraintEnd_toStartOf="@+id/tv_like"
+                    app:layout_constraintTop_toTopOf="@+id/tv_like" />
+
+                <TextView
+                    android:id="@+id/tv_like"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_20sdp"
+                    android:layout_marginTop="@dimen/_4sdp"
+                    android:gravity="center"
+                    android:onClick="@{() -> listener.viewLikeClick(art)}"
+                    android:paddingTop="@dimen/margin_extra_small"
+                    android:paddingBottom="@dimen/margin_extra_small"
+                    android:text="@{String.valueOf(art.likeCount)}"
+                    android:textAppearance="?attr/textAppearanceBody2"
+                    android:textColor="@color/light_blue"
+                    android:textSize="@dimen/_12ssp"
+                    app:layout_constraintEnd_toStartOf="@+id/view3"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintHorizontal_chainStyle="spread"
+                    app:layout_constraintStart_toStartOf="@+id/view2"
+                    app:layout_constraintTop_toBottomOf="@+id/view2"
+                    tools:text="234" />
+
+                <View
+                    android:id="@+id/view3"
+                    android:layout_width="@dimen/_1sdp"
+                    android:layout_height="@dimen/_25sdp"
+                    android:background="@color/light_blue_2"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_like"
+                    app:layout_constraintEnd_toStartOf="@+id/tv_comment"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/tv_like"
+                    app:layout_constraintTop_toTopOf="@+id/tv_like" />
+
+                <TextView
+                    android:id="@+id/tv_comment"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="@dimen/margin_small"
+                    android:gravity="center"
+                    android:onClick="@{() -> listener.viewCommentClick(art)}"
+                    android:paddingTop="@dimen/margin_extra_small"
+                    android:paddingBottom="@dimen/margin_extra_small"
+                    android:text="@{String.valueOf(art.commentCount)}"
+                    android:textAppearance="?attr/textAppearanceBody2"
+                    android:textColor="@color/light_blue"
+                    android:textSize="@dimen/_12ssp"
+                    app:drawableStartCompat="@drawable/ic_comment"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_like"
+                    app:layout_constraintEnd_toEndOf="@+id/view2"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/view3"
+                    app:layout_constraintTop_toTopOf="@+id/tv_like"
+                    tools:text="24" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.card.MaterialCardView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

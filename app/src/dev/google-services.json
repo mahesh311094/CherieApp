@@ -1,0 +1,98 @@
+{
+  "project_info": {
+    "project_number": "121920071417",
+    "project_id": "cherie-dev-6dcb0",
+    "storage_bucket": "cherie-dev-6dcb0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:121920071417:android:be9851e53468ed611d6428",
+        "android_client_info": {
+          "package_name": "com.cherieapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "121920071417-e0oshtk7sa44h7khdineievjfpup1ufo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC5dHszU6UpvJKpLRpBNmWqsJhC0Vn1umQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "121920071417-e0oshtk7sa44h7khdineievjfpup1ufo.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "121920071417-fnl6jbavv3r1cko46q68rjfevsagoqos.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.cherie.app"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:121920071417:android:5141e3bf6e9ab4d11d6428",
+        "android_client_info": {
+          "package_name": "com.cherieapp.dev"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "121920071417-7u5j9ks9u1duhfjt5c86635res8j3ufp.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.cherieapp.dev",
+            "certificate_hash": "2bc74cd1794a40adbdb865673323919005ca08c0"
+          }
+        },
+        {
+          "client_id": "121920071417-jdeokor4d0m49mfo7js375c6s4oo5eah.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.cherieapp.dev",
+            "certificate_hash": "b4d43f4b7e7e711abb24be2b6d6b439845bd9ba3"
+          }
+        },
+        {
+          "client_id": "121920071417-e0oshtk7sa44h7khdineievjfpup1ufo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC5dHszU6UpvJKpLRpBNmWqsJhC0Vn1umQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "121920071417-e0oshtk7sa44h7khdineievjfpup1ufo.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "121920071417-fnl6jbavv3r1cko46q68rjfevsagoqos.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.cherie.app"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

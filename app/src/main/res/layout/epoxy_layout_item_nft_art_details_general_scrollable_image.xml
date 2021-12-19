@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="art"
+            type="com.ar7lab.cherieapp.model.Art" />
+
+        <variable
+            name="position"
+            type="String" />
+
+        <variable
+            name="adapter"
+            type="com.ar7lab.cherieapp.ui.traditionalartworkdetails.slider.ImageSliderAdapter" />
+
+        <variable
+            name="viewModel"
+            type="com.ar7lab.cherieapp.ui.nftartworkdetails.NFTArtworkDetailsViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_210sdp"
+        android:paddingVertical="@dimen/_8sdp">
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/viewPager2"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:vpAdapter="@{adapter}"
+            app:restore="@{viewModel.restoreHeight}"/>
+
+        <com.ar7lab.cherieapp.widget.DotView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/_10sdp"
+            app:dotCounts="@{viewModel.totalFileUrls}"
+            app:dotSize="@dimen/_8sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:selectDot="@{0}"
+            app:selectedResource="@drawable/banner_active"
+            app:unSelectedResource="@drawable/banner_inactive" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

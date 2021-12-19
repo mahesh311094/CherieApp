@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.ar7lab.cherieapp.ui.wallet.deposit.DepositViewModel" />
+
+        <import type="com.ar7lab.cherieapp.enums.WalletTypeEnum" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clSelectedTabTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_wallet_selection_dialog">
+        <!--Bank Title-->
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_large"
+            android:text="@string/add_bank_title"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_11ssp"
+            app:fontFamily="@font/sf_pro_text_bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!--close image-->
+        <ImageView
+            android:id="@+id/ivClose"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="14dp"
+            android:padding="10dp"
+            android:src="@drawable/ic_cross"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+        <!--country name-->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/til_country_name"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_12sdp"
+            android:hint="@string/enter_country_name"
+            app:boxStrokeColor="@drawable/text_input_box_dialog"
+            app:boxCornerRadiusBottomStart="@dimen/_7sdp"
+            app:boxCornerRadiusBottomEnd="@dimen/_7sdp"
+            app:boxCornerRadiusTopEnd="@dimen/_7sdp"
+            app:boxCornerRadiusTopStart="@dimen/_7sdp"
+            app:endIconMode="custom"
+            app:endIconTint="@null"
+            app:helperTextTextAppearance="?attr/textAppearanceCaption"
+            app:helperTextTextColor="@android:color/holo_red_dark"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvTitle">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autofillHints="emailAddress"
+                android:digits="0123456789"
+                android:drawablePadding="10dp"
+                android:inputType="phone"
+                android:maxLength="16"
+                android:padding="8dp"
+                android:textSize="@dimen/_11ssp"
+                android:fontFamily="@font/sf_pro_text_regular"
+                android:textAppearance="?attr/textAppearanceBody1"
+                android:textColorHint="@color/tab_divider_grey"
+                tools:text="" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!--bank name-->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/til_bank_name"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_12sdp"
+            android:layout_marginTop="@dimen/_6sdp"
+            android:layout_marginEnd="@dimen/_12sdp"
+            android:hint="@string/bank_name"
+            app:boxStrokeColor="@drawable/text_input_box_stroke"
+            app:endIconMode="custom"
+            app:endIconTint="@null"
+            app:helperTextTextAppearance="?attr/textAppearanceCaption"
+            app:boxCornerRadiusBottomStart="@dimen/_7sdp"
+            app:boxCornerRadiusBottomEnd="@dimen/_7sdp"
+            app:boxCornerRadiusTopEnd="@dimen/_7sdp"
+            app:boxCornerRadiusTopStart="@dimen/_7sdp"
+            app:helperTextTextColor="@color/fruit_salad"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/til_country_name">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autofillHints="emailAddress"
+                android:drawablePadding="10dp"
+                android:textSize="@dimen/_11ssp"
+                android:fontFamily="@font/sf_pro_text_regular"
+                android:padding="8dp"
+                android:textAppearance="?attr/textAppearanceBody1"
+                android:textColorHint="@color/tab_divider_grey"
+                tools:text="" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!--account name-->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/til_account_name"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_12sdp"
+            android:layout_marginTop="@dimen/_6sdp"
+            android:layout_marginEnd="@dimen/_12sdp"
+            android:hint="@string/account_name"
+            app:boxStrokeColor="@drawable/text_input_box_stroke"
+            app:endIconMode="custom"
+            app:endIconTint="@null"
+            app:boxCornerRadiusBottomStart="@dimen/_7sdp"
+            app:boxCornerRadiusBottomEnd="@dimen/_7sdp"
+            app:boxCornerRadiusTopEnd="@dimen/_7sdp"
+            app:boxCornerRadiusTopStart="@dimen/_7sdp"
+            app:helperTextTextAppearance="?attr/textAppearanceCaption"
+            app:helperTextTextColor="@color/fruit_salad"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/til_bank_name">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autofillHints="emailAddress"
+                android:drawablePadding="10dp"
+                android:inputType="textPersonName"
+                android:padding="8dp"
+                android:textSize="@dimen/_11ssp"
+                android:fontFamily="@font/sf_pro_text_regular"
+                android:textAppearance="?attr/textAppearanceBody1"
+                android:textColorHint="@color/tab_divider_grey"
+                tools:text="" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!--account number-->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/til_account_no"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_12sdp"
+            android:layout_marginTop="@dimen/_6sdp"
+            android:layout_marginEnd="@dimen/_12sdp"
+            android:hint="@string/account_number"
+            app:boxStrokeColor="@drawable/text_input_box_stroke"
+            app:endIconMode="custom"
+            app:endIconTint="@null"
+            app:boxCornerRadiusBottomStart="@dimen/_7sdp"
+            app:boxCornerRadiusBottomEnd="@dimen/_7sdp"
+            app:boxCornerRadiusTopEnd="@dimen/_7sdp"
+            app:boxCornerRadiusTopStart="@dimen/_7sdp"
+            app:helperTextTextAppearance="?attr/textAppearanceCaption"
+            app:helperTextTextColor="@color/fruit_salad"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/til_account_name">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autofillHints="emailAddress"
+                android:drawablePadding="10dp"
+                android:inputType="textPersonName"
+                android:textSize="@dimen/_11ssp"
+                android:fontFamily="@font/sf_pro_text_regular"
+                android:padding="8dp"
+                android:textAppearance="?attr/textAppearanceBody1"
+                android:textColorHint="@color/tab_divider_grey"
+                tools:text="" />
+        </com.google.android.material.textfield.TextInputLayout>
+       <!--Check Mark-->
+        <ImageView
+            android:id="@+id/ivDefaultCard"
+            android:src="@drawable/ic_default_card_check"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/til_account_no"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="@dimen/_12sdp"
+            android:layout_marginStart="@dimen/_12sdp"
+            />
+        <!--Check Mark Label-->
+        <TextView
+            android:id="@+id/tvMarkCardAsDefault"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/mark_this_card"
+            android:layout_marginLeft="@dimen/_6sdp"
+            app:layout_constraintTop_toTopOf="@+id/ivDefaultCard"
+            app:layout_constraintStart_toEndOf="@+id/ivDefaultCard"
+            app:layout_constraintBottom_toBottomOf="@+id/ivDefaultCard"
+            />
+        <!--Save Button-->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnConfirmToPay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_12sdp"
+            android:layout_marginTop="@dimen/_12sdp"
+            android:fontFamily="@font/sf_pro_text_semi_bold"
+            android:paddingVertical="@dimen/_6sdp"
+            android:text="@string/save"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_11ssp"
+            android:textStyle="bold"
+            app:backgroundTint="@color/green_munsell"
+            app:cornerRadius="10dp"
+            app:layout_constraintTop_toBottomOf="@id/ivDefaultCard"
+            app:layout_constraintStart_toStartOf="parent" />
+        <!--Don't worry layout-->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_12sdp"
+            android:padding="@dimen/_12sdp"
+            android:background="@drawable/bg_safe_details"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnConfirmToPay"
+            >
+            <ImageView
+                android:id="@+id/ivSecureIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_secure_icon"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                />
+            <TextView
+                android:id="@+id/tvDontWorry"
+                android:layout_marginLeft="@dimen/_6sdp"
+                android:text="@string/dont_worry"
+                android:textColor="@color/green_munsell"
+                android:fontFamily="@font/sf_pro_text_bold"
+                android:textSize="@dimen/_11ssp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toEndOf="@+id/ivSecureIcon"
+                app:layout_constraintTop_toTopOf="@+id/ivSecureIcon"
+                app:layout_constraintBottom_toTopOf="@+id/tvYourInfoSafe"
+                />
+            <TextView
+                android:id="@+id/tvYourInfoSafe"
+                android:layout_marginLeft="@dimen/_6sdp"
+                android:text="@string/your_bank_info"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/dove_gray"
+                android:fontFamily="@font/sf_pro_text_regular"
+                android:textSize="@dimen/_9sdp"
+                app:layout_constraintTop_toBottomOf="@+id/tvDontWorry"
+                app:layout_constraintStart_toEndOf="@+id/ivSecureIcon"
+                app:layout_constraintBottom_toBottomOf="@+id/ivSecureIcon"
+                />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

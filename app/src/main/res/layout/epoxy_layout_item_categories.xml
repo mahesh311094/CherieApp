@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="com.ar7lab.cherieapp.enums.StoreTypeEnum" />
+
+        <variable
+            name="type"
+            type="com.ar7lab.cherieapp.enums.StoreTypeEnum" />
+
+        <variable
+            name="listener"
+            type="com.ar7lab.cherieapp.ui.store.CategoriesClickListener" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/iv_trending"
+            android:layout_width="@dimen/_55sdp"
+            android:layout_height="@dimen/_55sdp"
+            android:onClick="@{(v) -> listener.onClickCategory(v,`trending`)}"
+            android:src="@{type == StoreTypeEnum.FOR_YOU ? @drawable/ic_trending : @drawable/ic_trending_unselect }"
+            app:layout_constraintEnd_toStartOf="@+id/iv_traditional"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_trending"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_6sdp"
+            android:alpha="@{type == StoreTypeEnum.FOR_YOU ? 1.0f : 0.3f}"
+            android:fontFamily="@font/sf_pro_text_medium"
+            android:onClick="@{(v) -> listener.onClickCategory(v,`trending`)}"
+            android:text="@string/trending"
+            android:textColor="@color/tab_divider_grey"
+            android:textSize="@dimen/_10ssp"
+            app:layout_constraintEnd_toEndOf="@+id/iv_trending"
+            app:layout_constraintStart_toStartOf="@+id/iv_trending"
+            app:layout_constraintTop_toBottomOf="@+id/iv_trending" />
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/iv_traditional"
+            android:layout_width="@dimen/_55sdp"
+            android:layout_height="@dimen/_55sdp"
+            android:onClick="@{(v) -> listener.onClickCategory(v,`traditional`)}"
+            android:src="@{type == StoreTypeEnum.TRADITIONAL_ART ? @drawable/ic_traditional : @drawable/ic_traditional_unselect }"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_trending"
+            app:layout_constraintEnd_toStartOf="@+id/iv_ntf"
+            app:layout_constraintStart_toEndOf="@+id/iv_trending"
+            app:layout_constraintTop_toTopOf="@+id/iv_trending" />
+
+        <TextView
+            android:id="@+id/tv_traditional"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_6sdp"
+            android:alpha="@{type == StoreTypeEnum.TRADITIONAL_ART ? 1.0f : 0.3f}"
+            android:fontFamily="@font/sf_pro_text_medium"
+            android:onClick="@{(v) -> listener.onClickCategory(v,`traditional`)}"
+            android:text="@string/traditional"
+            android:textColor="@color/tab_divider_grey"
+            android:textSize="@dimen/_10ssp"
+            app:layout_constraintEnd_toEndOf="@+id/iv_traditional"
+            app:layout_constraintStart_toStartOf="@+id/iv_traditional"
+            app:layout_constraintTop_toBottomOf="@+id/iv_traditional" />
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/iv_ntf"
+            android:layout_width="@dimen/_55sdp"
+            android:layout_height="@dimen/_55sdp"
+            android:onClick="@{(v) -> listener.onClickCategory(v,`nft`)}"
+            android:src="@{type == StoreTypeEnum.NFT_ART ? @drawable/ic_nft : @drawable/ic_nft_unselect }"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_traditional"
+            app:layout_constraintEnd_toStartOf="@+id/iv_artist"
+            app:layout_constraintStart_toEndOf="@+id/iv_traditional"
+            app:layout_constraintTop_toTopOf="@+id/iv_traditional" />
+
+        <TextView
+            android:id="@+id/tv_nft"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_6sdp"
+            android:alpha="@{type == StoreTypeEnum.NFT_ART ? 1.0f : 0.3f}"
+            android:fontFamily="@font/sf_pro_text_medium"
+            android:onClick="@{(v) -> listener.onClickCategory(v,`nft`)}"
+            android:text="@string/nft"
+            android:textColor="@color/tab_divider_grey"
+            android:textSize="@dimen/_10ssp"
+            app:layout_constraintEnd_toEndOf="@+id/iv_ntf"
+            app:layout_constraintStart_toStartOf="@+id/iv_ntf"
+            app:layout_constraintTop_toBottomOf="@+id/iv_ntf" />
+
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/iv_artist"
+            android:layout_width="@dimen/_55sdp"
+            android:layout_height="@dimen/_55sdp"
+            android:onClick="@{(v) -> listener.onClickCategory(v,`artist`)}"
+            android:src="@{type == StoreTypeEnum.ARTIST ? @drawable/ic_artist : @drawable/ic_artist_unselect }"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_ntf"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/iv_ntf"
+            app:layout_constraintTop_toTopOf="@+id/iv_ntf" />
+
+        <TextView
+            android:id="@+id/tv_artist"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_6sdp"
+            android:alpha="@{type == StoreTypeEnum.ARTIST ? 1.0f : 0.3f}"
+            android:fontFamily="@font/sf_pro_text_medium"
+            android:onClick="@{(v) -> listener.onClickCategory(v,`artist`)}"
+            android:text="@string/artist"
+            android:textColor="@color/tab_divider_grey"
+            android:textSize="@dimen/_10ssp"
+            app:layout_constraintEnd_toEndOf="@+id/iv_artist"
+            app:layout_constraintStart_toStartOf="@+id/iv_artist"
+            app:layout_constraintTop_toBottomOf="@+id/iv_artist" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

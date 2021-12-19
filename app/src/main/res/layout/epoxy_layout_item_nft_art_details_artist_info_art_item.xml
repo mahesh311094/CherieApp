@@ -1,0 +1,760 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="artist"
+            type="com.ar7lab.cherieapp.model.Artist" />
+
+        <variable
+            name="art"
+            type="com.ar7lab.cherieapp.model.Art" />
+
+        <variable
+            name="isPadding"
+            type="Boolean" />
+
+        <variable
+            name="listener"
+            type="com.ar7lab.cherieapp.ui.traditionalartworkdetails.ArtListener" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_8sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="@dimen/_4sdp"
+            android:background="@drawable/bg_line_border"
+            android:paddingBottom="@dimen/_8sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/iv_avatar"
+                android:layout_width="@dimen/_30sdp"
+                android:layout_height="@dimen/_30sdp"
+                android:layout_margin="@dimen/margin_normal"
+                android:background="?attr/colorOnPrimary"
+                android:padding="2dp"
+                android:src="@drawable/ic_placeholder"
+                android:visibility="gone"
+                app:artImgUrl="@{artist.profilePicture}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:shapeAppearance="@style/circleImageView" />
+
+            <TextView
+                android:id="@+id/tv_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_4sdp"
+                android:fontFamily="@font/sf_pro_text_medium"
+                android:singleLine="true"
+                android:text="@{artist.name}"
+                android:textAppearance="?attr/textAppearanceBody2"
+                android:textColor="?colorOnSecondary"
+                android:textSize="@dimen/_10ssp"
+                android:textStyle="bold"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="@+id/iv_avatar"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/iv_avatar"
+                app:layout_constraintTop_toTopOf="@+id/iv_avatar"
+                tools:text="Tahnee Lansdale" />
+
+            <TextView
+                android:id="@+id/tv_location"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_small"
+                android:text="@{artist.overview}"
+                android:textAppearance="?attr/textAppearanceCaption"
+                android:textColor="@color/dove_gray"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/iv_avatar"
+                app:layout_constraintTop_toBottomOf="@+id/tv_name"
+                tools:text="British, B1982" />
+
+            <TextView
+                android:id="@+id/tv_nft_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_small"
+                android:textAppearance="?attr/textAppearanceBody1"
+                android:textColor="?attr/colorSecondary"
+                android:textStyle="bold"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="@+id/iv_avatar"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/iv_avatar"
+                app:layout_constraintTop_toTopOf="@+id/iv_avatar"
+                tools:text="CRYPTO VISION" />
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/iv_art"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_130sdp"
+                android:layout_margin="@dimen/_8sdp"
+                android:background="@color/alabaster"
+                android:contentDescription="@string/art"
+                android:scaleType="fitXY"
+                android:src="@drawable/ic_item_temp"
+                app:artImgUrl="@{art.fileUrls.get(0).url}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/iv_avatar"
+                app:shapeAppearanceOverlay="@style/CornerSize10Percent" />
+
+            <TextView
+                android:id="@+id/tv_art_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_6sdp"
+                android:includeFontPadding="false"
+                android:singleLine="true"
+                android:text="@{art.name}"
+                android:fontFamily="@font/sf_pro_text_semi_bold"
+                android:textColor="@color/cetacean_blue"
+                android:textSize="@dimen/_11ssp"
+                app:layout_constraintEnd_toEndOf="@+id/iv_art"
+                app:layout_constraintStart_toStartOf="@+id/iv_art"
+                app:layout_constraintTop_toBottomOf="@+id/iv_art"
+                tools:text="RADIATION VADAR" />
+
+            <TextView
+                android:id="@+id/tv_description"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_2sdp"
+                android:includeFontPadding="false"
+                android:singleLine="true"
+                android:fontFamily="@font/sf_pro_text_medium"
+                android:textColor="@color/normal_text_color"
+                android:textSize="@dimen/_8ssp"
+                app:artistName="@{art.artist.name}"
+                app:birthDate="@{art.artist.birthDate}"
+                app:deathDate="@{art.artist.deathDate}"
+                app:layout_constraintEnd_toEndOf="@+id/tv_art_name"
+                app:layout_constraintStart_toStartOf="@+id/tv_art_name"
+                app:layout_constraintTop_toBottomOf="@+id/tv_art_name"
+                tools:text="Yayoi Kusama - 1958~2020" />
+
+            <TextView
+                android:id="@+id/tv_sale_text"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_6sdp"
+                android:includeFontPadding="false"
+                android:text="@string/sales"
+                android:fontFamily="@font/sf_pro_text_semi_bold"
+                android:textColor="@color/purple_200"
+                android:textSize="@dimen/_10ssp"
+                app:layout_constraintStart_toStartOf="@+id/tv_description"
+                app:layout_constraintTop_toBottomOf="@+id/tv_description" />
+
+            <TextView
+                android:id="@+id/tv_sales"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_4sdp"
+                android:fontFamily="@font/sf_pro_text_medium"
+                android:text="@{@string/full_sales(art.shareSalesRate)}"
+                android:textColor="@color/wageningen_green"
+                android:textSize="@dimen/_10ssp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_sale_text"
+                app:layout_constraintStart_toEndOf="@+id/tv_sale_text"
+                app:layout_constraintTop_toTopOf="@+id/tv_sale_text"/>
+
+            <TextView
+                android:id="@+id/tv_pr"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_2sdp"
+                android:fontFamily="@font/sf_pro_text_medium"
+                android:text="@string/_pr"
+                android:textColor="@color/wageningen_green"
+                android:textSize="@dimen/_10ssp"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_sales"
+                app:layout_constraintStart_toEndOf="@+id/tv_sales"
+                app:layout_constraintTop_toTopOf="@+id/tv_sales" />
+
+            <TextView
+                android:id="@+id/tv_sold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_4sdp"
+                android:ellipsize="end"
+                android:fontFamily="@font/sf_pro_text_medium"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:text="@string/sold"
+                android:textColor="@color/purple_200"
+                android:textSize="@dimen/_10ssp"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_sales"
+                app:layout_constraintStart_toEndOf="@+id/tv_pr"
+                app:layout_constraintTop_toTopOf="@+id/tv_sales" />
+
+            <TextView
+                android:id="@+id/tv_price_text"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_6sdp"
+                android:includeFontPadding="false"
+                android:text="@string/price"
+                android:fontFamily="@font/sf_pro_text_semi_bold"
+                android:textColor="@color/purple_200"
+                android:textSize="@dimen/_10ssp"
+                app:layout_constraintStart_toStartOf="@+id/tv_description"
+                app:layout_constraintTop_toBottomOf="@+id/tv_sale_text" />
+
+            <TextView
+                android:id="@+id/tv_price"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_4sdp"
+                android:text="@{art.price+art.currency}"
+                android:textColor="@color/blue"
+                android:textSize="@dimen/_10ssp"
+                android:fontFamily="@font/sf_pro_text_semi_bold"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_price_text"
+                app:layout_constraintEnd_toEndOf="@+id/tv_description"
+                app:layout_constraintStart_toEndOf="@+id/tv_price_text"
+                app:layout_constraintTop_toTopOf="@+id/tv_price_text"
+                tools:text="0.08 wETH" />
+
+            <TextView
+                android:id="@+id/tv_like"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_6sdp"
+                android:drawableStart="@{art.liked ? @drawable/ic_heart_filled : @drawable/ic_heart}"
+                android:drawablePadding="@dimen/margin_small"
+                android:gravity="center"
+                android:onClick="@{() -> listener.likeClick(art)}"
+                android:paddingTop="@dimen/margin_extra_small"
+                android:paddingBottom="@dimen/margin_extra_small"
+                android:text="@{String.valueOf(art.likeCount)}"
+                android:textColor="@color/purple_200"
+                android:textSize="@dimen/_12ssp"
+                android:fontFamily="@font/sf_pro_text_medium"
+                app:layout_constraintEnd_toStartOf="@+id/view3"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintHorizontal_chainStyle="spread_inside"
+                app:layout_constraintStart_toStartOf="@+id/tv_price_text"
+                app:layout_constraintTop_toBottomOf="@+id/tv_price"
+                tools:drawableStart="@drawable/ic_heart"
+                tools:ignore="UseCompatTextViewDrawableXml"
+                tools:text="234" />
+
+            <View
+                android:id="@+id/view3"
+                android:layout_width="@dimen/_1sdp"
+                android:layout_height="@dimen/_25sdp"
+                android:background="@color/light_blue_2"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_like"
+                app:layout_constraintEnd_toStartOf="@+id/tv_comment"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/tv_like"
+                app:layout_constraintTop_toTopOf="@+id/tv_like" />
+
+            <TextView
+                android:id="@+id/tv_comment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawablePadding="@dimen/margin_small"
+                android:gravity="center"
+                android:onClick="@{() -> listener.viewCommentClick(art)}"
+                android:paddingTop="@dimen/margin_extra_small"
+                android:paddingBottom="@dimen/margin_extra_small"
+                android:text="@{String.valueOf(art.commentCount)}"
+                android:fontFamily="@font/sf_pro_text_medium"
+                android:textColor="@color/purple_200"
+                android:textSize="@dimen/_12ssp"
+                app:drawableStartCompat="@drawable/ic_comment"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_like"
+                app:layout_constraintEnd_toEndOf="@+id/tv_art_name"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/view3"
+                app:layout_constraintTop_toTopOf="@+id/tv_like"
+                tools:text="24" />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_6sdp"
+                android:layout_marginEnd="@dimen/_6sdp"
+                android:background="@drawable/bg_status"
+                android:drawablePadding="@dimen/_4sdp"
+                android:fontFamily="@font/sf_pro_text_medium"
+                android:paddingHorizontal="@dimen/_6sdp"
+                android:paddingVertical="@dimen/_2sdp"
+                android:text="@{art.status.substring(0,1).toUpperCase() + art.status.substring(1).toLowerCase()}"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_8ssp"
+                app:drawableLeftCompat="@drawable/ic_small_round"
+                app:layout_constraintEnd_toEndOf="@+id/iv_art"
+                app:layout_constraintTop_toTopOf="@+id/iv_art"
+                app:setStatusBackground="@{art.status}"
+                tools:text="On Sell" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!--<androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="@{isPadding ? @dimen/_4sdp : @dimen/_8sdp}"
+        android:paddingTop="@dimen/_7sdp"
+        android:paddingEnd="@{isPadding ? @dimen/_8sdp : @dimen/_4sdp}"
+        android:paddingBottom="@dimen/_1sdp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/_6sdp"
+            android:background="@drawable/bg_line_border"
+            android:paddingBottom="@dimen/_8sdp">
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/iv_avatar"
+                android:layout_width="@dimen/_35sdp"
+                android:layout_height="@dimen/_35sdp"
+                android:layout_margin="@dimen/_6sdp"
+                android:background="?attr/colorOnPrimary"
+                android:padding="2dp"
+                android:src="@drawable/ic_placeholder"
+                app:imgUrl="@{art.artist.profilePicture}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:shapeAppearance="@style/circleImageView" />
+
+            <TextView
+                android:id="@+id/tv_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_small"
+                android:singleLine="true"
+                android:text="@{art.artist.name}"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_12ssp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/tv_sub_name"
+                app:layout_constraintEnd_toStartOf="@+id/imageView3"
+                app:layout_constraintStart_toEndOf="@+id/iv_avatar"
+                app:layout_constraintTop_toTopOf="@+id/iv_avatar"
+                tools:text="Tahnee Lansdale" />
+
+            <TextView
+                android:id="@+id/tv_sub_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_small"
+                android:singleLine="true"
+                android:text="@{art.artist.name}"
+                android:textColor="@color/dove_gray"
+                android:textSize="@dimen/_9ssp"
+                app:layout_constraintBottom_toBottomOf="@+id/iv_avatar"
+                app:layout_constraintStart_toEndOf="@+id/iv_avatar"
+                app:layout_constraintTop_toBottomOf="@+id/tv_name"
+                tools:text="Tahnee Lansdale" />
+
+            <ImageView
+                android:id="@+id/imageView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:src="@drawable/ic_three_dots"
+                app:layout_constraintBottom_toBottomOf="@+id/iv_avatar"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/iv_avatar" />
+
+            <TextView
+                android:id="@+id/tv_location"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_small"
+                android:text="British, B1982"
+                android:textAppearance="?attr/textAppearanceCaption"
+                android:textColor="@color/dove_gray"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/iv_avatar"
+                app:layout_constraintTop_toBottomOf="@+id/tv_name" />
+
+            <TextView
+                android:id="@+id/tv_nft_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_small"
+                android:text="@{art.name}"
+                android:textAppearance="?attr/textAppearanceBody1"
+                android:textColor="?attr/colorSecondary"
+                android:textStyle="bold"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="@+id/iv_avatar"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/iv_avatar"
+                app:layout_constraintTop_toTopOf="@+id/iv_avatar"
+                tools:text="CRYPTO VISION" />
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/iv_art"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_80sdp"
+                android:layout_marginHorizontal="@dimen/_8sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:contentDescription="@string/art"
+                android:scaleType="fitXY"
+                android:src="@drawable/ic_item_temp"
+                app:artImgUrl="@{art.fileUrls.get(0).url}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/iv_avatar"
+                app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize50Percent" />
+
+            <TextView
+                android:id="@+id/btn_sale"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_6sdp"
+                android:fontFamily="@font/sf_pro_text_medium"
+                android:paddingHorizontal="@dimen/_8sdp"
+                android:paddingVertical="@dimen/_3sdp"
+                android:text="@{art.status.substring(0,1).toUpperCase() + art.status.substring(1).toLowerCase()}"
+                android:textSize="@dimen/_6ssp"
+                app:layout_constraintEnd_toEndOf="@+id/iv_art"
+                app:layout_constraintTop_toBottomOf="@+id/iv_art"
+                app:setStatusBG="@{art.status}"
+                app:setStatusTextColor="@{art.status}"
+                tools:text="On Sell" />
+
+            <TextView
+                android:id="@+id/tv_art_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:ellipsize="end"
+                android:fontFamily="@font/sf_pro_text_semi_bold"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:text="@{art.name}"
+                android:textColor="@color/dark_blue"
+                android:textSize="@dimen/_11ssp"
+                app:layout_constraintEnd_toEndOf="@+id/iv_art"
+                app:layout_constraintStart_toStartOf="@+id/iv_art"
+                app:layout_constraintTop_toBottomOf="@+id/btn_sale"
+                tools:text="Untitled Greens, 2014" />
+
+            <TextView
+                android:id="@+id/tv_artist_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:fontFamily="@font/mon_regular"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:text="@string/artist_"
+                android:textColor="@color/grey_button_switch"
+                android:textSize="@dimen/_8ssp"
+                app:layout_constraintStart_toStartOf="@+id/tv_art_name"
+                app:layout_constraintTop_toBottomOf="@+id/tv_art_name" />
+
+            <TextView
+                android:id="@+id/tv_artist_full_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_4sdp"
+                android:ellipsize="end"
+                android:fontFamily="@font/sf_pro_text_medium"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:textColor="@color/artist_color"
+                android:textSize="@dimen/_8ssp"
+                app:artistName="@{art.artist.name}"
+                app:birthDate="@{art.artist.birthDate}"
+                app:deathDate="@{art.artist.deathDate}"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_artist_name"
+                app:layout_constraintStart_toEndOf="@+id/tv_artist_name"
+                app:layout_constraintTop_toTopOf="@+id/tv_artist_name"
+                tools:text="Yayoi Kusama, 1958 ~ 2020" />
+
+            <TextView
+                android:id="@+id/tv_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_2sdp"
+                android:ellipsize="end"
+                android:fontFamily="@font/sf_pro_text_medium"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:text="@string/price"
+                android:textColor="@color/grey_button_switch"
+                android:textSize="@dimen/_8ssp"
+                app:layout_constraintStart_toStartOf="@+id/tv_artist_name"
+                app:layout_constraintTop_toBottomOf="@+id/tv_artist_name"
+                tools:text="Price:" />
+
+            <TextView
+                android:id="@+id/tv_price_amount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:fontFamily="@font/sf_pro_text_medium"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:text="@{@string/full_price(art.price, art.currency)}"
+                android:textColor="@color/blue"
+                android:textSize="@dimen/_8ssp"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_price"
+                app:layout_constraintStart_toStartOf="@+id/tv_artist_full_name"
+                app:layout_constraintTop_toTopOf="@+id/tv_price"
+                tools:text="$15,845" />
+
+            <TextView
+                android:id="@+id/tv_sales"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:fontFamily="@font/sf_pro_text_medium"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:text="@string/sales"
+                android:textColor="@color/grey_button_switch"
+                android:textSize="@dimen/_8ssp"
+                app:layout_constraintStart_toStartOf="@+id/tv_artist_name"
+                app:layout_constraintTop_toBottomOf="@+id/tv_price"
+                tools:text="Sales:" />
+
+            <TextView
+                android:id="@+id/tv_sales_amount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:fontFamily="@font/sf_pro_text_medium"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:text="@{@string/full_sales(art.shareSalesRate)}"
+                android:textColor="@color/blue"
+                android:textSize="@dimen/_8ssp"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_sales"
+                app:layout_constraintStart_toStartOf="@+id/tv_artist_full_name"
+                app:layout_constraintTop_toTopOf="@+id/tv_sales" />
+
+            <TextView
+                android:id="@+id/tv_pr"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_2sdp"
+                android:fontFamily="@font/sf_pro_text_medium"
+                android:text="@string/_pr"
+                android:textColor="@color/blue"
+                android:textSize="@dimen/_8ssp"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_sales"
+                app:layout_constraintStart_toEndOf="@+id/tv_sales_amount"
+                app:layout_constraintTop_toTopOf="@+id/tv_sales" />
+
+            <TextView
+                android:id="@+id/tv_sold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_4sdp"
+                android:ellipsize="end"
+                android:fontFamily="@font/sf_pro_text_medium"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:text="@string/sold"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_8ssp"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_sales_amount"
+                app:layout_constraintStart_toEndOf="@+id/tv_pr"
+                app:layout_constraintTop_toTopOf="@+id/tv_sales_amount" />
+
+            <TextView
+                android:id="@+id/tv_holders"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_normal"
+                android:layout_marginTop="@dimen/margin_small"
+                android:layout_marginEnd="@dimen/margin_normal"
+                android:text="@{@string/holders_people(art.investmentInfo.titleHolders)}"
+                android:textAppearance="?attr/textAppearanceSubtitle2"
+                android:textColor="@color/dove_gray"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_art_name"
+                tools:text="@string/holders_people" />
+
+            <TextView
+                android:id="@+id/tv_soles_rate"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_normal"
+                android:layout_marginEnd="@dimen/margin_normal"
+                android:text="@{@string/soles_rate(art.investmentInfo.ownershipSales)}"
+                android:textAppearance="?attr/textAppearanceSubtitle2"
+                android:textColor="@color/dove_gray"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_holders"
+                tools:text="@string/soles_rate" />
+
+            <TextView
+                android:id="@+id/tv_residual_quantity"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_normal"
+                android:layout_marginEnd="@dimen/margin_normal"
+                android:text="@{@string/residual_quantity_pieces(art.investmentInfo.residualOrTotalOwnership)}"
+                android:textAppearance="?attr/textAppearanceSubtitle2"
+                android:textColor="@color/dove_gray"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_soles_rate"
+                tools:text="@string/residual_quantity_pieces" />
+
+            <TextView
+                android:id="@+id/tv_art_detail"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/sf_pro_text_medium"
+                android:maxLines="2"
+                android:text="@{@string/art_detail(art.investmentInfo.titleHolders,art.investmentInfo.ownershipSales,art.investmentInfo.residualOrTotalOwnership)}"
+                android:textAppearance="?attr/textAppearanceSubtitle2"
+                android:textColor="@color/light_blue_1"
+                android:textSize="@dimen/_8ssp"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="@+id/tv_art_name"
+                app:layout_constraintStart_toStartOf="@+id/tv_art_name"
+                app:layout_constraintTop_toBottomOf="@+id/tv_artist_name"
+                tools:text="@string/residual_quantity_pieces" />
+
+            <TextView
+                android:id="@+id/tv_unique"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_normal"
+                android:layout_marginEnd="@dimen/margin_normal"
+                android:text="@string/this_is_a_unique_artwork"
+                android:textAppearance="?attr/textAppearanceSubtitle2"
+                android:textColor="?attr/colorOnSecondary"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_residual_quantity" />
+
+            <View
+                android:id="@+id/view2"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_1sdp"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:background="@color/light_blue_2"
+                app:layout_constraintEnd_toEndOf="@+id/tv_art_name"
+                app:layout_constraintStart_toStartOf="@+id/tv_art_name"
+                app:layout_constraintTop_toBottomOf="@+id/tv_sales" />
+
+            <ImageView
+                android:id="@+id/iv_like"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_8sdp"
+                android:onClick="@{() -> listener.likeClick(art)}"
+                android:paddingTop="@dimen/padding_small"
+                android:paddingBottom="@dimen/padding_small"
+                android:src="@{art.liked ? @drawable/ic_heart_filled : @drawable/ic_heart, default=@drawable/ic_heart}"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_like"
+                app:layout_constraintStart_toStartOf="@+id/view2"
+                app:layout_constraintTop_toTopOf="@+id/tv_like" />
+
+            <TextView
+                android:id="@+id/tv_like"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_6sdp"
+                android:layout_marginTop="@dimen/_4sdp"
+                android:gravity="center"
+                android:onClick="@{() -> listener.viewLikeClick(art)}"
+                android:paddingTop="@dimen/margin_extra_small"
+                android:paddingBottom="@dimen/margin_extra_small"
+                android:text="@{String.valueOf(art.likeCount)}"
+                android:textAppearance="?attr/textAppearanceBody2"
+                android:textColor="@color/light_blue"
+                android:textSize="@dimen/_12ssp"
+                app:layout_constraintEnd_toStartOf="@+id/view3"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintHorizontal_chainStyle="spread_inside"
+                app:layout_constraintStart_toEndOf="@+id/iv_like"
+                app:layout_constraintTop_toBottomOf="@+id/view2"
+                tools:text="234" />
+
+            <View
+                android:id="@+id/view3"
+                android:layout_width="@dimen/_1sdp"
+                android:layout_height="@dimen/_25sdp"
+                android:background="@color/light_blue_2"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_like"
+                app:layout_constraintEnd_toStartOf="@+id/tv_comment"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/tv_like"
+                app:layout_constraintTop_toTopOf="@+id/tv_like" />
+
+            <TextView
+                android:id="@+id/tv_comment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/_8sdp"
+                android:drawablePadding="@dimen/margin_small"
+                android:gravity="center"
+                android:onClick="@{() -> listener.viewCommentClick(art)}"
+                android:paddingTop="@dimen/margin_extra_small"
+                android:paddingBottom="@dimen/margin_extra_small"
+                android:text="@{String.valueOf(art.commentCount)}"
+                android:textAppearance="?attr/textAppearanceBody2"
+                android:textColor="@color/light_blue"
+                android:textSize="@dimen/_12ssp"
+                app:drawableStartCompat="@drawable/ic_comment"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_like"
+                app:layout_constraintEnd_toEndOf="@+id/view2"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/view3"
+                app:layout_constraintTop_toTopOf="@+id/tv_like"
+                tools:text="24" />
+
+            <View
+                android:id="@+id/view"
+                android:layout_width="0dp"
+                android:layout_height="0.5dp"
+                android:layout_marginTop="@dimen/margin_normal"
+                android:background="@color/gray_light"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_like" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+</layout>

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="purple_200">#0B0F2E</color>
+    <color name="purple_500">#0B0F2E</color>
+    <color name="purple_700">#0B0F2E</color>
+
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="red">#FF0000</color>
+    <color name="black_light">#2c2c2c</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="white_50">#80FFFFFF</color>
+    <color name="grey_button_switch">#656565</color>
+    <color name="blue">#0029FF</color>
+    <color name="blue_light">#7058ff</color>
+    <color name="blue_neutral">#1976D2</color>
+    <color name="dove_gray">#656565</color>
+    <color name="gray_light">#EBEBEB</color>
+    <color name="fruit_salad">#4CAF50</color>
+    <color name="fruit_salad_300">#194CAF50</color>
+    <color name="green">#2AAC30</color>
+    <color name="green_munsell">#02B875</color>
+    <color name="alabaster">#F9F9F9</color>
+    <color name="whisper">#FAFAFC</color>
+    <color name="red_marketplace">#FF4250</color>
+    <color name="grey_marketplace">#E5E5E5</color>
+    <color name="list_divider_grey">#EEEEEE</color>
+    <color name="tab_divider_grey">#263238</color>
+    <color name="list_header_tab_bg">#FAFAFC</color>
+    <color name="black_outer_space">#263238</color>
+    <color name="metallic_silver">#9CAAAF</color>
+    <color name="spanish_grey">#93989B</color>
+    <color name="wageningen_green">#2AAC30</color>
+    <color name="notification_background">#E8F0FE</color>
+    <color name="deep_koamaru">#353A63</color>
+    <color name="cetacean_blue">#0B0F2E</color>
+    <color name="sing_in_to_cotinue">#9CACD0</color>
+    <color name="social_button_border">#DDE5F9</color>
+    <color name="sign_up_type_selected">#0B0F2E</color>
+    <color name="grey">#C5C5C5</color>
+    <color name="sky_blue">#DFE9FF</color>
+    <color name="new_blue">#044EFF</color>
+    <color name="dark_blue">#0B0F2E</color>
+    <color name="philippine_silver">#B2B2B2</color>
+    <color name="dark_blue_transparent">#990B0F2E</color>
+    <color name="white_trans">#4DFFFFFF</color>
+    <color name="light_blue">#3D3D4E</color>
+    <color name="light_blue_1">#9D9D9D</color>
+    <color name="light_blue_2">#D5DED8</color>
+    <color name="dark_white">#C9C9C9</color>
+    <color name="see_all">#B6C2DD</color>
+    <color name="granite_gray">#5F5F5F</color>
+
+    <color name="login_icon_background">#044EFF</color>
+    <color name="login_heading_color">#0B0F2E</color>
+    <color name="tab_text_color">#6492FF</color>
+    <color name="normal_text_color">#656565</color>
+    <color name="card_background_dark">#3C3F58</color>
+    <color name="alice_blue">#F4F6FE</color>
+    <color name="platinum">#E2E4E4</color>
+
+    <color name="line_color">#DDE5F9</color>
+    <color name="selected_color">#434343</color>
+    <color name="un_selected_color">#282828</color>
+    <color name="artist_color">#9CACD0</color>
+    <color name="profile_border">#C4C4C4</color>
+    <color name="sold_out">#FF3645</color>
+    <color name="blue_border">#59044EFF</color>
+    <color name="azureish_white">#DDE5F9</color>
+    <color name="platinum_new">#E4E2E2</color>
+
+    <color name="color_grey">#8797BD</color>
+    <color name="color_grey_transparent">#4DB2B2B2</color>
+    <color name="color_granite">#80656565</color>
+    <color name="green_mun_sell_transparent">#CC02B875</color>
+    <color name="charleston_green">#292D32</color>
+    <color name="gains_boro">#DFDFDF</color>
+    <color name="orange">#F9A401</color>
+    <color name="black_5_tranferency">#16000000</color>
+    <color name="blue_green">#02A2C6</color>
+    <color name="bottom_tab">#F3F3F3</color>
+    <color name="dove_gray_transparent">#80656565</color>
+
+</resources>

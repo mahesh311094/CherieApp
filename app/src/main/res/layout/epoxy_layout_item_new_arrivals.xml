@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="art"
+            type="com.ar7lab.cherieapp.model.Art" />
+
+        <variable
+            name="artist"
+            type="com.ar7lab.cherieapp.model.Artist" />
+
+        <variable
+            name="listener"
+            type="com.ar7lab.cherieapp.ui.store.ArtListener" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="@dimen/_250sdp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_8sdp"
+            app:cardCornerRadius="@dimen/_8sdp"
+            app:cardElevation="@dimen/_5sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingBottom="@dimen/_12sdp">
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/iv_art"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_130sdp"
+                    android:layout_marginHorizontal="@dimen/_12sdp"
+                    android:layout_marginTop="@dimen/_16sdp"
+                    android:adjustViewBounds="true"
+                    android:contentDescription="@string/art"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/ic_item_temp"
+                    app:artImgUrl="@{art.fileUrls.get(0).url}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize50Percent" />
+
+                <TextView
+                    android:id="@+id/tv_like"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@{art.liked ? @drawable/ic_heart_filled : @drawable/ic_heart}"
+                    android:drawablePadding="@dimen/margin_small"
+                    android:gravity="center"
+                    android:onClick="@{() -> listener.likeClick(art)}"
+                    android:paddingTop="@dimen/margin_extra_small"
+                    android:paddingBottom="@dimen/margin_extra_small"
+                    android:text="@{String.valueOf(art.likeCount)}"
+                    android:textAppearance="?attr/textAppearanceBody2"
+                    android:textColor="@color/light_blue"
+                    android:textSize="@dimen/_12ssp"
+                    app:layout_constraintBottom_toBottomOf="@+id/btn_sale"
+                    app:layout_constraintStart_toStartOf="@+id/iv_art"
+                    app:layout_constraintTop_toTopOf="@+id/btn_sale"
+                    tools:drawableStart="@drawable/ic_heart"
+                    tools:ignore="UseCompatTextViewDrawableXml"
+                    tools:text="234" />
+
+                <TextView
+                    android:id="@+id/tv_art_name"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_2sdp"
+                    android:layout_marginEnd="@dimen/_4sdp"
+                    android:fontFamily="@font/sf_pro_text_semi_bold"
+                    android:maxLines="1"
+                    android:text="@{art.name}"
+                    android:textAppearance="?attr/textAppearanceBody2"
+                    android:textColor="@color/dark_blue"
+                    android:textSize="@dimen/_13ssp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="@+id/iv_art"
+                    app:layout_constraintStart_toStartOf="@+id/iv_art"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_like"
+                    tools:text="Untitled Greens, 2014" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_sale"
+                    android:layout_width="60dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:backgroundTint="@color/green"
+                    android:clickable="false"
+                    android:fontFamily="@font/sf_pro_text_regular"
+                    android:onClick="@{() -> listener.onClick(art)}"
+                    android:paddingStart="0dp"
+                    android:paddingEnd="0dp"
+                    android:text="@string/on_sale"
+                    android:textAllCaps="false"
+                    android:textAppearance="?attr/textAppearanceCaption"
+                    android:textColor="?attr/colorOnPrimary"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="@+id/iv_art"
+                    app:layout_constraintTop_toBottomOf="@+id/iv_art"
+                    app:shapeAppearance="@style/ShapeAppearance.Cherie.Tag.SaleRounded" />
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/iv_avatar"
+                    android:layout_width="@dimen/_35sdp"
+                    android:layout_height="@dimen/_35sdp"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:background="?attr/colorOnPrimary"
+                    android:src="@drawable/ic_placeholder"
+                    app:imgUrl="@{artist.profilePicture}"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/tv_art_name"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_art_name"
+                    app:shapeAppearance="@style/circleImageView" />
+
+                <TextView
+                    android:id="@+id/tv_name"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_8sdp"
+                    android:layout_marginEnd="@dimen/_4sdp"
+                    android:fontFamily="@font/sf_pro_text_medium"
+                    android:text="@{artist.name}"
+                    android:textColor="@color/dark_white"
+                    android:textSize="@dimen/_11ssp"
+                    app:layout_constraintBottom_toBottomOf="@+id/iv_avatar"
+                    app:layout_constraintEnd_toStartOf="@+id/tv_eth"
+                    app:layout_constraintStart_toEndOf="@+id/iv_avatar"
+                    app:layout_constraintTop_toTopOf="@+id/iv_avatar"
+                    tools:text="Rajesh Savaliya" />
+
+                <TextView
+                    android:id="@+id/tv_eth"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_8sdp"
+                    android:fontFamily="@font/sf_pro_text_medium"
+                    android:textColor="@color/grey_button_switch"
+                    android:textSize="@dimen/_11ssp"
+                    app:layout_constraintBottom_toBottomOf="@+id/iv_avatar"
+                    app:layout_constraintEnd_toEndOf="@+id/btn_sale"
+                    app:layout_constraintTop_toTopOf="@+id/iv_avatar"
+                    tools:text="5.51 ETH" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.cardview.widget.CardView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

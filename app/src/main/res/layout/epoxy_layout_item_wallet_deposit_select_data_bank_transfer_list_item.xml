@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="com.ar7lab.cherieapp.enums.DepositeTypeEnum" />
+
+        <import type="android.view.View" />
+
+        <variable
+            name="indexValue"
+            type="Integer" />
+
+        <variable
+            name="isChecked"
+            type="Boolean" />
+
+        <variable
+            name="depositListener"
+            type="com.ar7lab.cherieapp.ui.wallet.deposit.DepositListener" />
+
+        <variable
+            name="bankDetail"
+            type="com.ar7lab.cherieapp.model.BankDetails" />
+
+        <variable
+            name="viewModel"
+            type="com.ar7lab.cherieapp.ui.wallet.deposit.DepositViewModel" />
+    </data>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clBankContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_16sdp"
+        android:background="@drawable/bg_registered_card_item"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvSelectPaymentMethodLabel">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clFirstBank"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_12sdp"
+            android:layout_marginVertical="@dimen/_8sdp"
+            android:visibility="@{viewModel.typeSelected==DepositeTypeEnum.CARD?View.GONE:View.VISIBLE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+            <!--Bank Name-->
+            <TextView
+                android:id="@+id/tvBankName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/sf_pro_text_medium"
+                android:includeFontPadding="false"
+                android:text="@{@string/static_bank_name(bankDetail.bankName)}"
+                android:textColor="@color/dove_gray"
+                android:textSize="@dimen/_11ssp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+            <!--Account No-->
+            <TextView
+                android:id="@+id/tvBankAccountNo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_6sdp"
+                android:layout_marginBottom="@dimen/_6sdp"
+                android:fontFamily="@font/sf_pro_text_regular"
+                android:includeFontPadding="false"
+                android:text="@{@string/account_no(bankDetail.accountNumber)}"
+                android:textColor="@color/dove_gray"
+                android:textSize="@dimen/_11ssp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvBankName" />
+            <!--Select bank radio button -->
+            <com.google.android.material.radiobutton.MaterialRadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:buttonTint="@color/green_munsell"
+                android:checked="@{isChecked}"
+                android:minWidth="0dp"
+                android:minHeight="0dp"
+                android:onClick="@{()->viewModel.selectedBankPosition(indexValue)}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/tvBankName" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</layout>
